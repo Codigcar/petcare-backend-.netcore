@@ -21,8 +21,6 @@ namespace PetCare.Services
             _unitOfWork = unitOfWork;
         }
 
-       
-
         public async Task<IEnumerable<Customer>> ListAsync()
         {
             return await _customerRepository.ListAsync();

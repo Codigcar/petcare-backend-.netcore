@@ -13,6 +13,14 @@
     <Compile Remove="Migrations\20200506005602_customer.Designer.cs" />
     <Compile Remove="Migrations\20200506005635_customer2.cs" />
     <Compile Remove="Migrations\20200506005635_customer2.Designer.cs" />
+    <Compile Remove="Migrations\20200506042615_Customer.cs" />
+    <Compile Remove="Migrations\20200506042615_Customer.Designer.cs" />
+    <Compile Remove="Migrations\20200506070838_ServicesProvider.cs" />
+    <Compile Remove="Migrations\20200506070838_ServicesProvider.Designer.cs" />
+    <Compile Remove="Migrations\20200506070936_ServiceProvider.cs" />
+    <Compile Remove="Migrations\20200506070936_ServiceProvider.Designer.cs" />
+    <Compile Remove="Migrations\20200506071226_ServicesProvider.cs" />
+    <Compile Remove="Migrations\20200506071226_ServicesProvider.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,9 +38,7 @@
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.20" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Migrations\" />
-  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 
 </Project>
