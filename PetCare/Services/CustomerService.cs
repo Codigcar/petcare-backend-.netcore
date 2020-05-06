@@ -21,7 +21,7 @@ namespace PetCare.Services
             _unitOfWork = unitOfWork;
         }
 
-       
+
 
         public async Task<IEnumerable<Customer>> ListAsync()
         {
@@ -64,7 +64,7 @@ namespace PetCare.Services
                 return new CustomerResponse($"An error ocurred while updating the Category: {ex.Message}");
             }
         }
-       
+
         public async Task<CustomerResponse> DeleteAsync(int id)
         {
             var existingCategory = await _customerRepository.FindByIdAsync(id);

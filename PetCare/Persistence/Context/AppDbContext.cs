@@ -15,6 +15,7 @@ namespace PetCare.Persistence.Context
 
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Pet> Pets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

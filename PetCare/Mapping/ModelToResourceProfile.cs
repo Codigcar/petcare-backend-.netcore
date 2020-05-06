@@ -13,6 +13,7 @@ namespace PetCare.Mapping
         public ModelToResourceProfile()
         {
             CreateMap<Customer, CustomerResource>();
+            CreateMap<Pet, PetResource>();
         }
     }
 }
