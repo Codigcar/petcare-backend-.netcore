@@ -19,7 +19,7 @@ namespace PetCare.Persistence.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            new CustomerConfig(builder.Entity<Customer>());
+           // new CustomerConfig(builder.Entity<Customer>());
 
         }
 

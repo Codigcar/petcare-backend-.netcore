@@ -7,26 +7,31 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200505204202_customer.cs" />
     <Compile Remove="Migrations\20200505204202_customer.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Domain\Comunication\" />
-    <Folder Include="Domain\Services\" />
-    <Folder Include="Domain\Repositories\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Services\" />
-    <Folder Include="Persistence\Repositories\" />
-    <Folder Include="Resources\" />
+    <Compile Remove="Migrations\20200505230248_customer.cs" />
+    <Compile Remove="Migrations\20200505230248_customer.Designer.cs" />
+    <Compile Remove="Migrations\20200506005602_customer.cs" />
+    <Compile Remove="Migrations\20200506005602_customer.Designer.cs" />
+    <Compile Remove="Migrations\20200506005635_customer2.cs" />
+    <Compile Remove="Migrations\20200506005635_customer2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.20" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 
