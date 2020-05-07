@@ -27,7 +27,7 @@ namespace PetCare.Controllers
         [HttpGet]
         public async Task<IEnumerable<CustomerResource>> GetAllAsync()
         {
-
+            
             var customers = await _customerService.ListAsync();
             var resources = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerResource>>(customers);
             return resources;

@@ -33,15 +33,13 @@ namespace PetCare
             opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection"))
           );
 
-
+            
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<IPetRepository, PetRepository>();
-            services.AddScoped<IPetService, PetService>();
+            services.AddScoped<IServicesProviderRepository, ServicesProviderRepository>();
+            services.AddScoped<IServicesProviderService, ServicesProviderService>();
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));
-
-
 
         }
 
