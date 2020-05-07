@@ -52,8 +52,8 @@ namespace PetCare.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveServicesProviderResource resource)
         {
-            var servicesProviders = _mapper.Map<SaveServicesProviderResource, ServicesProvider>(resource);
-            var result = await _servicesProviderService.UpdateAsync(id, servicesProviders);
+            var servicesProvider = _mapper.Map<SaveServicesProviderResource, ServicesProvider>(resource);
+            var result = await _servicesProviderService.UpdateAsync(id, servicesProvider);
 
             if (!result.Success)
             {

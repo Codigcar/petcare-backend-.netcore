@@ -67,6 +67,11 @@ namespace PetCare.Services
                 return new ServicesProviderResponse("Category not found");
 
             existingServicesProvider.BusinessName = servicesProvider.BusinessName;
+            existingServicesProvider.Address = servicesProvider.Address;
+            existingServicesProvider.Description = servicesProvider.Description;
+            existingServicesProvider.Email = servicesProvider.Email;
+            existingServicesProvider.Field = servicesProvider.Field;
+            existingServicesProvider.Region = servicesProvider.Region;
 
             try
             {
