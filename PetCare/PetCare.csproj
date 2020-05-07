@@ -19,6 +19,14 @@
     <Compile Remove="Migrations\20200506064211_PetCare.Designer.cs" />
     <Compile Remove="Migrations\20200506192100_in.cs" />
     <Compile Remove="Migrations\20200506192100_in.Designer.cs" />
+    <Compile Remove="Migrations\20200507032918_PetCare.cs" />
+    <Compile Remove="Migrations\20200507032918_PetCare.Designer.cs" />
+    <Compile Remove="Migrations\20200507035834_PetCare.cs" />
+    <Compile Remove="Migrations\20200507035834_PetCare.Designer.cs" />
+    <Compile Remove="Migrations\20200507040532_PetCare.cs" />
+    <Compile Remove="Migrations\20200507040532_PetCare.Designer.cs" />
+    <Compile Remove="Migrations\20200507041220_PetCare.cs" />
+    <Compile Remove="Migrations\20200507041220_PetCare.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,10 +42,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
     <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.20" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 

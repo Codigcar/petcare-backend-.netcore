@@ -38,6 +38,8 @@ namespace PetCare
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
+            services.AddScoped<ICardRepository, CardRepository>();
+            services.AddScoped<ICardService, CardService>();
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));
 
