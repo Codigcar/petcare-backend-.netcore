@@ -8,13 +8,21 @@ namespace PetCare.Resources
 {
     public class SaveCustomerResource
     {
-        public int Id { get; set; }
+        
         [Required]
         [MaxLength(30)]
         public string FirstName { get; set; }
         [Required]
         [MaxLength(30)]
         public string LastName { get; set; }
-        
+        [Required]
+        [MinLength(8)]
+        [MaxLength(8)]
+        public string Document { get; set; }
+        [EmailAddress]
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Age { get; set; }
+
     }
 }

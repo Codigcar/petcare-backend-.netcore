@@ -13,5 +13,6 @@ namespace PetCare.Domain.Services
         Task<CustomerResponse> SaveAsync(Customer customer);
         Task<CustomerResponse> UpdateAsync(int id, Customer customer);
         Task<CustomerResponse> DeleteAsync(int id);
+        
     }
 }

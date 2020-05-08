@@ -82,7 +82,7 @@ namespace PetCare.Services
             {
                 return new CardResponse($"An error ocurred while deleting the Category: {ex.Message}");
             }
-            throw new NotImplementedException();
+           
         }
     }
 }

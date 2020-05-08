@@ -87,7 +87,7 @@ namespace PetCare.Services
             {
                 return new PetResponse($"An error ocurred while deleting the Category: {ex.Message}");
             }
-            throw new NotImplementedException();
+           
         }
     }
 }

@@ -10,9 +10,9 @@ namespace PetCare.Domain.Models
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Document { get; set; }
+        public string Document { get; set; }
         public string Email { get; set; }
-        public int Phone { get; set; }
-        public int Age { get; set; }
+        public string Phone { get; set; }
+        public string Age { get; set; }
     }
 }
