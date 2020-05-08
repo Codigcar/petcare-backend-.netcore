@@ -18,7 +18,6 @@ namespace PetCare.Persistence.Context
         public DbSet<ServicesProvider> ServicesProviders { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Card> Cards { get; set; }
-        public DbSet<Plan> Plans { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -27,17 +26,6 @@ namespace PetCare.Persistence.Context
 
             new CustomerConfig(builder.Entity<Customer>());
             new ServicesProviderConfig(builder.Entity<ServicesProvider>());
-            new PlanConfig(builder.Entity<Plan>());
-
-            //
-          builder.Entity<Plan>().HasMany(x => x.ListServicesProvider).
-              WithOne(x => x.Plan).HasForeignKey(x => x.PlanId);
-
-            builder.Entity<Plan>().HasData
-            (
-                new Plan { Id = 1, Name = "Basica", Description = "Plan Basico", Price = 19.90, Duration = 1 },
-                new Plan { Id = 2, Name = "Premium", Description = "Plan Premium", Price = 39.90, Duration = 1 }
-            );
         }
     }
 }

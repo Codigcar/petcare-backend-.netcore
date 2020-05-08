@@ -51,10 +51,9 @@ namespace PetCare.Services
                 return new PetResponse("Category not found");
 
             existingpet.Name = pet.Name;
-            existingpet.Name = pet.Name; 
-            existingpet.Age = pet.Age; 
-            existingpet.Breed = pet.Breed; 
-            existingpet.Photo = pet.Photo; 
+            existingpet.Age = pet.Age;
+            existingpet.Breed = pet.Breed;
+            existingpet.Photo = pet.Photo;
             existingpet.Sex = pet.Sex;
 
             try
@@ -87,7 +86,7 @@ namespace PetCare.Services
             {
                 return new PetResponse($"An error ocurred while deleting the Category: {ex.Message}");
             }
-           
+            throw new NotImplementedException();
         }
     }
 }

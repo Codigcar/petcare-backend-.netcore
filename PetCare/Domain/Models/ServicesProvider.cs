@@ -15,9 +15,5 @@ namespace PetCare.Domain.Models
         public string Email { get; set; }
         public string Description { get; set; }
 
-        //FK
-        public int PlanId { get; set; }
-        public Plan Plan { get; set; }
-
     }
 }

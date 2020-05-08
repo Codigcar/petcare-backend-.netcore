@@ -12,7 +12,8 @@ namespace PetCare.Resources
         [Required]
         [MaxLength(30)]
         public string Name { get; set; }
-        public int Age { get; set; }
+        [Required]
+        public string Age { get; set; }
         [Required]
         [MaxLength(30)]
         public string Breed { get; set; }

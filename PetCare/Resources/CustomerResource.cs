@@ -13,5 +13,6 @@ namespace PetCare.Resources
         public string Email { get; set; }
         public string Phone { get; set; }
         public string Age { get; set; }
+
     }
 }

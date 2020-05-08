@@ -7,7 +7,7 @@ namespace PetCare.Resources
 {
     public class ServicesProviderResource
     {
-        
+        public int Id { get; set; }
         public string BusinessName { get; set; }
         public string Region { get; set; }
         public string Field { get; set; }

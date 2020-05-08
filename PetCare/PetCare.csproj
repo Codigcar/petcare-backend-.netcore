@@ -21,8 +21,8 @@
     <Compile Remove="Migrations\20200506070936_ServiceProvider.Designer.cs" />
     <Compile Remove="Migrations\20200506071226_ServicesProvider.cs" />
     <Compile Remove="Migrations\20200506071226_ServicesProvider.Designer.cs" />
-    <Compile Remove="Migrations\20200508074051_ini.cs" />
-    <Compile Remove="Migrations\20200508074051_ini.Designer.cs" />
+    <Compile Remove="Migrations\20200506220639_ServicesProvider.cs" />
+    <Compile Remove="Migrations\20200506220639_ServicesProvider.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

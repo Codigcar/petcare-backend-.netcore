@@ -76,7 +76,5 @@ namespace PetCare.Controllers
             return Ok(categoryResource);
         }
 
-        public async Task
-
     }
 }
