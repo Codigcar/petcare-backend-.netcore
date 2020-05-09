@@ -31,8 +31,10 @@ namespace PetCare.Persistence.Repositories
             return await _context.Pets.ToListAsync();
         }
 
-        public void Remove(Pet pet)
+        public void Remove( Pet pet)
         {
+            //var customer =  _context.Customers.FindAsync(customerId);
+   
             _context.Pets.Remove(pet);
         }
 
@@ -40,5 +42,28 @@ namespace PetCare.Persistence.Repositories
         {
             _context.Update(pet);
         }
+
+
+        public async Task SaveByCustomerIdAsync(int customerId,Pet pet)
+        {
+            var customer =await _context.Customers.FindAsync(customerId);
+            pet.CustomerId = customer.Id;
+            await _context.Pets.AddAsync(pet);
+        }
+
+        public async Task<IEnumerable<Pet>> ListByCustomerIdAsync(int customerId) =>
+            await _context.Pets
+            .Where(p => p.CustomerId == customerId)
+            .Include(p => p.Customer)
+            .ToListAsync();
+
+
+
+        /* public async Task<IEnumerable<ServicesProvider>> ListBySuscriptionPlanIdAsync(int planId) =>
+            await _context.ServicesProviders
+            .Where(p => p.SuscriptionPlanId == planId)
+            .Include(p => p.SuscriptionPlan)
+            .ToListAsync();
+         */
     }
 }

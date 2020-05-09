@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Domain.Models
 {
-    public class ServicesProvider
+    public class ServicesProvider : User
     {
         public int Id { get; set; }
         public string BusinessName { get; set; }
@@ -15,5 +15,9 @@ namespace PetCare.Domain.Models
         public string Email { get; set; }
         public string Description { get; set; }
 
+        public int SuscriptionPlanId { get; set; }
+        public SuscriptionPlan SuscriptionPlan { get; set; }
+
+        public Card Card { get; set; }
     }
 }

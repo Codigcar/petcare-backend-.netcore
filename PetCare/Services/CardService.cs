@@ -39,7 +39,7 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new CardResponse($"An error ocurred while saving the category: {ex.Message}");
+                return new CardResponse($"An error ocurred while saving the card: {ex.Message}");
             }
         }
 
@@ -48,7 +48,7 @@ namespace PetCare.Services
             var existingCard = await _cardRepository.FindByIdAsync(id);
 
             if (existingCard == null)
-                return new CardResponse("Category not found");
+                return new CardResponse("card not found");
 
             existingCard.Name = card.Name;
 
@@ -61,26 +61,26 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new CardResponse($"An error ocurred while updating the Category: {ex.Message}");
+                return new CardResponse($"An error ocurred while updating the card: {ex.Message}");
             }
         }
 
         public async Task<CardResponse> DeleteAsync(int id)
         {
-            var existingCategory = await _cardRepository.FindByIdAsync(id);
+            var existingcard = await _cardRepository.FindByIdAsync(id);
 
-            if (existingCategory == null)
-                return new CardResponse("Category not found.");
+            if (existingcard == null)
+                return new CardResponse("card not found.");
 
             try
             {
-                _cardRepository.Remove(existingCategory);
+                _cardRepository.Remove(existingcard);
                 await _unitOfWork.CompleteAsync();
-                return new CardResponse(existingCategory);
+                return new CardResponse(existingcard);
             }
             catch (Exception ex)
             {
-                return new CardResponse($"An error ocurred while deleting the Category: {ex.Message}");
+                return new CardResponse($"An error ocurred while deleting the card: {ex.Message}");
             }
             throw new NotImplementedException();
         }

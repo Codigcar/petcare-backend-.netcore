@@ -37,7 +37,7 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new CustomerResponse($"An error ocurred while saving the category: {ex.Message}");
+                return new CustomerResponse($"An error ocurred while saving the customer: {ex.Message}");
             }
         }
 
@@ -46,9 +46,15 @@ namespace PetCare.Services
             var existingCustomer = await _customerRepository.FindByIdAsync(id);
 
             if (existingCustomer == null)
-                return new CustomerResponse("Category not found");
+                return new CustomerResponse("customer not found");
 
             existingCustomer.FirstName = customer.FirstName;
+            existingCustomer.LastName= customer.LastName;
+            existingCustomer.Phone = customer.Phone;
+            existingCustomer.Age = customer.Age;
+            existingCustomer.Email = customer.Email;
+            existingCustomer.Document = customer.Document;
+
 
             try
             {
@@ -59,28 +65,42 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new CustomerResponse($"An error ocurred while updating the Category: {ex.Message}");
+                return new CustomerResponse($"An error ocurred while updating the customer: {ex.Message}");
             }
         }
        
         public async Task<CustomerResponse> DeleteAsync(int id)
         {
-            var existingCategory = await _customerRepository.FindByIdAsync(id);
+            var existingcustomer = await _customerRepository.FindByIdAsync(id);
 
-            if (existingCategory == null)
-                return new CustomerResponse("Category not found.");
+            if (existingcustomer == null)
+                return new CustomerResponse("customer not found.");
 
             try
             {
-                _customerRepository.Remove(existingCategory);
+                _customerRepository.Remove(existingcustomer);
                 await _unitOfWork.CompleteAsync();
-                return new CustomerResponse(existingCategory);
+                return new CustomerResponse(existingcustomer);
             }
             catch (Exception ex)
             {
-                return new CustomerResponse($"An error ocurred while deleting the Category: {ex.Message}");
+                return new CustomerResponse($"An error ocurred while deleting the customer: {ex.Message}");
             }
-            throw new NotImplementedException();
+         
+        }
+
+        public async Task<CustomerResponse> FindByIdAsync(int id)
+        {
+            
+            try
+            {
+                var customer = await _customerRepository.FindByIdAsync(id);
+                return new CustomerResponse(customer);
+            }
+            catch (Exception ex)
+            {
+                return new CustomerResponse($"An error ocurred while deleting the customer: {ex.Message}");
+            }
         }
     }
 }

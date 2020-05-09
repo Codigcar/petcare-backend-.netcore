@@ -2,6 +2,7 @@
 using PetCare.Domain.Models;
 using PetCare.Domain.Repositories;
 using PetCare.Domain.Services;
+using PetCare.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,7 +40,7 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new PetResponse($"An error ocurred while saving the category: {ex.Message}");
+                return new PetResponse($"An error ocurred while saving the pet: {ex.Message}");
             }
         }
 
@@ -48,7 +49,7 @@ namespace PetCare.Services
             var existingpet = await _petRepository.FindByIdAsync(id);
 
             if (existingpet == null)
-                return new PetResponse("Category not found");
+                return new PetResponse("pet not found");
 
             existingpet.Name = pet.Name;
             existingpet.Age = pet.Age;
@@ -65,28 +66,49 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new PetResponse($"An error ocurred while updating the Category: {ex.Message}");
+                return new PetResponse($"An error ocurred while updating the pet: {ex.Message}");
             }
         }
 
         public async Task<PetResponse> DeleteAsync(int id)
         {
-            var existingCategory = await _petRepository.FindByIdAsync(id);
+            var existingpet = await _petRepository.FindByIdAsync(id);
 
-            if (existingCategory == null)
-                return new PetResponse("Category not found.");
+            if (existingpet == null)
+                return new PetResponse("pet not found.");
 
             try
             {
-                _petRepository.Remove(existingCategory);
+                _petRepository.Remove(existingpet);
                 await _unitOfWork.CompleteAsync();
-                return new PetResponse(existingCategory);
+                return new PetResponse(existingpet);
             }
             catch (Exception ex)
             {
-                return new PetResponse($"An error ocurred while deleting the Category: {ex.Message}");
+                return new PetResponse($"An error ocurred while deleting the pet: {ex.Message}");
             }
             throw new NotImplementedException();
+        }
+
+        public async Task<PetResponse> SaveByCustomerIdAsync(int customerId, Pet pet)
+        {
+            try
+            {
+                await _petRepository.SaveByCustomerIdAsync(customerId,pet);
+                await _unitOfWork.CompleteAsync();
+
+                return new PetResponse(pet);
+            }
+            catch (Exception ex)
+            {
+                return new PetResponse($"An error ocurred while saving the pet: {ex.Message}");
+            }
+
+        }
+
+        public async Task<IEnumerable<Pet>> ListByCostumerIdAsync(int customerId)
+        {
+            return await _petRepository.ListByCustomerIdAsync(customerId);
         }
     }
 }

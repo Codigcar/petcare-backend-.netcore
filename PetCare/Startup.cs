@@ -40,7 +40,14 @@ namespace PetCare
             services.AddScoped<IServicesProviderRepository, ServicesProviderRepository>();
             services.AddScoped<IServicesProviderService, ServicesProviderService>();
             services.AddScoped<IPetService, PetService>();
+            services.AddScoped<ICardService, CardService>();
+            services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<IPetRepository, PetRepository>();
+
+
+            services.AddScoped<ISuscriptionPlanRepository, SuscriptionPlanRepository>();
+            services.AddScoped<ISuscriptionPlanService, SuscriptionPlanService>();
+
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>

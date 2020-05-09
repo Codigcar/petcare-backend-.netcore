@@ -21,22 +21,22 @@ namespace PetCare.Services
         }
         public async Task<ServicesProviderResponse> DeleteAsync(int id)
         {
-            var existingCategory = await _servicesProviderRepository.FindByIdAsync(id);
+            var existingservicesProvider = await _servicesProviderRepository.FindByIdAsync(id);
 
-            if (existingCategory == null)
-                return new ServicesProviderResponse("Category not found.");
+            if (existingservicesProvider == null)
+                return new ServicesProviderResponse("servicesProvider not found.");
 
             try
             {
-                _servicesProviderRepository.Remove(existingCategory);
+                _servicesProviderRepository.Remove(existingservicesProvider);
                 await _unitOfWork.CompleteAsync();
-                return new ServicesProviderResponse(existingCategory);
+                return new ServicesProviderResponse(existingservicesProvider);
             }
             catch (Exception ex)
             {
-                return new ServicesProviderResponse($"An error ocurred while deleting the Category: {ex.Message}");
+                return new ServicesProviderResponse($"An error ocurred while deleting the servicesProvider: {ex.Message}");
             }
-            throw new NotImplementedException();
+           
         }
 
         public async Task<IEnumerable<ServicesProvider>> ListAsync()
@@ -55,7 +55,7 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new ServicesProviderResponse($"An error ocurred while saving the category: {ex.Message}");
+                return new ServicesProviderResponse($"An error ocurred while saving the servicesProvider: {ex.Message}");
             }
         }
 
@@ -64,7 +64,7 @@ namespace PetCare.Services
             var existingServicesProvider = await _servicesProviderRepository.FindByIdAsync(id);
 
             if (existingServicesProvider == null)
-                return new ServicesProviderResponse("Category not found");
+                return new ServicesProviderResponse("servicesProvider not found");
 
             existingServicesProvider.BusinessName = servicesProvider.BusinessName;
             existingServicesProvider.Address = servicesProvider.Address;
@@ -72,6 +72,7 @@ namespace PetCare.Services
             existingServicesProvider.Email = servicesProvider.Email;
             existingServicesProvider.Field = servicesProvider.Field;
             existingServicesProvider.Region = servicesProvider.Region;
+            existingServicesProvider.SuscriptionPlanId = servicesProvider.SuscriptionPlanId;
 
             try
             {
@@ -82,8 +83,15 @@ namespace PetCare.Services
             }
             catch (Exception ex)
             {
-                return new ServicesProviderResponse($"An error ocurred while updating the Category: {ex.Message}");
+                return new ServicesProviderResponse($"An error ocurred while updating the servicesProvider: {ex.Message}");
             }
         }
+
+
+        public async Task<IEnumerable<ServicesProvider>> ListBySuscriptionPlanIdAsync(int categoryId)
+        {
+            return await _servicesProviderRepository.ListBySuscriptionPlanIdAsync(categoryId);
+
+        } 
     }
 }

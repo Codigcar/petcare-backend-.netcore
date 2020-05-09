@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class CardResource
+    public class SaveRegisterPetResource
     {
-        [Required]
-        public string Number { get; set; }
+        
         [Required]
         public string Name { get; set; }
         [Required]
-        public string  CVV_Number { get; set; }
+        public string Age { get; set; }
         [Required]
-        public string Expiry_Date { get; set; }
+        public string Breed { get; set; }
+        [Required]
+        public string Photo { get; set; }
+        [Required]
+        public string Sex { get; set; }
+        
 
 
     }

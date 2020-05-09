@@ -1,5 +1,6 @@
 ﻿using PetCare.Domain.Comunication;
 using PetCare.Domain.Models;
+using PetCare.Persistence.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace PetCare.Domain.Services
         Task<PetResponse> SaveAsync(Pet pet);
         Task<PetResponse> UpdateAsync(int id, Pet pet);
         Task<PetResponse> DeleteAsync(int id);
+        Task<PetResponse> SaveByCustomerIdAsync(int customerId, Pet pet);
+        Task<IEnumerable<Pet>> ListByCostumerIdAsync(int customerId);
     }
 }

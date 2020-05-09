@@ -15,6 +15,7 @@ namespace PetCare.Persistence.Config
             entityBuilder.Property(x => x.LastName).IsRequired().HasMaxLength(30);
 
 
+
         }
 
     }

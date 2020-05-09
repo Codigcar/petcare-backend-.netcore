@@ -16,7 +16,9 @@ namespace PetCare.Mapping
             CreateMap<ServicesProvider, ServicesProviderResource>();
             CreateMap<Pet, PetResource>();
             CreateMap<Card, CardResource>();
-            
+            CreateMap<SuscriptionPlan, SuscriptionPlanResource>();
+            CreateMap<Card, CardResource>();
+            CreateMap<Pet, RegisterPetResource>();
         }
     }
 }

@@ -23,6 +23,16 @@
     <Compile Remove="Migrations\20200506071226_ServicesProvider.Designer.cs" />
     <Compile Remove="Migrations\20200506220639_ServicesProvider.cs" />
     <Compile Remove="Migrations\20200506220639_ServicesProvider.Designer.cs" />
+    <Compile Remove="Migrations\20200508093728_prueba.cs" />
+    <Compile Remove="Migrations\20200508093728_prueba.Designer.cs" />
+    <Compile Remove="Migrations\20200508185629_como.cs" />
+    <Compile Remove="Migrations\20200508185629_como.Designer.cs" />
+    <Compile Remove="Migrations\20200508220420_suerte.cs" />
+    <Compile Remove="Migrations\20200508220420_suerte.Designer.cs" />
+    <Compile Remove="Migrations\20200509054746_unoaunno.cs" />
+    <Compile Remove="Migrations\20200509054746_unoaunno.Designer.cs" />
+    <Compile Remove="Migrations\20200509070958_prueba.cs" />
+    <Compile Remove="Migrations\20200509070958_prueba.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

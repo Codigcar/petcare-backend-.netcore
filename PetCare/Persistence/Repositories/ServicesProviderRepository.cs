@@ -29,6 +29,7 @@ namespace PetCare.Persistence.Repositories
             return await _context.ServicesProviders.ToListAsync();
         }
 
+      
         public void Remove(ServicesProvider servicesProvider)
         {
             _context.ServicesProviders.Remove(servicesProvider);
@@ -37,6 +38,13 @@ namespace PetCare.Persistence.Repositories
         public void Update(ServicesProvider servicesProvider)
         {
             _context.Update(servicesProvider);
+           
         }
+        public async Task<IEnumerable<ServicesProvider>> ListBySuscriptionPlanIdAsync(int planId) =>
+            await _context.ServicesProviders
+            .Where(p => p.SuscriptionPlanId == planId)
+            .Include(p => p.SuscriptionPlan)
+            .ToListAsync();
+
     }
 }
