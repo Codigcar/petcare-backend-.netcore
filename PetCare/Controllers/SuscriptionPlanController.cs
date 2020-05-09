@@ -28,10 +28,11 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<SuscriptionPlan>> GetAllAsync()
+        public async Task<IEnumerable<SuscriptionPlanResource>> GetAllAsync()
         {
             var suscriptionPlan = await _suscriptionPlanService.ListAsync();
-            return suscriptionPlan;
+            var Resource = _mapper.Map<IEnumerable<SuscriptionPlan>, IEnumerable<SuscriptionPlanResource>>(suscriptionPlan);
+            return Resource;
         }
 
         [HttpPost]

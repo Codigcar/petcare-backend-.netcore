@@ -15,7 +15,7 @@ namespace PetCare.Domain.Services
         Task<CardResponse> DeleteAsync(int id);
 
         Task<CardResponse> SaveByServicesProviderIdAsync(int sproviderId, Card card);
-        Task<IEnumerable<CardResponse>> ListByServicesProviderIdAsync(int sproviderId);
+      
 
 
     }

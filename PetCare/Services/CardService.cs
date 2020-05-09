@@ -105,5 +105,10 @@ namespace PetCare.Services
             return await _cardRepository.ListByServicesProviderIdAsync(sproviderId);
 
         }
+
+       /* Task<IEnumerable<CardResponse>> ICardService.ListByServicesProviderIdAsync(int sproviderId)
+        {
+            throw new NotImplementedException();
+        }*/
     }
 }

@@ -11,14 +11,16 @@ namespace PetCare.Resources
     {
         [Required]
         [MaxLength(30)]
+        [MinLength(3)]
         public string FirstName { get; set; }
         [Required]
         [MaxLength(30)]
+        [MinLength(3)]
         public string LastName { get; set; }
 
         [Required]
-        [MinLength(7)]
-        [MaxLength(7)]
+        [MinLength(8)]
+        [MaxLength(8)]
         public string Document { get; set; }
         [Required]
         [EmailAddress]
@@ -31,6 +33,7 @@ namespace PetCare.Resources
         public string Phone { get; set; }
 
         [Required]
+        [MaxLength(2)]
         public string Age { get; set; }
 
     }
