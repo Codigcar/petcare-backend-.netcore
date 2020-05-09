@@ -15,5 +15,6 @@ namespace PetCare.Domain.Repositories
         void Remove(ServicesProvider servicesProvider);
         Task<IEnumerable<ServicesProvider>> ListBySuscriptionPlanIdAsync(int categoryId);
 
+
     }
 }

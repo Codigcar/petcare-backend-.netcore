@@ -2,6 +2,7 @@
 using PetCare.Domain.Models;
 using PetCare.Domain.Repositories;
 using PetCare.Persistence.Context;
+using Renci.SshNet.Security.Cryptography;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,23 @@ namespace PetCare.Persistence.Repositories
             return await _context.Cards.ToListAsync();
         }
 
+        public async Task<IEnumerable<Card>> ListByServicesProviderIdAsync(int sproviderId) =>
+            await _context.Cards
+            .Where(p => p.ServicesProviderForeignKey== sproviderId)
+            .Include(p => p.ServicesProvider)
+            .ToListAsync();
+        
+
         public void Remove(Card Card)
         {
             _context.Cards.Remove(Card);
+        }
+
+        public async Task SaveByServicesProviderIdAsync(int sproviderId, Card card)
+        {
+            var servicesProvider = await _context.ServicesProviders.FindAsync(sproviderId);
+            card.ServicesProviderForeignKey = servicesProvider.Id;
+            await _context.Cards.AddAsync(card);
         }
 
         public void Update(Card Card)

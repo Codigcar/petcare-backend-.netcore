@@ -25,8 +25,7 @@ namespace PetCare.Resources
         [MaxLength(8)]
         public string Expiry_Date { get; set; }
 
-        [Required]
-        public int ServicesProviderForeignKey { get; set; }
+      
 
     }
 }

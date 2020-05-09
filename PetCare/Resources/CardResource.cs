@@ -8,13 +8,13 @@ namespace PetCare.Resources
 {
     public class CardResource
     {
-        [Required]
+  
         public string Number { get; set; }
-        [Required]
+
         public string Name { get; set; }
-        [Required]
+ 
         public string  CVV_Number { get; set; }
-        [Required]
+  
         public string Expiry_Date { get; set; }
 
 

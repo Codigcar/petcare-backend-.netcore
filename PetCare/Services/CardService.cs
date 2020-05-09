@@ -82,7 +82,28 @@ namespace PetCare.Services
             {
                 return new CardResponse($"An error ocurred while deleting the card: {ex.Message}");
             }
-            throw new NotImplementedException();
+           
+        }
+
+        public  async Task<CardResponse> SaveByServicesProviderIdAsync(int sproviderId, Card card)
+        {
+            try
+            {
+                await _cardRepository.SaveByServicesProviderIdAsync(sproviderId, card);
+                await _unitOfWork.CompleteAsync();
+
+                return new CardResponse(card);
+            }
+            catch (Exception ex)
+            {
+                return new CardResponse($"An error ocurred while saving the card: {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<Card>> ListByServicesProviderIdAsync(int sproviderId)
+        {
+            return await _cardRepository.ListByServicesProviderIdAsync(sproviderId);
+
         }
     }
 }
