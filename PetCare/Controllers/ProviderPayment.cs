@@ -12,7 +12,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicesprovider/{sproviderId}/payment")]
+    [Route("api/provider/{providerId}/payment")]
     public class ProviderPayment : ControllerBase
     {
         private readonly ICardService _cardService;
@@ -34,14 +34,14 @@ namespace PetCare.Controllers
         }*/
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int sproviderId, [FromBody] SaveCardResource resource)
+        public async Task<ActionResult> PostAsync(int providerId, [FromBody] SaveCardResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
             var Card = _mapper.Map<SaveCardResource, Card>(resource);
-            var result = await _cardService.SaveByServicesProviderIdAsync(sproviderId, Card);
+            var result = await _cardService.SaveByServicesProviderIdAsync(providerId, Card);
 
             if (!result.Success)
                 return BadRequest(result.Message);
