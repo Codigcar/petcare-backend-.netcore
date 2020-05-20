@@ -12,7 +12,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pet/{customerId}")]
     public class PetController : ControllerBase
     {
         private readonly IPetService _petService;
@@ -25,23 +25,22 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PetResource>> GetAllAsync()
+        public async Task<IEnumerable<PetResource>> GetAllAsync(int customerId)
         {
-
-            var customers = await _petService.ListAsync();
+            var customers = await _petService.ListByCostumerIdAsync(customerId);
             var resources = _mapper.Map<IEnumerable<Pet>, IEnumerable<PetResource>>(customers);
             return resources;
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] SavePetResource resource)
+        public async Task<ActionResult> PostAsync(int customerId,[FromBody] SavePetResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
             var pet = _mapper.Map<SavePetResource, Pet>(resource);
-            var result = await _petService.SaveAsync(pet);
+            var result = await _petService.SaveByCustomerIdAsync(customerId, pet);
             if (!result.Success)
                 return BadRequest(result.Message);
             var petResource = _mapper.Map<Pet, PetResource>(result.Pet);

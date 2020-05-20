@@ -20,7 +20,7 @@ namespace PetCare.Resources
         [Required]
         public string Sex { get; set; }
         
-        public int CustomerId { get; set; }
+       // public int CustomerId { get; set; }
 
     }
 }

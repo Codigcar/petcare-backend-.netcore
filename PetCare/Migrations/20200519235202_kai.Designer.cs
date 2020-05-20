@@ -8,8 +8,8 @@ using PetCare.Persistence.Context;
 namespace PetCare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200509122603_nuevo")]
-    partial class nuevo
+    [Migration("20200519235202_kai")]
+    partial class kai
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -79,12 +79,14 @@ namespace PetCare.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -164,6 +166,7 @@ namespace PetCare.Migrations
                         .HasMaxLength(30);
 
                     b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Region")
@@ -175,6 +178,7 @@ namespace PetCare.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
