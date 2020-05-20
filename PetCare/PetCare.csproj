@@ -33,6 +33,8 @@
     <Compile Remove="Migrations\20200509054746_unoaunno.Designer.cs" />
     <Compile Remove="Migrations\20200509070958_prueba.cs" />
     <Compile Remove="Migrations\20200509070958_prueba.Designer.cs" />
+    <Compile Remove="Migrations\20200509122603_nuevo.cs" />
+    <Compile Remove="Migrations\20200509122603_nuevo.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
