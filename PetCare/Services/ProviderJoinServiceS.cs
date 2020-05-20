@@ -23,33 +23,32 @@ namespace PetCare.Services
             _serviceRepository = serviceRepository;
         }
 
-        public async Task<ProviderJoinServiceResponse> AssignProviderService(int providerId, Service service)
-        {
-            try
-            {
-                var get = _serviceRepository.FindByNameAsync(service.Name);
-                await _providerJoinServiceRepository.AssignProviderService(providerId, get.Id);
-                await _unitOfWork.CompleteAsync();
-                ProviderJoinService providerJoinService = await _providerJoinServiceRepository.FindByProviderIdAndServiceId(providerId, get.Id);
-                return new ProviderJoinServiceResponse(providerJoinService);
-            }
-            catch (Exception ex)
-            {
-                return new ProviderJoinServiceResponse($"An error ocurred while assigning service to provider: {ex.Message}");
-            }
-        }
+       
+    public async Task<ProviderJoinServiceResponse> AssignProviderService(int providerId, int serviceId)
+    {
+       try
+       {
 
-        public async Task<IEnumerable<Service>> ListByProviderIdAsync(int providerId)
-        {
-            // return await _providerJoinServiceRepository.ListByProviderIdAsync(providerId);
-            var providerService = await _providerJoinServiceRepository.ListByProviderIdAsync(providerId);
-            var services = providerService.Select(ps => ps.Service).ToList();
-            return services;
-        }
+           await _providerJoinServiceRepository.AssignProviderService(providerId, serviceId);
+           await _unitOfWork.CompleteAsync();
+           ProviderJoinService providerJoinService = await _providerJoinServiceRepository.FindByProviderIdAndServiceId(providerId, serviceId);
+           return new ProviderJoinServiceResponse(providerJoinService);
+       }
+       catch (Exception ex)
+       {
+           return new ProviderJoinServiceResponse($"An error ocurred while assigning service to provider: {ex.Message}");
+       }
+    }
 
-        public async Task<IEnumerable<ProviderJoinService>> ListByServiceIdAsync(int serviceId)
-        {
-            return await _providerJoinServiceRepository.ListByServiceIdAsync(serviceId);
-        }
+
+    public async Task<IEnumerable<Service>> ListByProviderIdAsync(int providerId)
+    {
+    // return await _providerJoinServiceRepository.ListByProviderIdAsync(providerId);
+    var providerService = await _providerJoinServiceRepository.ListByProviderIdAsync(providerId);
+    var services = providerService.Select(ps => ps.Service).ToList();
+    return services;
+    }
+
+
     }
 }
