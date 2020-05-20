@@ -9,7 +9,7 @@ namespace PetCare.Persistence.Config
 {
     public class ServicesProviderConfig
     {
-        public ServicesProviderConfig(EntityTypeBuilder<ServicesProvider> entityBuilder)
+        public ServicesProviderConfig(EntityTypeBuilder<Provider> entityBuilder)
         {
             entityBuilder.Property(x => x.BusinessName).IsRequired().HasMaxLength(30);
             entityBuilder.Property(x => x.Address).IsRequired().HasMaxLength(30);

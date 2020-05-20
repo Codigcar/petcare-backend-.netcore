@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class SaveServicesProviderResource : User
+    public class SaveProviderResource : User
     {
         public int Id { get; set; }
         [Required]
@@ -28,9 +28,10 @@ namespace PetCare.Resources
         [Required]
         [MaxLength(50)]
         public string Description { get; set; }
+
         public int SuscriptionPlanId { get; set; }
 
-        public Card Card { get; set; }
+      //  public Card Card { get; set; }
 
     }
 }

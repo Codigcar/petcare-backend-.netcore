@@ -13,12 +13,12 @@ using PetCare.Resources;
 namespace PetCare.Controllers
 {
     [Route("api/servicesprovider/{sproviderId}/payment")]
-    public class ServicesPPayment : ControllerBase
+    public class ProviderPayment : ControllerBase
     {
         private readonly ICardService _cardService;
         private readonly IMapper _mapper;
 
-        public ServicesPPayment(ICardService cardService, IMapper mapper)
+        public ProviderPayment(ICardService cardService, IMapper mapper)
         {
             _cardService = cardService;
             _mapper = mapper;

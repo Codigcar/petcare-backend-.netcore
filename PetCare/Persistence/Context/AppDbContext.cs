@@ -15,7 +15,7 @@ namespace PetCare.Persistence.Context
 
 
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<ServicesProvider> ServicesProviders { get; set; }
+        public DbSet<Provider> ServicesProviders { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<SuscriptionPlan> SuscriptionPlans { get; set; }
@@ -26,7 +26,7 @@ namespace PetCare.Persistence.Context
             base.OnModelCreating(builder);
             
             new CustomerConfig(builder.Entity<Customer>());
-            new ServicesProviderConfig(builder.Entity<ServicesProvider>());
+            new ServicesProviderConfig(builder.Entity<Provider>());
             new PetConfig(builder.Entity<Pet>());
             new CardConfig(builder.Entity<Card>());
 
@@ -38,7 +38,7 @@ namespace PetCare.Persistence.Context
             builder.Entity<Customer>().HasMany(x => x.Pets).
                 WithOne(p => p.Customer).HasForeignKey(x => x.CustomerId);
 
-            builder.Entity<ServicesProvider>().HasOne(x => x.Card)
+            builder.Entity<Provider>().HasOne(x => x.Card)
                 .WithOne(p => p.ServicesProvider)
                 .HasForeignKey<Card>(b => b.ServicesProviderForeignKey);
                 /*

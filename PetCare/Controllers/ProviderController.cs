@@ -13,46 +13,46 @@ using PetCare.Resources;
 namespace PetCare.Controllers
 {
     [Route("api/[controller]")]
-    public class ServicesProviderController : ControllerBase
+    public class ProviderController : ControllerBase
     {
-        private readonly IServicesProviderService _servicesProviderService;
+        private readonly IProviderService _servicesProviderService;
         private readonly IMapper _mapper;
 
-        public ServicesProviderController(IServicesProviderService servicesProviderService, IMapper mapper)
+        public ProviderController(IProviderService servicesProviderService, IMapper mapper)
         {
             _servicesProviderService = servicesProviderService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ServicesProviderResource>> GetAllAsync()
+        public async Task<IEnumerable<ProviderResource>> GetAllAsync()
         {
 
             var servicesProviders = await _servicesProviderService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<ServicesProvider>, IEnumerable<ServicesProviderResource>>(servicesProviders);
+            var resources = _mapper.Map<IEnumerable<Provider>, IEnumerable<ProviderResource>>(servicesProviders);
             return resources;
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] SaveServicesProviderResource resource)
+        public async Task<ActionResult> PostAsync([FromBody] SaveProviderResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
-            var servicesProvider = _mapper.Map<SaveServicesProviderResource, ServicesProvider>(resource);
+            var servicesProvider = _mapper.Map<SaveProviderResource, Provider>(resource);
             var result = await _servicesProviderService.SaveAsync(servicesProvider);
             if (!result.Success)
                 return BadRequest(result.Message);
-            var servicesProviderResource = _mapper.Map<ServicesProvider, ServicesProviderResource>(result.ServicesProvider);
+            var servicesProviderResource = _mapper.Map<Provider, ProviderResource>(result.ServicesProvider);
             return Ok(servicesProviderResource);
         }
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveServicesProviderResource resource)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProviderResource resource)
         {
-            var servicesProvider = _mapper.Map<SaveServicesProviderResource, ServicesProvider>(resource);
+            var servicesProvider = _mapper.Map<SaveProviderResource, Provider>(resource);
             var result = await _servicesProviderService.UpdateAsync(id, servicesProvider);
 
             if (!result.Success)
@@ -60,7 +60,7 @@ namespace PetCare.Controllers
                 return BadRequest(result.Message);
             }
 
-            var servicesProviderResource = _mapper.Map<ServicesProvider, ServicesProviderResource>(result.ServicesProvider);
+            var servicesProviderResource = _mapper.Map<Provider, ProviderResource>(result.ServicesProvider);
             return Ok(servicesProviderResource);
         }
 
@@ -72,7 +72,7 @@ namespace PetCare.Controllers
             {
                 return BadRequest(result.Message);
             }
-            var categoryResource = _mapper.Map<ServicesProvider, ServicesProviderResource>(result.ServicesProvider);
+            var categoryResource = _mapper.Map<Provider, ProviderResource>(result.ServicesProvider);
             return Ok(categoryResource);
         }
 

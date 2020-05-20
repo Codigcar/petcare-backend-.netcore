@@ -23,7 +23,7 @@ namespace PetCare.Resources
 
         [Required]
         [MaxLength(8)]
-        public string Expiry_Date { get; set; }
+        public string DateOfExpiry { get; set; }
 
       
 

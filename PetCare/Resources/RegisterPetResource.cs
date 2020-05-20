@@ -8,8 +8,9 @@ namespace PetCare.Resources
 {
     public class RegisterPetResource
     {
-        
- 
+        public int Id { get; set; }
+
+
         public string Name { get; set; }
         
         public string Age { get; set; }

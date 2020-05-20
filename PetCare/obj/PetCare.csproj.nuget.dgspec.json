@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\joaqu\\OneDrive\\Documentos\\git pet\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
+    "C:\\Users\\carlo\\Desktop\\Backend web\\Develop\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\joaqu\\OneDrive\\Documentos\\git pet\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
+    "C:\\Users\\carlo\\Desktop\\Backend web\\Develop\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\joaqu\\OneDrive\\Documentos\\git pet\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "projectUniqueName": "C:\\Users\\carlo\\Desktop\\Backend web\\Develop\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
         "projectName": "PetCare",
-        "projectPath": "C:\\Users\\joaqu\\OneDrive\\Documentos\\git pet\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
-        "packagesPath": "C:\\Users\\joaqu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\joaqu\\OneDrive\\Documentos\\git pet\\Backend-NetCore-PetCare\\PetCare\\obj\\",
+        "projectPath": "C:\\Users\\carlo\\Desktop\\Backend web\\Develop\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\carlo\\Desktop\\Backend web\\Develop\\Backend-NetCore-PetCare\\PetCare\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\joaqu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -7,7 +7,7 @@ namespace PetCare.Resources
 {
     public class PetResource
     {
-       
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Age { get; set; }
         public string Breed { get; set; }

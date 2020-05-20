@@ -9,62 +9,62 @@ using System.Threading.Tasks;
 
 namespace PetCare.Services
 {
-    public class ServicesProviderService : IServicesProviderService
+    public class ProviderService : IProviderService
     {
-        private readonly IServicesProviderRepository _servicesProviderRepository;
+        private readonly IProviderRepository _servicesProviderRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ServicesProviderService(IServicesProviderRepository servicesProviderRepository, IUnitOfWork unitOfWork)
+        public ProviderService(IProviderRepository servicesProviderRepository, IUnitOfWork unitOfWork)
         {
             _servicesProviderRepository = servicesProviderRepository;
             _unitOfWork = unitOfWork;
         }
-        public async Task<ServicesProviderResponse> DeleteAsync(int id)
+        public async Task<ProviderResponse> DeleteAsync(int id)
         {
             var existingservicesProvider = await _servicesProviderRepository.FindByIdAsync(id);
 
             if (existingservicesProvider == null)
-                return new ServicesProviderResponse("servicesProvider not found.");
+                return new ProviderResponse("servicesProvider not found.");
 
             try
             {
                 _servicesProviderRepository.Remove(existingservicesProvider);
                 await _unitOfWork.CompleteAsync();
-                return new ServicesProviderResponse(existingservicesProvider);
+                return new ProviderResponse(existingservicesProvider);
             }
             catch (Exception ex)
             {
-                return new ServicesProviderResponse($"An error ocurred while deleting the servicesProvider: {ex.Message}");
+                return new ProviderResponse($"An error ocurred while deleting the servicesProvider: {ex.Message}");
             }
            
         }
 
-        public async Task<IEnumerable<ServicesProvider>> ListAsync()
+        public async Task<IEnumerable<Provider>> ListAsync()
         {
             return await _servicesProviderRepository.ListAsync();
         }
 
-        public async Task<ServicesProviderResponse> SaveAsync(ServicesProvider servicesProvider)
+        public async Task<ProviderResponse> SaveAsync(Provider servicesProvider)
         {
             try
             {
                 await _servicesProviderRepository.AddAsyn(servicesProvider);
                 await _unitOfWork.CompleteAsync();
 
-                return new ServicesProviderResponse(servicesProvider);
+                return new ProviderResponse(servicesProvider);
             }
             catch (Exception ex)
             {
-                return new ServicesProviderResponse($"An error ocurred while saving the servicesProvider: {ex.Message}");
+                return new ProviderResponse($"An error ocurred while saving the servicesProvider: {ex.Message}");
             }
         }
 
-        public async Task<ServicesProviderResponse> UpdateAsync(int id, ServicesProvider servicesProvider)
+        public async Task<ProviderResponse> UpdateAsync(int id, Provider servicesProvider)
         {
             var existingServicesProvider = await _servicesProviderRepository.FindByIdAsync(id);
 
             if (existingServicesProvider == null)
-                return new ServicesProviderResponse("servicesProvider not found");
+                return new ProviderResponse("servicesProvider not found");
 
             existingServicesProvider.BusinessName = servicesProvider.BusinessName;
             existingServicesProvider.Address = servicesProvider.Address;
@@ -79,16 +79,16 @@ namespace PetCare.Services
                 _servicesProviderRepository.Update(existingServicesProvider);
                 await _unitOfWork.CompleteAsync();
 
-                return new ServicesProviderResponse(existingServicesProvider);
+                return new ProviderResponse(existingServicesProvider);
             }
             catch (Exception ex)
             {
-                return new ServicesProviderResponse($"An error ocurred while updating the servicesProvider: {ex.Message}");
+                return new ProviderResponse($"An error ocurred while updating the servicesProvider: {ex.Message}");
             }
         }
 
 
-        public async Task<IEnumerable<ServicesProvider>> ListBySuscriptionPlanIdAsync(int categoryId)
+        public async Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int categoryId)
         {
             return await _servicesProviderRepository.ListBySuscriptionPlanIdAsync(categoryId);
 

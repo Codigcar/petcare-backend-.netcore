@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Domain.Models
 {
-    public class ServicesProvider : User
+    public class Provider : User
     {
         public int Id { get; set; }
         public string BusinessName { get; set; }

@@ -19,8 +19,8 @@ namespace PetCare.Resources
         public string LastName { get; set; }
 
         [Required]
-        [MinLength(8)]
-        [MaxLength(8)]
+        [MinLength(7)]
+        [MaxLength(7)]
         public string Document { get; set; }
         [Required]
         [EmailAddress]

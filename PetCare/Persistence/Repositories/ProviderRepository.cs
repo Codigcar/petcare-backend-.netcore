@@ -9,38 +9,38 @@ using System.Threading.Tasks;
 
 namespace PetCare.Persistence.Repositories
 {
-    public class ServicesProviderRepository : BaseRepository, IServicesProviderRepository
+    public class ProviderRepository : BaseRepository, IProviderRepository
     {
-        public ServicesProviderRepository(AppDbContext context) : base(context)
+        public ProviderRepository(AppDbContext context) : base(context)
         { }
 
-        public async Task AddAsyn(ServicesProvider servicesProvider)
+        public async Task AddAsyn(Provider servicesProvider)
         {
             await _context.ServicesProviders.AddAsync(servicesProvider);
         }
 
-        public async Task<ServicesProvider> FindByIdAsync(int id)
+        public async Task<Provider> FindByIdAsync(int id)
         {
             return await _context.ServicesProviders.FindAsync(id);
         }
 
-        public async Task<IEnumerable<ServicesProvider>> ListAsync()
+        public async Task<IEnumerable<Provider>> ListAsync()
         {
             return await _context.ServicesProviders.ToListAsync();
         }
 
       
-        public void Remove(ServicesProvider servicesProvider)
+        public void Remove(Provider servicesProvider)
         {
             _context.ServicesProviders.Remove(servicesProvider);
         }
 
-        public void Update(ServicesProvider servicesProvider)
+        public void Update(Provider servicesProvider)
         {
             _context.Update(servicesProvider);
            
         }
-        public async Task<IEnumerable<ServicesProvider>> ListBySuscriptionPlanIdAsync(int planId) =>
+        public async Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int planId) =>
             await _context.ServicesProviders
             .Where(p => p.SuscriptionPlanId == planId)
             .Include(p => p.SuscriptionPlan)

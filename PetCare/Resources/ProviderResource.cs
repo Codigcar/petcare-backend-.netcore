@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class ServicesProviderResource : User
+    public class ProviderResource : User
     {
-       
+        public int Id { get; set; }
+
         public string BusinessName { get; set; }
         
         public string Region { get; set; }

@@ -37,8 +37,8 @@ namespace PetCare
             
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<IServicesProviderRepository, ServicesProviderRepository>();
-            services.AddScoped<IServicesProviderService, ServicesProviderService>();
+            services.AddScoped<IProviderRepository, ProviderRepository>();
+            services.AddScoped<IProviderService, ProviderService>();
             services.AddScoped<IPetService, PetService>();
             services.AddScoped<ICardService, CardService>();
             services.AddScoped<ICardRepository, CardRepository>();
