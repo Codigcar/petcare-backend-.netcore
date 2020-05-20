@@ -48,6 +48,9 @@ namespace PetCare
             services.AddScoped<ISuscriptionPlanRepository, SuscriptionPlanRepository>();
             services.AddScoped<ISuscriptionPlanService, SuscriptionPlanService>();
 
+            services.AddScoped<IProviderJoinServiceRepository, ProviderJoinServiceRepository>();
+            services.AddScoped<IProviderJoinServiceS, ProviderJoinServiceS>();
+
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>

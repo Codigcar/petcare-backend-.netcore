@@ -19,6 +19,9 @@ namespace PetCare.Domain.Models
         public SuscriptionPlan SuscriptionPlan { get; set; }
 
         public Card Card { get; set; }
-   //     public IList<Card> Card { get; set; } = new List<ServicesProvider>();
+
+        public List<ProviderJoinService> ProviderServices { get; set; }
+
+        //     public IList<Card> Card { get; set; } = new List<ServicesProvider>();
     }
 }

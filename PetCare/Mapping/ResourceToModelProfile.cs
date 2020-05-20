@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PetCare.Domain.Models;
 using PetCare.Resources;
+using PetCare.Resources.Save;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace PetCare.Mapping
             CreateMap<SaveSuscriptionPlan, SuscriptionPlan>();
             CreateMap<SaveCardResource, Card>();
             CreateMap<SaveRegisterPetResource, Pet>();
+            CreateMap<SaveServiceResource, Service>();
         }
     }
 }
