@@ -25,7 +25,7 @@ namespace PetCare.Controllers
             _providerJoinService = providerJoinService;
             _mapper = mapper;
         }
-        /*
+        
         [HttpPost("{serviceId}")]
         public async Task<IActionResult> AssignProductTag(int providerId, int serviceId)
         {
@@ -34,24 +34,11 @@ namespace PetCare.Controllers
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            var tagResource = _mapper.Map<Service, ServiceResource>(result.ProviderJoinService.Service);
-            return Ok(tagResource);
-
-        }*/
-        [HttpPost]
-        public async Task<IActionResult> AssignProductTag(int providerId, [FromBody] SaveServiceResource saveServiceResource)
-        {
-          //  var customer = _mapper.Map<SaveCustomerResource, Customer>(resource);
-            var service = _mapper.Map<SaveServiceResource, Service>(saveServiceResource);
-
-            var result = await _providerJoinService.AssignProviderService(providerId, service);
-            if (!result.Success)
-                return BadRequest(result.Message);
-
-            var tagResource = _mapper.Map<Service, ServiceResource>(result.ProviderJoinService.Service);
-            return Ok(tagResource);
+            //var tagResource = _mapper.Map<Service, ServiceResource>(result.ProviderJoinService.Service);
+            return Ok();
 
         }
+    
 
         [HttpGet]
         public async Task<IEnumerable<ServiceResource>> GetAllByProviderIdAsync(int providerId)

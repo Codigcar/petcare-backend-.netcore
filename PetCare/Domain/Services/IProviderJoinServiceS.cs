@@ -10,8 +10,8 @@ namespace PetCare.Domain.Services
 {
     public interface IProviderJoinServiceS
     {
-        Task<ProviderJoinServiceResponse> AssignProviderService(int providerId, Service service);
+        Task<ProviderJoinServiceResponse> AssignProviderService(int providerId, int serviceId);
         Task<IEnumerable<Service>> ListByProviderIdAsync(int providerId);
-        Task<IEnumerable<ProviderJoinService>> ListByServiceIdAsync(int serviceId);
+       
     }
 }
