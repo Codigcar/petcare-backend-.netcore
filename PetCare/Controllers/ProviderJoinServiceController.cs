@@ -16,7 +16,7 @@ namespace PetCare.Controllers
     [Route("api/provider/{providerId}/service")]
     public class ProviderJoinServiceController : ControllerBase
     {
-      //  private readonly IService
+        //  private readonly IService
         private readonly IProviderJoinServiceS _providerJoinService;
         private readonly IMapper _mapper;
 
@@ -25,7 +25,7 @@ namespace PetCare.Controllers
             _providerJoinService = providerJoinService;
             _mapper = mapper;
         }
-        
+
         [HttpPost("{serviceId}")]
         public async Task<IActionResult> AssignProductTag(int providerId, int serviceId)
         {
@@ -38,7 +38,7 @@ namespace PetCare.Controllers
             return Ok();
 
         }
-    
+
 
         [HttpGet]
         public async Task<IEnumerable<ServiceResource>> GetAllByProviderIdAsync(int providerId)

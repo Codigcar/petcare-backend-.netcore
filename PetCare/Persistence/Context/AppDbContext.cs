@@ -22,6 +22,8 @@ namespace PetCare.Persistence.Context
         public DbSet<Service> Services { get; set; }
         public DbSet<ProviderJoinService> ProviderJoinServices { get; set; }
 
+        public DbSet<ProviderRepresentative> ProviderRepresentatives { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -30,6 +32,7 @@ namespace PetCare.Persistence.Context
             new ServicesProviderConfig(builder.Entity<Provider>());
             new PetConfig(builder.Entity<Pet>());
             new CardConfig(builder.Entity<Card>());
+            new ProviderRepresentativeConfig(builder.Entity<ProviderRepresentative>());
 
 
             //SuscriptionPlan
@@ -56,6 +59,10 @@ namespace PetCare.Persistence.Context
                 .HasOne(ps => ps.Service)
                 .WithMany(wm => wm.ProviderServices)
                 .HasForeignKey(fk => fk.ServiceId);
+
+            //ProviderRepresentative
+            builder.Entity<Provider>().HasMany(x => x.ProviderRepresentatives).
+                WithOne(p => p.Provider).HasForeignKey(x => x.ProviderId);
 
 
             builder.Entity<SuscriptionPlan>().HasData

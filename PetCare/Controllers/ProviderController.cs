@@ -46,6 +46,9 @@ namespace PetCare.Controllers
                 return BadRequest(result.Message);
             var servicesProviderResource = _mapper.Map<Provider, ProviderResource>(result.ServicesProvider);
             return Ok(servicesProviderResource);
+
+
+           
         }
 
 

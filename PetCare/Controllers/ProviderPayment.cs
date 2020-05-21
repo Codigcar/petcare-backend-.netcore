@@ -24,14 +24,13 @@ namespace PetCare.Controllers
             _mapper = mapper;
         }
 
-       /* [HttpGet]
-        public async Task<IEnumerable<CardResource>> GetListByCustomerIdAsync(int sproviderId)
-        {
-
-            var customers = await _cardService.ListByServicesProviderIdAsync(sproviderId);
-            var resources = _mapper.Map<IEnumerable<Card>, IEnumerable<CardResource>>(customers);
-            return resources;
-        }*/
+        /* [HttpGet]
+         public async Task<IEnumerable<CardResource>> GetListByCustomerIdAsync(int sproviderId)
+         {
+             var customers = await _cardService.ListByServicesProviderIdAsync(sproviderId);
+             var resources = _mapper.Map<IEnumerable<Card>, IEnumerable<CardResource>>(customers);
+             return resources;
+         }*/
 
         [HttpPost]
         public async Task<ActionResult> PostAsync(int providerId, [FromBody] SaveCardResource resource)

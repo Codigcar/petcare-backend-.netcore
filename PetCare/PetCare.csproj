@@ -35,6 +35,12 @@
     <Compile Remove="Migrations\20200509070958_prueba.Designer.cs" />
     <Compile Remove="Migrations\20200509122603_nuevo.cs" />
     <Compile Remove="Migrations\20200509122603_nuevo.Designer.cs" />
+    <Compile Remove="Migrations\20200520043557_xd.cs" />
+    <Compile Remove="Migrations\20200520043557_xd.Designer.cs" />
+    <Compile Remove="Migrations\20200520053534_prueba1.cs" />
+    <Compile Remove="Migrations\20200520053534_prueba1.Designer.cs" />
+    <Compile Remove="Migrations\20200521023906_xd.cs" />
+    <Compile Remove="Migrations\20200521023906_xd.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

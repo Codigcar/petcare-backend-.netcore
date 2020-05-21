@@ -26,7 +26,7 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllAsync(string name,[FromBody] SaveServiceResource saveServiceResource)
+        public async Task<IActionResult> GetAllAsync(string name, [FromBody] SaveServiceResource saveServiceResource)
         {
             //string name = "peluqueria";
             var result = await _service.findByName(saveServiceResource.Name);
@@ -35,6 +35,6 @@ namespace PetCare.Controllers
 
         }
 
-      
+
     }
 }

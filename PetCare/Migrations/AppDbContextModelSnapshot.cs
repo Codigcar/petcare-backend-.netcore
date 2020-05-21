@@ -201,6 +201,51 @@ namespace PetCare.Migrations
                     b.ToTable("ProviderJoinServices");
                 });
 
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderRepresentative", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Direction")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Phone1")
+                        .IsRequired()
+                        .HasColumnType("varchar(9)")
+                        .HasMaxLength(9);
+
+                    b.Property<string>("Phone2")
+                        .IsRequired()
+                        .HasColumnType("varchar(9)")
+                        .HasMaxLength(9);
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProviderId");
+
+                    b.ToTable("ProviderRepresentatives");
+                });
+
             modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
                 {
                     b.Property<int>("Id")
@@ -301,6 +346,15 @@ namespace PetCare.Migrations
                     b.HasOne("PetCare.Domain.Models.Service", "Service")
                         .WithMany("ProviderServices")
                         .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderRepresentative", b =>
+                {
+                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
+                        .WithMany("ProviderRepresentatives")
+                        .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
