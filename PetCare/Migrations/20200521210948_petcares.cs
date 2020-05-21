@@ -3,7 +3,7 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace PetCare.Migrations
 {
-    public partial class nnnpetcare : Migration
+    public partial class petcares : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,6 +67,7 @@ namespace PetCare.Migrations
                     Breed = table.Column<string>(maxLength: 30, nullable: false),
                     Photo = table.Column<string>(maxLength: 50, nullable: false),
                     Sex = table.Column<string>(maxLength: 50, nullable: false),
+                    MedicalProfileId = table.Column<int>(nullable: false),
                     CustomerId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -123,6 +124,36 @@ namespace PetCare.Migrations
                         name: "FK_ServicesProviders_SuscriptionPlans_SuscriptionPlanId",
                         column: x => x.SuscriptionPlanId,
                         principalTable: "SuscriptionPlans",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedicalProfiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    Weight = table.Column<string>(nullable: true),
+                    Height = table.Column<string>(nullable: true),
+                    Lenght = table.Column<string>(nullable: true),
+                    Eyes = table.Column<string>(nullable: true),
+                    Breed = table.Column<string>(nullable: true),
+                    Sex = table.Column<string>(nullable: true),
+                    Color = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Photo = table.Column<string>(nullable: true),
+                    Age = table.Column<string>(nullable: true),
+                    PetId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicalProfiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MedicalProfiles_Pets_PetId",
+                        column: x => x.PetId,
+                        principalTable: "Pets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -210,6 +241,12 @@ namespace PetCare.Migrations
                 values: new object[] { 2, "Plan Premium", 1, "Premium", 39.899999999999999 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_MedicalProfiles_PetId",
+                table: "MedicalProfiles",
+                column: "PetId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Payments_ServicesProviderForeignKey",
                 table: "Payments",
                 column: "ServicesProviderForeignKey",
@@ -244,10 +281,10 @@ namespace PetCare.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Payments");
+                name: "MedicalProfiles");
 
             migrationBuilder.DropTable(
-                name: "Pets");
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "ProviderJoinServices");
@@ -256,13 +293,16 @@ namespace PetCare.Migrations
                 name: "ProviderRepresentatives");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "Pets");
 
             migrationBuilder.DropTable(
                 name: "Services");
 
             migrationBuilder.DropTable(
                 name: "ServicesProviders");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "ServiTypes");

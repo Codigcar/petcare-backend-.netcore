@@ -45,6 +45,14 @@
     <Compile Remove="Migrations\20200521044344_lol.Designer.cs" />
     <Compile Remove="Migrations\20200521182510_XD.cs" />
     <Compile Remove="Migrations\20200521182510_XD.Designer.cs" />
+    <Compile Remove="Migrations\20200521193130_nnnpetcare.cs" />
+    <Compile Remove="Migrations\20200521193130_nnnpetcare.Designer.cs" />
+    <Compile Remove="Migrations\20200521204249_superpetcare.cs" />
+    <Compile Remove="Migrations\20200521204249_superpetcare.Designer.cs" />
+    <Compile Remove="Migrations\20200521205052_supercare.cs" />
+    <Compile Remove="Migrations\20200521205052_supercare.Designer.cs" />
+    <Compile Remove="Migrations\20200521205629_superpetcare.cs" />
+    <Compile Remove="Migrations\20200521205629_superpetcare.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -57,6 +57,56 @@ namespace PetCare.Migrations
                     b.ToTable("Customers");
                 });
 
+            modelBuilder.Entity("PetCare.Domain.Models.MedicalProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Age")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Breed")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Eyes")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Height")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Lenght")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PetId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Photo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sex")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Weight")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PetId")
+                        .IsUnique();
+
+                    b.ToTable("MedicalProfiles");
+                });
+
             modelBuilder.Entity("PetCare.Domain.Models.Payment", b =>
                 {
                     b.Property<int>("Id")
@@ -108,6 +158,9 @@ namespace PetCare.Migrations
                         .HasMaxLength(30);
 
                     b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicalProfileId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -318,6 +371,15 @@ namespace PetCare.Migrations
                             Name = "Premium",
                             Price = 39.899999999999999
                         });
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.MedicalProfile", b =>
+                {
+                    b.HasOne("PetCare.Domain.Models.Pet", "pet")
+                        .WithOne("MedicalProfile")
+                        .HasForeignKey("PetCare.Domain.Models.MedicalProfile", "PetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PetCare.Domain.Models.Payment", b =>

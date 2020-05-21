@@ -22,7 +22,7 @@ namespace PetCare.Persistence.Context
         public DbSet<Service> Services { get; set; }
         public DbSet<ProviderJoinService> ProviderJoinServices { get; set; }
         public DbSet<ServiType> ServiTypes{ get; set; }
-
+        public DbSet<MedicalProfile> MedicalProfiles { get; set; }
         public DbSet<ProviderRepresentative> ProviderRepresentatives { get; set; }
 
 
@@ -72,7 +72,11 @@ namespace PetCare.Persistence.Context
             //ProviderRepresentative
             builder.Entity<Provider>().HasMany(x => x.ProviderRepresentatives).
                 WithOne(p => p.Provider).HasForeignKey(x => x.ProviderId);
+            //MedicalProfile
 
+            builder.Entity<Pet>().HasOne(x => x.MedicalProfile)
+              .WithOne(p => p.pet)
+              .HasForeignKey<MedicalProfile>(b => b.PetId);
 
 
             builder.Entity<SuscriptionPlan>().HasData
