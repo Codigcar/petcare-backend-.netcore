@@ -21,6 +21,7 @@ namespace PetCare.Persistence.Context
         public DbSet<SuscriptionPlan> SuscriptionPlans { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ProviderJoinService> ProviderJoinServices { get; set; }
+        public DbSet<Review> Reviews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -30,6 +31,7 @@ namespace PetCare.Persistence.Context
             new ServicesProviderConfig(builder.Entity<Provider>());
             new PetConfig(builder.Entity<Pet>());
             new CardConfig(builder.Entity<Card>());
+            new ReviewConfig(builder.Entity<Review>());
 
 
             //SuscriptionPlan
@@ -46,6 +48,9 @@ namespace PetCare.Persistence.Context
             //ProviderService
             builder.Entity<ProviderJoinService>()
             .HasKey(ps => new { ps.ProviderId, ps.ServiceId});
+
+            //Review
+            //builder.Entity<Review>().HasOne(x => x.Customer).WithOne(px => px.)
 
             builder.Entity<ProviderJoinService>()
                 .HasOne(ps => ps.Provider)

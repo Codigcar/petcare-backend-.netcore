@@ -3,23 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PetCare.Domain.Models
+namespace PetCare.Resources
 {
-    public class Review
+    public class ReviewResource
     {
         public int Id { get; set; }
-
         public int Qualification { get; set; }
-
         public string Commentary { get; set; }
-
-        public int CustomerId { get; set; }
-
-        public Customer Customer { get; set; }
-
-        public int ProviderId { get; set; }
-
-        public Provider Provider { get; set; }
-
     }
 }
