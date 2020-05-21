@@ -48,7 +48,7 @@ namespace PetCare.Persistence.Repositories
         {
             var customer =await _context.Customers.FindAsync(customerId);
             pet.CustomerId = customer.Id;
-            await _context.Pets.AddAsync(pet);
+            await _context.Pets.AddAsync(pet); 
         }
 
         public async Task<IEnumerable<Pet>> ListByCustomerIdAsync(int customerId) =>

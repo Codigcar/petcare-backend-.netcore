@@ -54,6 +54,8 @@ namespace PetCare
             services.AddScoped<IServiceRepository, ServiceRepository>();
             services.AddScoped<IServiceS, ServiceS>();
 
+            services.AddScoped<IServiTypeRepository, ServiTypeRepository>();
+            services.AddScoped<IServiTypeService, ServiTypeService>();
 
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));

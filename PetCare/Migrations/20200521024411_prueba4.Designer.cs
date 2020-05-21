@@ -8,8 +8,8 @@ using PetCare.Persistence.Context;
 namespace PetCare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200520080522_prueba3")]
-    partial class prueba3
+    [Migration("20200521024411_prueba4")]
+    partial class prueba4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -203,7 +203,7 @@ namespace PetCare.Migrations
                     b.ToTable("ProviderJoinServices");
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.ServiType", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -214,13 +214,33 @@ namespace PetCare.Migrations
 
                     b.HasKey("Id");
 
+                    b.ToTable("ServiTypes");
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ServiTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiTypeId");
+
                     b.ToTable("Services");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "Baño"
+                            Name = "Baño",
+                            ServiTypeId = 0
                         });
                 });
 
@@ -303,6 +323,15 @@ namespace PetCare.Migrations
                     b.HasOne("PetCare.Domain.Models.Service", "Service")
                         .WithMany("ProviderServices")
                         .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
+                {
+                    b.HasOne("PetCare.Domain.Models.ServiType", "ServiType")
+                        .WithMany("ListServices")
+                        .HasForeignKey("ServiTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
