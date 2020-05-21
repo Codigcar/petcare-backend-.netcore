@@ -21,6 +21,8 @@ namespace PetCare.Persistence.Context
         public DbSet<SuscriptionPlan> SuscriptionPlans { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ProviderJoinService> ProviderJoinServices { get; set; }
+        public DbSet<ServiType> ServiTypes{ get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -57,17 +59,25 @@ namespace PetCare.Persistence.Context
                 .WithMany(wm => wm.ProviderServices)
                 .HasForeignKey(fk => fk.ServiceId);
 
+            //TypeService
+
+            builder.Entity<ServiType>()
+                .HasMany(t => t.ListServices)
+                .WithOne(s => s.ServiType)
+                .HasForeignKey(fk => fk.ServiTypeId);
+               
+
 
             builder.Entity<SuscriptionPlan>().HasData
             (
                 new SuscriptionPlan { Id = 1, Name = "Basica", Description = "Plan Basico", Price = 19.90, Duration = 1 },
                 new SuscriptionPlan { Id = 2, Name = "Premium", Description = "Plan Premium", Price = 39.90, Duration = 1 }
             );
-            builder.Entity<Service>().HasData
+           /* builder.Entity<Service>().HasData
            (
                new Service { Id = 1, Name="Baño" }
              
-           );
+           );*/
         }
     }
 }

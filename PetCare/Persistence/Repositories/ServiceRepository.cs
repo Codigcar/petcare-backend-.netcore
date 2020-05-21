@@ -21,5 +21,20 @@ namespace PetCare.Persistence.Repositories
 
             return await _context.Services.Where(a => a.Name == name).FirstAsync();
         }
+
+        public async Task<IEnumerable<Service>> ListByServiTypeIdAsync(int serviTypeId) => 
+            await _context.Services
+            .Where(s => s.ServiTypeId == serviTypeId)
+            .Include(i => i.ServiType)
+            .ToListAsync();
+       
+
+        public async Task SaveByServiTypeIdAsync(int serviTypeId, Service service)
+        {
+            var serviType = await _context.ServiTypes.FindAsync(serviTypeId);
+            service.ServiTypeId = serviType.Id; 
+            await _context.Services.AddAsync(service);
+
+        }
     }
 }
