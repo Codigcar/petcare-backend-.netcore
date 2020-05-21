@@ -8,8 +8,8 @@ using PetCare.Persistence.Context;
 namespace PetCare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200520043557_xd")]
-    partial class xd
+    [Migration("20200521044344_lol")]
+    partial class lol
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,11 +24,11 @@ namespace PetCare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("CVV_Number")
+                    b.Property<string>("CVV")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Expiry_Date")
+                    b.Property<string>("DateOfExpiry")
                         .IsRequired()
                         .HasColumnType("varchar(8)")
                         .HasMaxLength(8);
@@ -134,7 +134,7 @@ namespace PetCare.Migrations
                     b.ToTable("Pets");
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.ServicesProvider", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.Provider", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -188,6 +188,99 @@ namespace PetCare.Migrations
                     b.ToTable("ServicesProviders");
                 });
 
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderJoinService", b =>
+                {
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProviderId", "ServiceId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("ProviderJoinServices");
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderRepresentative", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Direction")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(20)")
+                        .HasMaxLength(20);
+
+                    b.Property<string>("Phone1")
+                        .IsRequired()
+                        .HasColumnType("varchar(9)")
+                        .HasMaxLength(9);
+
+                    b.Property<string>("Phone2")
+                        .IsRequired()
+                        .HasColumnType("varchar(9)")
+                        .HasMaxLength(9);
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProviderId");
+
+                    b.ToTable("ProviderRepresentatives");
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.ServiType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiTypes");
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("ServiTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiTypeId");
+
+                    b.ToTable("Services");
+                });
+
             modelBuilder.Entity("PetCare.Domain.Models.SuscriptionPlan", b =>
                 {
                     b.Property<int>("Id")
@@ -231,7 +324,7 @@ namespace PetCare.Migrations
 
             modelBuilder.Entity("PetCare.Domain.Models.Card", b =>
                 {
-                    b.HasOne("PetCare.Domain.Models.ServicesProvider", "ServicesProvider")
+                    b.HasOne("PetCare.Domain.Models.Provider", "ServicesProvider")
                         .WithOne("Card")
                         .HasForeignKey("PetCare.Domain.Models.Card", "ServicesProviderForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -247,11 +340,44 @@ namespace PetCare.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.ServicesProvider", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.Provider", b =>
                 {
                     b.HasOne("PetCare.Domain.Models.SuscriptionPlan", "SuscriptionPlan")
                         .WithMany("ListServicesProvider")
                         .HasForeignKey("SuscriptionPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderJoinService", b =>
+                {
+                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
+                        .WithMany("ProviderServices")
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetCare.Domain.Models.Service", "Service")
+                        .WithMany("ProviderServices")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderRepresentative", b =>
+                {
+                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
+                        .WithMany("ProviderRepresentatives")
+                        .HasForeignKey("ProviderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
+                {
+                    b.HasOne("PetCare.Domain.Models.ServiType", "ServiType")
+                        .WithMany("ListServices")
+                        .HasForeignKey("ServiTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

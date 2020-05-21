@@ -31,7 +31,7 @@ namespace PetCare.Resources
 
         public int SuscriptionPlanId { get; set; }
 
-      //  public Card Card { get; set; }
+        //  public Card Card { get; set; }
 
     }
 }

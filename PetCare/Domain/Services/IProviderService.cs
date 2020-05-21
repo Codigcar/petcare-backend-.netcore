@@ -13,6 +13,8 @@ namespace PetCare.Domain.Services
         Task<ProviderResponse> SaveAsync(Provider servicesProvider);
         Task<ProviderResponse> UpdateAsync(int id, Provider servicesProvider);
         Task<ProviderResponse> DeleteAsync(int id);
+        Task<ProviderResponse> FindByIdAsync(int id);
         Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int categoryId);
+
     }
 }

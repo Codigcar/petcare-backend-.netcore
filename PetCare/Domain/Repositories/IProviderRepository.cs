@@ -16,5 +16,6 @@ namespace PetCare.Domain.Repositories
         Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int categoryId);
 
 
+
     }
 }

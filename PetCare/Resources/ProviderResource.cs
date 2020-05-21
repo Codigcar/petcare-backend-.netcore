@@ -12,15 +12,15 @@ namespace PetCare.Resources
         public int Id { get; set; }
 
         public string BusinessName { get; set; }
-        
+
         public string Region { get; set; }
-  
+
         public string Field { get; set; }
-        
+
         public string Address { get; set; }
-        
+
         public string Email { get; set; }
-       
+
         public string Description { get; set; }
 
         public int SuscriptionPlanId { get; set; }

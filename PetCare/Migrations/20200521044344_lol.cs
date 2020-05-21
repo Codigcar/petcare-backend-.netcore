@@ -3,7 +3,7 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace PetCare.Migrations
 {
-    public partial class xd : Migration
+    public partial class lol : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,6 +25,19 @@ namespace PetCare.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -68,6 +81,26 @@ namespace PetCare.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    ServiTypeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Services_ServiTypes_ServiTypeId",
+                        column: x => x.ServiTypeId,
+                        principalTable: "ServiTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ServicesProviders",
                 columns: table => new
                 {
@@ -102,8 +135,8 @@ namespace PetCare.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Number = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
-                    CVV_Number = table.Column<string>(nullable: false),
-                    Expiry_Date = table.Column<string>(maxLength: 8, nullable: false),
+                    CVV = table.Column<string>(nullable: false),
+                    DateOfExpiry = table.Column<string>(maxLength: 8, nullable: false),
                     ServicesProviderForeignKey = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -112,6 +145,55 @@ namespace PetCare.Migrations
                     table.ForeignKey(
                         name: "FK_Cards_ServicesProviders_ServicesProviderForeignKey",
                         column: x => x.ServicesProviderForeignKey,
+                        principalTable: "ServicesProviders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProviderJoinServices",
+                columns: table => new
+                {
+                    ProviderId = table.Column<int>(nullable: false),
+                    ServiceId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProviderJoinServices", x => new { x.ProviderId, x.ServiceId });
+                    table.ForeignKey(
+                        name: "FK_ProviderJoinServices_ServicesProviders_ProviderId",
+                        column: x => x.ProviderId,
+                        principalTable: "ServicesProviders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProviderJoinServices_Services_ServiceId",
+                        column: x => x.ServiceId,
+                        principalTable: "Services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProviderRepresentatives",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 20, nullable: false),
+                    LastName = table.Column<string>(maxLength: 30, nullable: false),
+                    Position = table.Column<string>(maxLength: 50, nullable: false),
+                    Phone1 = table.Column<string>(maxLength: 9, nullable: false),
+                    Phone2 = table.Column<string>(maxLength: 9, nullable: false),
+                    Direction = table.Column<string>(nullable: false),
+                    ProviderId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProviderRepresentatives", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProviderRepresentatives_ServicesProviders_ProviderId",
+                        column: x => x.ProviderId,
                         principalTable: "ServicesProviders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -139,6 +221,21 @@ namespace PetCare.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProviderJoinServices_ServiceId",
+                table: "ProviderJoinServices",
+                column: "ServiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProviderRepresentatives_ProviderId",
+                table: "ProviderRepresentatives",
+                column: "ProviderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Services_ServiTypeId",
+                table: "Services",
+                column: "ServiTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ServicesProviders_SuscriptionPlanId",
                 table: "ServicesProviders",
                 column: "SuscriptionPlanId");
@@ -153,10 +250,22 @@ namespace PetCare.Migrations
                 name: "Pets");
 
             migrationBuilder.DropTable(
-                name: "ServicesProviders");
+                name: "ProviderJoinServices");
+
+            migrationBuilder.DropTable(
+                name: "ProviderRepresentatives");
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Services");
+
+            migrationBuilder.DropTable(
+                name: "ServicesProviders");
+
+            migrationBuilder.DropTable(
+                name: "ServiTypes");
 
             migrationBuilder.DropTable(
                 name: "SuscriptionPlans");

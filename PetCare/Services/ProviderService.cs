@@ -12,6 +12,7 @@ namespace PetCare.Services
     public class ProviderService : IProviderService
     {
         private readonly IProviderRepository _servicesProviderRepository;
+        private readonly IProviderRepository _providerRepository;
         private readonly IUnitOfWork _unitOfWork;
 
         public ProviderService(IProviderRepository servicesProviderRepository, IUnitOfWork unitOfWork)
@@ -36,7 +37,7 @@ namespace PetCare.Services
             {
                 return new ProviderResponse($"An error ocurred while deleting the servicesProvider: {ex.Message}");
             }
-           
+
         }
 
         public async Task<IEnumerable<Provider>> ListAsync()
@@ -92,6 +93,22 @@ namespace PetCare.Services
         {
             return await _servicesProviderRepository.ListBySuscriptionPlanIdAsync(categoryId);
 
-        } 
+        }
+
+        public async Task<ProviderResponse> FindByIdAsync(int id)
+        {
+
+            try
+            {
+                var provider = await _providerRepository.FindByIdAsync(id);
+                return new ProviderResponse(provider);
+            }
+            catch (Exception ex)
+            {
+                return new ProviderResponse($"An error ocurred while deleting the provider: {ex.Message}");
+            }
+        }
+
+
     }
 }
