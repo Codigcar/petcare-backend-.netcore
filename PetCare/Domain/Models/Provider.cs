@@ -18,12 +18,12 @@ namespace PetCare.Domain.Models
         public int SuscriptionPlanId { get; set; }
         public SuscriptionPlan SuscriptionPlan { get; set; }
 
-        public Card Card { get; set; }
+        public Payment Payment{ get; set; }
 
         public List<ProviderJoinService> ProviderServices { get; set; }
 
         public IList<ProviderRepresentative> ProviderRepresentatives { get; set; } = new List<ProviderRepresentative>();
 
-        //     public IList<Card> Card { get; set; } = new List<ServicesProvider>();
+        //     public IList<Card> Payment{ get; set; } = new List<ServicesProvider>();
     }
 }

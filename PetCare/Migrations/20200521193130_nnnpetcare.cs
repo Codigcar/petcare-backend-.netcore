@@ -3,7 +3,7 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace PetCare.Migrations
 {
-    public partial class lol : Migration
+    public partial class nnnpetcare : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -128,22 +128,22 @@ namespace PetCare.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cards",
+                name: "Payments",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Number = table.Column<string>(nullable: false),
                     Name = table.Column<string>(maxLength: 30, nullable: false),
-                    CVV = table.Column<string>(nullable: false),
+                    CVV_number = table.Column<string>(nullable: false),
                     DateOfExpiry = table.Column<string>(maxLength: 8, nullable: false),
                     ServicesProviderForeignKey = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cards", x => x.Id);
+                    table.PrimaryKey("PK_Payments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cards_ServicesProviders_ServicesProviderForeignKey",
+                        name: "FK_Payments_ServicesProviders_ServicesProviderForeignKey",
                         column: x => x.ServicesProviderForeignKey,
                         principalTable: "ServicesProviders",
                         principalColumn: "Id",
@@ -210,8 +210,8 @@ namespace PetCare.Migrations
                 values: new object[] { 2, "Plan Premium", 1, "Premium", 39.899999999999999 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cards_ServicesProviderForeignKey",
-                table: "Cards",
+                name: "IX_Payments_ServicesProviderForeignKey",
+                table: "Payments",
                 column: "ServicesProviderForeignKey",
                 unique: true);
 
@@ -244,7 +244,7 @@ namespace PetCare.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Cards");
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "Pets");

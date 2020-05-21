@@ -17,7 +17,7 @@ namespace PetCare.Persistence.Context
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Provider> ServicesProviders { get; set; }
         public DbSet<Pet> Pets { get; set; }
-        public DbSet<Card> Cards { get; set; }
+        public DbSet<Payment> Payments { get; set; }
         public DbSet<SuscriptionPlan> SuscriptionPlans { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ProviderJoinService> ProviderJoinServices { get; set; }
@@ -33,7 +33,7 @@ namespace PetCare.Persistence.Context
             new CustomerConfig(builder.Entity<Customer>());
             new ServicesProviderConfig(builder.Entity<Provider>());
             new PetConfig(builder.Entity<Pet>());
-            new CardConfig(builder.Entity<Card>());
+            new PaymentConfig(builder.Entity<Payment>());
             new ProviderRepresentativeConfig(builder.Entity<ProviderRepresentative>());
 
 
@@ -44,9 +44,9 @@ namespace PetCare.Persistence.Context
             builder.Entity<Customer>().HasMany(x => x.Pets).
                 WithOne(p => p.Customer).HasForeignKey(x => x.CustomerId);
             //Provider
-            builder.Entity<Provider>().HasOne(x => x.Card)
+            builder.Entity<Provider>().HasOne(x => x.Payment)
                 .WithOne(p => p.ServicesProvider)
-                .HasForeignKey<Card>(b => b.ServicesProviderForeignKey);
+                .HasForeignKey<Payment>(b => b.ServicesProviderForeignKey);
             
             //ProviderService
             builder.Entity<ProviderJoinService>()

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class SaveCardResource
+    public class SavePaymentResource
     {
         
         [Required]

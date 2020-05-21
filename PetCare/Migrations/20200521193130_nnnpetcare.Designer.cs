@@ -8,8 +8,8 @@ using PetCare.Persistence.Context;
 namespace PetCare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200521044344_lol")]
-    partial class lol
+    [Migration("20200521193130_nnnpetcare")]
+    partial class nnnpetcare
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,41 +17,6 @@ namespace PetCare.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("PetCare.Domain.Models.Card", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("CVV")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("DateOfExpiry")
-                        .IsRequired()
-                        .HasColumnType("varchar(8)")
-                        .HasMaxLength(8);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("ServicesProviderForeignKey")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServicesProviderForeignKey")
-                        .IsUnique();
-
-                    b.ToTable("Cards");
-                });
 
             modelBuilder.Entity("PetCare.Domain.Models.Customer", b =>
                 {
@@ -92,6 +57,41 @@ namespace PetCare.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.Payment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("CVV_number")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("DateOfExpiry")
+                        .IsRequired()
+                        .HasColumnType("varchar(8)")
+                        .HasMaxLength(8);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ServicesProviderForeignKey")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServicesProviderForeignKey")
+                        .IsUnique();
+
+                    b.ToTable("Payments");
                 });
 
             modelBuilder.Entity("PetCare.Domain.Models.Pet", b =>
@@ -322,11 +322,11 @@ namespace PetCare.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.Card", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.Payment", b =>
                 {
                     b.HasOne("PetCare.Domain.Models.Provider", "ServicesProvider")
-                        .WithOne("Card")
-                        .HasForeignKey("PetCare.Domain.Models.Card", "ServicesProviderForeignKey")
+                        .WithOne("Payment")
+                        .HasForeignKey("PetCare.Domain.Models.Payment", "ServicesProviderForeignKey")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

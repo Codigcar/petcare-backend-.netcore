@@ -10,7 +10,7 @@ namespace PetCare.Domain.Comunication
         public bool Success { get; protected set; }
         public string Message { get; protected set; }
         
-     
+//4654     
 
         public BaseResponse(bool success, string message)
         {
