@@ -13,13 +13,13 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicetype")]
-    public class ServiTypeController : ControllerBase
+    [Route("api/typesservices")]
+    public class TypeController : ControllerBase
     {
         private readonly IServiTypeService _serviTypeService;
         private readonly IMapper _mapper;
 
-        public ServiTypeController(IServiTypeService serviTypeService, IMapper mapper)
+        public TypeController(IServiTypeService serviTypeService, IMapper mapper)
         {
             _serviTypeService = serviTypeService;
             _mapper = mapper;

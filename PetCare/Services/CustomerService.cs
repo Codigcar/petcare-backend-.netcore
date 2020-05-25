@@ -48,7 +48,7 @@ namespace PetCare.Services
             if (existingCustomer == null)
                 return new CustomerResponse("customer not found");
 
-            existingCustomer.FirstName = customer.FirstName;
+            existingCustomer.Name = customer.Name;
             existingCustomer.LastName= customer.LastName;
             existingCustomer.Phone = customer.Phone;
             existingCustomer.Age = customer.Age;

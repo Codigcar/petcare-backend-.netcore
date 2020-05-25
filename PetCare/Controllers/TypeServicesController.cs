@@ -13,7 +13,7 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicetype/{servicetypeId}/service")]
+    [Route("api/typesservices/{typeserviceId}/services")]
     public class TypeServicesController : ControllerBase
     {
         private readonly IServiceS _service;
@@ -24,7 +24,7 @@ namespace PetCare.Controllers
             _service = service;
             _mapper = mapper;
         }
-
+/*
         [HttpGet]
         public async Task<IActionResult> GetAllAsync(string name,[FromBody] SaveServiceResource saveServiceResource)
         {
@@ -32,16 +32,16 @@ namespace PetCare.Controllers
             var result = await _service.findByName(saveServiceResource.Name);
             return Ok(result);
         }
-
+        */
         [HttpPost]
-        public async Task<ActionResult> SaveServiceByTypeIdAsync(int servicetypeId, [FromBody] SaveServiceResource saveServiceResource)
+        public async Task<ActionResult> SaveServiceByTypeIdAsync(int typeserviceId, [FromBody] SaveServiceResource saveServiceResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
             var entity = _mapper.Map<SaveServiceResource, Service>(saveServiceResource);
-            var result = await _service.SaveByServiTypeIdAsync(servicetypeId, entity);
+            var result = await _service.SaveByServiTypeIdAsync(typeserviceId, entity);
             if (!result.Success)
                 return BadRequest(result.Message);
 
@@ -51,9 +51,9 @@ namespace PetCare.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<ServiceResource>> GetAllByServiceTypeIdAsync(int servicetypeId)
+        public async Task<IEnumerable<ServiceResource>> GetAllByServiceTypeIdAsync(int typeserviceId)
         {
-            var services = await _service.ListByServiTypeIdAsync(servicetypeId);
+            var services = await _service.ListByServiTypeIdAsync(typeserviceId);
             var resources = _mapper.Map<IEnumerable<Service>, IEnumerable<ServiceResource>>(services);
             return resources;
         }

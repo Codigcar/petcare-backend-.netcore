@@ -13,7 +13,7 @@ namespace PetCare.Persistence.Config
         {   
             entityBuilder.Property(x => x.Number).IsRequired();
             entityBuilder.Property(x => x.Name).IsRequired().HasMaxLength(30);
-            entityBuilder.Property(x => x.CVV_number).IsRequired();
+            entityBuilder.Property(x => x.CVV).IsRequired();
             entityBuilder.Property(x => x.DateOfExpiry).IsRequired().HasMaxLength(8); 
           
 

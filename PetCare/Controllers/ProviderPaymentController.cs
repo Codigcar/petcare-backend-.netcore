@@ -12,7 +12,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/provider/{providerId}/payment")]
+    [Route("api/servicesproviders/{providerId}/payment")]
     public class ProviderPaymentController : ControllerBase
     {
         private readonly IPaymentService _PaymentService;
@@ -25,11 +25,11 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PaymentResource>> GetListByCustomerIdAsync(int sproviderId)
+        public async Task<IEnumerable<PaymentResource>> GetListByCustomerIdAsync(int providerId)
         {
 
-            var customers = await _PaymentService.ListByServicesProviderIdAsync(sproviderId);
-            var resources = _mapper.Map<IEnumerable<Payment>, IEnumerable<PaymentResource>>(customers);
+            var payments = await _PaymentService.ListByServicesProviderIdAsync(providerId);
+            var resources = _mapper.Map<IEnumerable<Payment>, IEnumerable<PaymentResource>>(payments);
             return resources;
         }
 

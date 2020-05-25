@@ -32,9 +32,9 @@ namespace PetCare.Persistence.Repositories
             return await _context.Payments.ToListAsync();
         }
 
-        public async Task<IEnumerable<Payment>> ListByServicesProviderIdAsync(int sproviderId) =>
+        public async Task<IEnumerable<Payment>> ListByServicesProviderIdAsync(int providerId) =>
             await _context.Payments
-            .Where(p => p.ServicesProviderForeignKey== sproviderId)
+            .Where(p => p.ServicesProviderForeignKey== providerId)
             .Include(p => p.ServicesProvider)
             .ToListAsync();
         

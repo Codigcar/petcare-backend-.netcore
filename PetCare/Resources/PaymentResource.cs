@@ -13,7 +13,7 @@ namespace PetCare.Resources
 
         public string Name { get; set; }
  
-        public string  CVV_number { get; set; }
+        public string  CVV { get; set; }
   
         public string DateOfExpiry { get; set; }
 

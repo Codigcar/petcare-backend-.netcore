@@ -55,7 +55,7 @@ namespace PetCare.Services
 
             existingPayment.Number = Payment.Number;
             existingPayment.Name = Payment.Name;
-            existingPayment.CVV_number = Payment.CVV_number;
+            existingPayment.CVV = Payment.CVV;
             existingPayment.DateOfExpiry = Payment.DateOfExpiry;
 
             try
@@ -106,9 +106,9 @@ namespace PetCare.Services
             }
         }
 
-        public async Task<IEnumerable<Payment>> ListByServicesProviderIdAsync(int sproviderId)
+        public async Task<IEnumerable<Payment>> ListByServicesProviderIdAsync(int providerId)
         {
-            return await _PaymentRepository.ListByServicesProviderIdAsync(sproviderId);
+            return await _PaymentRepository.ListByServicesProviderIdAsync(providerId);
 
         }
 

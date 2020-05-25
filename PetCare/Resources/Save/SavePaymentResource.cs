@@ -18,11 +18,11 @@ namespace PetCare.Resources
         public string Number { get; set; }
 
         [Required]
-        public string CVV_Number { get; set; }
+        public string CVV { get; set; }
 
 
         [Required]
-        [MaxLength(8)]
+        [MaxLength(6)]
         public string DateOfExpiry { get; set; }
 
       

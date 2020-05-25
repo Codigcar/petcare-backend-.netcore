@@ -43,7 +43,7 @@ namespace PetCare.Persistence.Context
             //Customer
             builder.Entity<Customer>().HasMany(x => x.Pets).
                 WithOne(p => p.Customer).HasForeignKey(x => x.CustomerId);
-            //Provider
+            //Provider One-One
             builder.Entity<Provider>().HasOne(x => x.Payment)
                 .WithOne(p => p.ServicesProvider)
                 .HasForeignKey<Payment>(b => b.ServicesProviderForeignKey);

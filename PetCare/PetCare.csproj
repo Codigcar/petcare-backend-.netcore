@@ -53,6 +53,10 @@
     <Compile Remove="Migrations\20200521205052_supercare.Designer.cs" />
     <Compile Remove="Migrations\20200521205629_superpetcare.cs" />
     <Compile Remove="Migrations\20200521205629_superpetcare.Designer.cs" />
+    <Compile Remove="Migrations\20200525083234_prueba1.cs" />
+    <Compile Remove="Migrations\20200525083234_prueba1.Designer.cs" />
+    <Compile Remove="Migrations\20200525105352_prueba3.cs" />
+    <Compile Remove="Migrations\20200525105352_prueba3.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

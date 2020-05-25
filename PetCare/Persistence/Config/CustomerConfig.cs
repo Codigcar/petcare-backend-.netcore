@@ -11,7 +11,7 @@ namespace PetCare.Persistence.Config
     {
         public CustomerConfig(EntityTypeBuilder<Customer> entityBuilder)
         {
-            entityBuilder.Property(x => x.FirstName).IsRequired().HasMaxLength(30);
+            entityBuilder.Property(x => x.Name).IsRequired().HasMaxLength(30);
             entityBuilder.Property(x => x.LastName).IsRequired().HasMaxLength(30);
 
 

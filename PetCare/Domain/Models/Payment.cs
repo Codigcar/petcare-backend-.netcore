@@ -10,7 +10,7 @@ namespace PetCare.Domain.Models
         public int Id { get; set; }
         public string Number { get; set; }
         public string Name { get; set; }
-        public string CVV_number { get; set; }
+        public string CVV { get; set; }
         public string DateOfExpiry { get; set; }
 
         public int ServicesProviderForeignKey { get; set; }
