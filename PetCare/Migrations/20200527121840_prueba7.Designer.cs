@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PetCare.Persistence.Context;
 
 namespace PetCare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200527121840_prueba7")]
+    partial class prueba7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,10 +69,10 @@ namespace PetCare.Migrations
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<string>("Password")
+                    b.Property<string>("Phone")
                         .HasColumnType("text");
 
-                    b.Property<string>("Phone")
+                    b.Property<string>("password")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -248,6 +250,9 @@ namespace PetCare.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("varchar(30)")
@@ -281,7 +286,13 @@ namespace PetCare.Migrations
                     b.Property<int>("SuscriptionPlanId")
                         .HasColumnType("int");
 
+                    b.Property<string>("password")
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique();
 
                     b.HasIndex("SuscriptionPlanId");
 
@@ -360,7 +371,7 @@ namespace PetCare.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<short>("Publish")
+                    b.Property<bool>("Publish")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
@@ -504,6 +515,12 @@ namespace PetCare.Migrations
 
             modelBuilder.Entity("PetCare.Domain.Models.Provider", b =>
                 {
+                    b.HasOne("PetCare.Domain.Models.Account", "Account")
+                        .WithOne("Provider")
+                        .HasForeignKey("PetCare.Domain.Models.Provider", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("PetCare.Domain.Models.SuscriptionPlan", "SuscriptionPlan")
                         .WithMany("ListServicesProvider")
                         .HasForeignKey("SuscriptionPlanId")

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class SaveCustomerResource : User
+    public class SaveCustomerResource 
     {
         [Required]
         [MaxLength(30)]
@@ -25,6 +25,8 @@ namespace PetCare.Resources
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        public string Password { get; set; }
 
         [Required]
         [MinLength(9)]

@@ -13,12 +13,18 @@ namespace PetCare.Services
     {
         private readonly IProviderRepository _servicesProviderRepository;
         private readonly IProviderRepository _providerRepository;
+        private readonly IAccountRepository _accountRepository;
+        private readonly IRolRepository _rolRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public ProviderService(IProviderRepository servicesProviderRepository, IUnitOfWork unitOfWork)
+        public ProviderService(IProviderRepository servicesProviderRepository, IAccountRepository accountRepository,
+            IRolRepository rolRepository, IUnitOfWork unitOfWork, IProviderRepository providerRepository)
         {
             _servicesProviderRepository = servicesProviderRepository;
+            _providerRepository = providerRepository;
+            _accountRepository = accountRepository;
             _unitOfWork = unitOfWork;
+            _rolRepository = rolRepository;
         }
         public async Task<ProviderResponse> DeleteAsync(int id)
         {
@@ -47,9 +53,16 @@ namespace PetCare.Services
 
         public async Task<ProviderResponse> SaveAsync(Provider servicesProvider)
         {
+            Account account = new Account();
+            account.User = servicesProvider.Email;
+            account.Password = servicesProvider.Password;
+            account.RolId = 2;
+            account.Provider = servicesProvider;
+            account.Rol = _rolRepository.FindByIdAsync(2).Result;
             try
             {
                 await _servicesProviderRepository.AddAsyn(servicesProvider);
+                await _accountRepository.AddAsyn(account);
                 await _unitOfWork.CompleteAsync();
 
                 return new ProviderResponse(servicesProvider);

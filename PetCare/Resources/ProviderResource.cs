@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class ProviderResource : User
+    public class ProviderResource
     {
         public int Id { get; set; }
 
@@ -20,6 +20,8 @@ namespace PetCare.Resources
         public string Address { get; set; }
 
         public string Email { get; set; }
+
+        public string Password { get; set; }
 
         public string Description { get; set; }
 

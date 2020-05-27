@@ -12,13 +12,18 @@ namespace PetCare.Services
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly IAccountRepository _accountRepository;
+        private readonly IRolRepository _rolRepository;
         private readonly IUnitOfWork _unitOfWork;
 
 
-        public CustomerService(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
+        public CustomerService(ICustomerRepository customerRepository, IAccountRepository accountRepository,
+            IRolRepository rolRepository, IUnitOfWork unitOfWork)
         {
             _customerRepository = customerRepository;
+            _accountRepository = accountRepository;
             _unitOfWork = unitOfWork;
+            _rolRepository = rolRepository;
         }
 
         public async Task<IEnumerable<Customer>> ListAsync()
@@ -28,9 +33,17 @@ namespace PetCare.Services
 
         public async Task<CustomerResponse> SaveAsync(Customer customer)
         {
+            Account account = new Account();
+            account.User = customer.Email;
+            account.Password = customer.Password;
+            account.RolId = 1;
+            account.Customer = customer;
+            account.Rol = _rolRepository.FindByIdAsync(1).Result;
+
             try
             {
                 await _customerRepository.AddAsyn(customer);
+                await _accountRepository.AddAsyn(account);
                 await _unitOfWork.CompleteAsync();
 
                 return new CustomerResponse(customer);
@@ -58,6 +71,7 @@ namespace PetCare.Services
 
             try
             {
+
                 _customerRepository.Update(existingCustomer);
                 await _unitOfWork.CompleteAsync();
 

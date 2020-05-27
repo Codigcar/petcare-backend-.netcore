@@ -65,6 +65,18 @@
     <Compile Remove="Migrations\20200527092228_prueba3.Designer.cs" />
     <Compile Remove="Migrations\20200527100715_prueba4.cs" />
     <Compile Remove="Migrations\20200527100715_prueba4.Designer.cs" />
+    <Compile Remove="Migrations\20200527192926_clone.cs" />
+    <Compile Remove="Migrations\20200527192926_clone.Designer.cs" />
+    <Compile Remove="Migrations\20200527193349_clone2.cs" />
+    <Compile Remove="Migrations\20200527193349_clone2.Designer.cs" />
+    <Compile Remove="Migrations\20200527193621_clone3.cs" />
+    <Compile Remove="Migrations\20200527193621_clone3.Designer.cs" />
+    <Compile Remove="Migrations\20200527193909_clone4.cs" />
+    <Compile Remove="Migrations\20200527193909_clone4.Designer.cs" />
+    <Compile Remove="Migrations\20200527195206_clone1.cs" />
+    <Compile Remove="Migrations\20200527195206_clone1.Designer.cs" />
+    <Compile Remove="Migrations\20200527195906_clone2.cs" />
+    <Compile Remove="Migrations\20200527195906_clone2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

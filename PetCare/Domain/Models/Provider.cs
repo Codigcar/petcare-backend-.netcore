@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Domain.Models
 {
-    public class Provider : User
+    public class Provider 
     {
         public int Id { get; set; }
         public string BusinessName { get; set; }
@@ -14,6 +14,7 @@ namespace PetCare.Domain.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
+        public string Password { get; set; }
 
         public int SuscriptionPlanId { get; set; }
         public SuscriptionPlan SuscriptionPlan { get; set; }
@@ -27,5 +28,9 @@ namespace PetCare.Domain.Models
         public IList<MedicalProfile> MedicalProfiles { get; set; } = new List<MedicalProfile>();
 
         //     public IList<Card> Payment{ get; set; } = new List<ServicesProvider>();
+
+        public Account Account { get; set; }
+        public int AccountId { get; set; }
+        
     }
 }
