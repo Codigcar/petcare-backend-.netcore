@@ -24,6 +24,8 @@ namespace PetCare.Domain.Models
 
         public IList<ProviderRepresentative> ProviderRepresentatives { get; set; } = new List<ProviderRepresentative>();
 
+        public IList<MedicalProfile> MedicalProfiles { get; set; } = new List<MedicalProfile>();
+
         //     public IList<Card> Payment{ get; set; } = new List<ServicesProvider>();
     }
 }

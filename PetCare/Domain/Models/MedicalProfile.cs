@@ -21,12 +21,14 @@ namespace PetCare.Domain.Models
        public string Description { get; set; }
        public string Photo { get; set; }
        public string Age { get; set; }
-     //   public Provider provider { get; set; }
-       // public int Providerid { get; set; }
+       public Provider Provider { get; set; }
+       public int ProviderId { get; set; }
         // public MedicalRecord medicalrecord { get; set; }
         // public int ServicesMedicalRecordForeignKey { get; set; }
        public int PetId { get; set; }
        public Pet pet { get; set; }
+
+        public int CustomerId { get; set; }
        
 
 

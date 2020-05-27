@@ -44,10 +44,13 @@ namespace PetCare.Persistence.Repositories
         }
 
 
-        public async Task SaveByPetIdAsync(int petId, MedicalProfile medicalprofile)
+        public async Task SaveByPetIdAsync(int servicesproviderId, int customerId, int petId, MedicalProfile medicalprofile)
         {
             var pet = await _context.Pets.FindAsync(petId);
+            var provider = await _context.Customers.FindAsync(servicesproviderId);
             medicalprofile.PetId = pet.Id;
+            medicalprofile.ProviderId = provider.Id;
+            medicalprofile.CustomerId = customerId;
             await _context.MedicalProfiles.AddAsync(medicalprofile);
         }
 

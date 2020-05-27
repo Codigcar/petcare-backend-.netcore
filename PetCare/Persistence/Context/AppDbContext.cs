@@ -72,12 +72,16 @@ namespace PetCare.Persistence.Context
             //ProviderRepresentative
             builder.Entity<Provider>().HasMany(x => x.ProviderRepresentatives).
                 WithOne(p => p.Provider).HasForeignKey(x => x.ProviderId);
-            //MedicalProfile
 
+            //MedicalProfile One-One Pet
             builder.Entity<Pet>().HasOne(x => x.MedicalProfile)
               .WithOne(p => p.pet)
               .HasForeignKey<MedicalProfile>(b => b.PetId);
 
+            //MedicalProfe One - Many ServicesProvider
+            builder.Entity<Provider>().HasMany(x => x.MedicalProfiles)
+                .WithOne(p => p.Provider)
+                .HasForeignKey(fk => fk.ProviderId);
 
             builder.Entity<SuscriptionPlan>().HasData
             (

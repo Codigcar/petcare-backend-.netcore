@@ -57,6 +57,10 @@
     <Compile Remove="Migrations\20200525083234_prueba1.Designer.cs" />
     <Compile Remove="Migrations\20200525105352_prueba3.cs" />
     <Compile Remove="Migrations\20200525105352_prueba3.Designer.cs" />
+    <Compile Remove="Migrations\20200525113920_tb4.cs" />
+    <Compile Remove="Migrations\20200525113920_tb4.Designer.cs" />
+    <Compile Remove="Migrations\20200527040257_bb.cs" />
+    <Compile Remove="Migrations\20200527040257_bb.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
