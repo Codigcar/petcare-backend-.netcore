@@ -14,12 +14,15 @@ namespace PetCare.Services
     {
         private readonly IMedicalProfileRepository _medicalprofileRepository;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IPetRepository _petRepository;
+        private readonly ICustomerRepository _customerRepository;
 
 
-        public MedicalProfileService(IMedicalProfileRepository medicalprofileRepository, IUnitOfWork unitOfWork)
+        public MedicalProfileService(IMedicalProfileRepository medicalprofileRepository, IPetRepository petRepository,IUnitOfWork unitOfWork)
         {
             _medicalprofileRepository = medicalprofileRepository;
             _unitOfWork = unitOfWork;
+            _petRepository = petRepository;
         }
 
 
@@ -95,7 +98,7 @@ namespace PetCare.Services
             throw new NotImplementedException();
         }
 
-        public async Task<MedicalProfileResponse> SaveByPetIdAsync(int petId, MedicalProfile medicalprofile)
+     /*   public async Task<MedicalProfileResponse> SaveByPetIdAsync(int petId, MedicalProfile medicalprofile)
         {
             try
             {
@@ -109,11 +112,41 @@ namespace PetCare.Services
                 return new MedicalProfileResponse($"An error ocurred while saving th medicalprofile: {ex.Message}");
             }
 
+        }*/
+
+        public async Task<IEnumerable<MedicalProfile>> ListByCustomerIdAndPetIdAsync(int customerId,int petId)
+        {
+            //var customer = _customerRepository.FindByIdAsync(customerId);
+           /* if (customer !=null)
+            {
+                return new MedicalProfileResponse("Not Found customer");
+                
+            }*/
+            return await _medicalprofileRepository.ListByPetIdAsync(petId);
         }
 
-        public async Task<IEnumerable<MedicalProfile>> ListByPetIdAsync(int petId)
+        public async Task<MedicalProfileResponse> SaveByPetIdAsync(int servicesproviderId, int customerId, int petId, MedicalProfile medicalprofile)
         {
-            return await _medicalprofileRepository.ListByPetIdAsync(petId);
+            var customer = _customerRepository.FindByIdAsync(customerId);
+            if ( customer==null )
+            {
+                return new MedicalProfileResponse("Not Found customer");
+            }
+
+            var pet_Id = _petRepository.FindByIdAsync(petId);
+            var customerByPetId = _petRepository.ListByCustomerIdAsync(pet_Id.Id);
+            try
+            {
+                await _medicalprofileRepository.SaveByPetIdAsync(servicesproviderId, customerByPetId.Id, pet_Id.Id, medicalprofile);
+                await _unitOfWork.CompleteAsync();
+
+                return new MedicalProfileResponse(medicalprofile);
+            }
+            catch (Exception ex)
+            {
+                return new MedicalProfileResponse($"An error ocurred while saving th medicalprofile: {ex.Message}");
+            }
+
         }
     }
 }

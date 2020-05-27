@@ -25,13 +25,13 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<MedicalProfileResource>> GetAllAsync(int petId)
+        public async Task<IEnumerable<MedicalProfileResource>> GetByCustomerIdAndPetIdAsync(int customerId,int petId)
         {
-            var customers = await _medicalprofileService.ListByPetIdAsync(petId);
+            var customers = await _medicalprofileService.ListByCustomerIdAndPetIdAsync(customerId,petId);
             var resources = _mapper.Map<IEnumerable<MedicalProfile>, IEnumerable<MedicalProfileResource>>(customers);
             return resources;
         }
-
+        /*
         [HttpPost]
         public async Task<ActionResult> PostAsync(int customerId, [FromBody] SaveMedicalProfileResource resource)
         {
@@ -73,6 +73,6 @@ namespace PetCare.Controllers
             }
             var categoryResource = _mapper.Map<MedicalProfile, MedicalProfileResource>(result.MedicalProfile);
             return Ok(categoryResource);
-        }
+        }*/
     }
 }

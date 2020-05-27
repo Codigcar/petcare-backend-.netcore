@@ -13,7 +13,8 @@ namespace PetCare.Domain.Models
         public string Breed { get; set; }
         public string Photo { get; set; }
         public string Sex { get; set; }
-        public int MedicalProfileId { get; set; }
+
+      //  public int MedicalProfileId { get; set; }
         public MedicalProfile MedicalProfile { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
