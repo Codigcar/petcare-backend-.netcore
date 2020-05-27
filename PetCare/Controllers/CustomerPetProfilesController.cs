@@ -16,11 +16,13 @@ namespace PetCare.Controllers
     public class PetMedicalProfilesController : ControllerBase
     {
         private readonly IMedicalProfileService _medicalprofileService;
+        private readonly IMedicalRecordService _medicalrecordService;
         private readonly IMapper _mapper;
 
-        public PetMedicalProfilesController(IMedicalProfileService medicalprofileService, IMapper mapper)
+        public PetMedicalProfilesController(IMedicalProfileService medicalprofileService, IMedicalRecordService medicalrecordService, IMapper mapper)
         {
             _medicalprofileService = medicalprofileService;
+            _medicalrecordService = medicalrecordService;
             _mapper = mapper;
         }
 
@@ -31,6 +33,8 @@ namespace PetCare.Controllers
             var resources = _mapper.Map<IEnumerable<MedicalProfile>, IEnumerable<MedicalProfileResource>>(customers);
             return resources;
         }
+
+
         /*
         [HttpPost]
         public async Task<ActionResult> PostAsync(int customerId, [FromBody] SaveMedicalProfileResource resource)

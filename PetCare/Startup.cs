@@ -63,6 +63,10 @@ namespace PetCare
             services.AddScoped<IMedicalProfileService, MedicalProfileService>();
             services.AddScoped<IMedicalProfileRepository, MedicalProfileRepository>();
 
+            services.AddScoped<IMedicalRecordService, MedicalRecordService>();
+            services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
+
+
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>

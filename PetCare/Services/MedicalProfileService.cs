@@ -127,17 +127,18 @@ namespace PetCare.Services
 
         public async Task<MedicalProfileResponse> SaveByPetIdAsync(int servicesproviderId, int customerId, int petId, MedicalProfile medicalprofile)
         {
-            var customer = _customerRepository.FindByIdAsync(customerId);
+           /* var customer = _customerRepository.FindByIdAsync(customerId);
             if ( customer==null )
             {
                 return new MedicalProfileResponse("Not Found customer");
             }
-
+            */
             var pet_Id = _petRepository.FindByIdAsync(petId);
-            var customerByPetId = _petRepository.ListByCustomerIdAsync(pet_Id.Id);
+           
             try
             {
-                await _medicalprofileRepository.SaveByPetIdAsync(servicesproviderId, customerByPetId.Id, pet_Id.Id, medicalprofile);
+                var customerByPetId = _petRepository.ListByCustomerIdAsync(petId);
+                await _medicalprofileRepository.SaveByPetIdAsync(servicesproviderId, customerId, petId, medicalprofile);
                 await _unitOfWork.CompleteAsync();
 
                 return new MedicalProfileResponse(medicalprofile);

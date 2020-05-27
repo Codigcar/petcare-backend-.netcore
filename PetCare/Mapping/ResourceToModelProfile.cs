@@ -23,6 +23,8 @@ namespace PetCare.Mapping
             CreateMap<SaveServiTypeResource, ServiType>();
             CreateMap<SaveProviderRepresentativeResource, ProviderRepresentative>();
             CreateMap<SaveMedicalProfileResource, MedicalProfile>();
-}
+            CreateMap<SaveMedicalRecordResource, MedicalRecord>();
+
+        }
     }
 }

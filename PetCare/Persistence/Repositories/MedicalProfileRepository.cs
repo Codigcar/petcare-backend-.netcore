@@ -48,8 +48,8 @@ namespace PetCare.Persistence.Repositories
         {
             var pet = await _context.Pets.FindAsync(petId);
             var provider = await _context.Customers.FindAsync(servicesproviderId);
-            medicalprofile.PetId = pet.Id;
-            medicalprofile.ProviderId = provider.Id;
+            medicalprofile.PetId = petId;
+            medicalprofile.ProviderId = servicesproviderId;
             medicalprofile.CustomerId = customerId;
             await _context.MedicalProfiles.AddAsync(medicalprofile);
         }
