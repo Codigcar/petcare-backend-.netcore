@@ -29,8 +29,9 @@ namespace PetCare.Domain.Models
        public Pet pet { get; set; }
 
         public int CustomerId { get; set; }
-       
 
+        //Medical Record
+        public IList<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
 
 
 

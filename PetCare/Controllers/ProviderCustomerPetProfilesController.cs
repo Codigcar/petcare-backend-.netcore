@@ -9,6 +9,7 @@ using PetCare.Domain.Models;
 using PetCare.Domain.Services;
 using PetCare.Extensions;
 using PetCare.Resources;
+using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
@@ -16,11 +17,13 @@ namespace PetCare.Controllers
     public class MedicalProfileController : ControllerBase
     {
         private readonly IMedicalProfileService _medicalprofileService;
+        private readonly IMedicalRecordService _medicalrecordService;
         private readonly IMapper _mapper;
 
-        public MedicalProfileController(IMedicalProfileService medicalprofileService, IMapper mapper)
+        public MedicalProfileController(IMedicalProfileService medicalprofileService, IMedicalRecordService medicalrecordService, IMapper mapper)
         {
             _medicalprofileService = medicalprofileService;
+            _medicalrecordService = medicalrecordService;
             _mapper = mapper;
         }
         [HttpPost]
@@ -38,5 +41,28 @@ namespace PetCare.Controllers
             return Ok(MedicalProfileResource);
         }
 
+        [HttpPost("{profileId}/records")]
+        public async Task<ActionResult> SaveByProfileId(int profileId, [FromBody] SaveMedicalRecordResource resource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+
+            var medicalrecord = _mapper.Map<SaveMedicalRecordResource, MedicalRecord>(resource);
+            var result = await _medicalrecordService.SaveByProfileIdAsync(profileId, medicalrecord);
+            if (!result.Success)
+                return BadRequest(result.Message);
+            var MedicalRecordResource = _mapper.Map<MedicalRecord, MedicalRecordResource>(result.MedicalRecord);
+            return Ok(MedicalRecordResource);
+        }
+
+        [HttpGet("{profileId}/records")]
+        public async Task<IEnumerable<MedicalRecordResource>> ListByProfileId(int profileId)
+        {
+           
+            var result = await _medicalrecordService.ListByProfileIdAsync(profileId);
+           
+            var MedicalRecordResource = _mapper.Map<IEnumerable<MedicalRecord>, IEnumerable<MedicalRecordResource> >(result);
+            return (MedicalRecordResource);
+        }
     }
 }

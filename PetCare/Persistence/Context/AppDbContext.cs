@@ -24,6 +24,7 @@ namespace PetCare.Persistence.Context
         public DbSet<ServiType> ServiTypes{ get; set; }
         public DbSet<MedicalProfile> MedicalProfiles { get; set; }
         public DbSet<ProviderRepresentative> ProviderRepresentatives { get; set; }
+        public DbSet<MedicalRecord> MedicalRecords { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -82,6 +83,12 @@ namespace PetCare.Persistence.Context
             builder.Entity<Provider>().HasMany(x => x.MedicalProfiles)
                 .WithOne(p => p.Provider)
                 .HasForeignKey(fk => fk.ProviderId);
+
+            //MedicalProfile - MedicalRecord (One-Many)
+            builder.Entity<MedicalProfile>().HasMany(x => x.MedicalRecords)
+                .WithOne(p => p.MedicalProfile)
+                .HasForeignKey(fk => fk.MedicalProfileId);
+
 
             builder.Entity<SuscriptionPlan>().HasData
             (
