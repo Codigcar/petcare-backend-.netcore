@@ -25,7 +25,8 @@ namespace PetCare.Persistence.Context
         public DbSet<MedicalProfile> MedicalProfiles { get; set; }
         public DbSet<ProviderRepresentative> ProviderRepresentatives { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
-
+        public DbSet<Rol> Roles { get; set; }
+        public DbSet<Account> Accounts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -89,17 +90,37 @@ namespace PetCare.Persistence.Context
                 .WithOne(p => p.MedicalProfile)
                 .HasForeignKey(fk => fk.MedicalProfileId);
 
+            //Rol - Account (One - Many)
+            builder.Entity<Rol>().HasMany(x => x.Accounts)
+                .WithOne(p => p.Rol)
+                .HasForeignKey(fk => fk.RolId);
+
+            //Account - Customer
+            builder.Entity<Account>().HasOne(x => x.Customer)
+                 .WithOne(p => p.Account)
+                 .HasForeignKey<Customer>(b => b.AccountId);
+
+            //Account - Provider
+            builder.Entity<Account>().HasOne(x => x.Provider)
+                .WithOne(p => p.Account)
+                .HasForeignKey<Provider>(b => b.AccountId);
+
 
             builder.Entity<SuscriptionPlan>().HasData
             (
                 new SuscriptionPlan { Id = 1, Name = "Basica", Description = "Plan Basico", Price = 19.90, Duration = 1 },
                 new SuscriptionPlan { Id = 2, Name = "Premium", Description = "Plan Premium", Price = 39.90, Duration = 1 }
             );
-           /* builder.Entity<Service>().HasData
-           (
-               new Service { Id = 1, Name="Baño" }
-             
-           );*/
+            /* builder.Entity<Service>().HasData
+            (
+                new Service { Id = 1, Name="Baño" }
+
+            );*/
+            builder.Entity<Rol>().HasData
+             (
+                 new Rol { Id = 1, Name = "Usuario", Description = "Busca veterinarias", Publish = false },
+                 new Rol { Id = 2, Name = "ServicesProvider", Description = "Ofrece Servicios", Publish = true }
+              );
         }
     }
 }
