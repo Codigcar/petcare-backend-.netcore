@@ -33,7 +33,7 @@ namespace PetCare.Domain.Models
         //Medical Record
         public IList<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
 
-
+	  public IList<VaccinationRecord> VaccinationRecords { get; set; } = new List<VaccinationRecord>();
 
 
     }

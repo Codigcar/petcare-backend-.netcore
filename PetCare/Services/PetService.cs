@@ -110,5 +110,28 @@ namespace PetCare.Services
         {
             return await _petRepository.ListByCustomerIdAsync(customerId);
         }
+
+
+
+        public async Task<PetResponse> FindByIdAsync(int petId)
+        {
+            try
+            {
+                var pet = await _petRepository.FindByIdAsync(petId);
+                var aux = new PetResponse(pet);
+                if (pet == null)
+                {
+                    aux = new PetResponse(false, "No se encontro a la mascota porque no existe", pet);
+
+                }
+                return aux;
+                //var pet = await _petRepository.FindByIdAsync(petId);
+                //      return new PetResponse(pet);
+            }
+            catch (Exception ex)
+            {
+                return new PetResponse($"An error ocurred while deleting the pet: {ex.Message}");
+            }
+        }
     }
 }

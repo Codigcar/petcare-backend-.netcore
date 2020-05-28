@@ -16,12 +16,14 @@ namespace PetCare.Controllers
     public class CustomerPetsController : ControllerBase
     {
         private readonly IPetService _petService;
+        private readonly ICustomerService _customerService;
         private readonly IMapper _mapper;
 
-        public CustomerPetsController(IPetService petService, IMapper mapper)
+        public CustomerPetsController(ICustomerService customerService,IPetService petService, IMapper mapper)
         {
             _petService = petService;
             _mapper = mapper;
+            _customerService = customerService;
         }
 
         [HttpGet]
@@ -37,7 +39,10 @@ namespace PetCare.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-
+            var Cid = await _customerService.FindByIdAsync(customerId
+            );
+            if (!Cid.Success)
+                return BadRequest(Cid.Message);
 
             var pet = _mapper.Map<SavePetResource, Pet>(resource);
             var result = await _petService.SaveByCustomerIdAsync(customerId, pet);
@@ -49,8 +54,12 @@ namespace PetCare.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] SavePetResource resource)
+        public async Task<IActionResult> PutAsync(int customerId,int id, [FromBody] SavePetResource resource)
         {
+            var Cid = await _customerService.FindByIdAsync(customerId
+            );
+            if (!Cid.Success)
+                return BadRequest(Cid.Message);
             var pet = _mapper.Map<SavePetResource, Pet>(resource);
             var result = await _petService.UpdateAsync(id, pet);
 
@@ -64,8 +73,12 @@ namespace PetCare.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(int customerId,int id)
         {
+            var Cid = await _customerService.FindByIdAsync(customerId
+            );
+            if (!Cid.Success)
+                return BadRequest(Cid.Message);
             var result = await _petService.DeleteAsync(id);
             if (!result.Success)
             {

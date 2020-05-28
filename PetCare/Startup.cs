@@ -70,8 +70,10 @@ namespace PetCare
 
             services.AddScoped<IRolRepository, RolRepository>();
 
-
-            services.AddScoped<IUnitOfWork, unitOfWork>();
+	    services.AddScoped<IVaccinationRecordService, VaccinationRecordService>();
+            services.AddScoped<IVaccinationRecordRepository, VaccinationRecordRepository>();	
+           
+	    services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {

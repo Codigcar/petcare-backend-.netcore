@@ -15,7 +15,7 @@ namespace PetCare.Services
         private readonly IMedicalProfileRepository _medicalprofileRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPetRepository _petRepository;
-        private readonly ICustomerRepository _customerRepository;
+      //  private readonly ICustomerRepository _customerRepository;
 
 
         public MedicalProfileService(IMedicalProfileRepository medicalprofileRepository, IPetRepository petRepository,IUnitOfWork unitOfWork)
@@ -149,5 +149,34 @@ namespace PetCare.Services
             }
 
         }
+
+
+        public async Task<MedicalProfileResponse> FindByIdAsync(int profileId)
+        {
+            try
+            {
+                var profile = await _medicalprofileRepository.FindByIdAsync(profileId);
+                var aux = new MedicalProfileResponse(profile);
+                if (profile == null)
+                {
+                    aux = new MedicalProfileResponse(false, "No se encontro al profile porque no existe", profile);
+
+                }
+                return aux;
+                //var pet = await _petRepository.FindByIdAsync(petId);
+                //      return new PetResponse(pet);
+            }
+            catch (Exception ex)
+            {
+                return new MedicalProfileResponse($"An error ocurred while deleting the pet: {ex.Message}");
+            }
+        }
+
+        public async Task<IEnumerable<MedicalProfile>> ListByPetIdAsync(int petId)
+        {
+            return await _medicalprofileRepository.ListByPetIdAsync(petId);
+        }
+
+       
     }
 }

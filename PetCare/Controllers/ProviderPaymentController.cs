@@ -12,7 +12,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicesproviders/{providerId}/payment")]
+    [Route("api/servicesproviders/{providerId}/payments")]
     public class ProviderPaymentController : ControllerBase
     {
         private readonly IPaymentService _PaymentService;

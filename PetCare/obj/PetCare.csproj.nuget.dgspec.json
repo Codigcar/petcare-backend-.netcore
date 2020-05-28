@@ -1,24 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\carlo\\Desktop\\Backend web\\Clone\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
+    "F:\\VaccinationRecord\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\carlo\\Desktop\\Backend web\\Clone\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
+    "F:\\VaccinationRecord\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\carlo\\Desktop\\Backend web\\Clone\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "projectUniqueName": "F:\\VaccinationRecord\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
         "projectName": "PetCare",
-        "projectPath": "C:\\Users\\carlo\\Desktop\\Backend web\\Clone\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
-        "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\carlo\\Desktop\\Backend web\\Clone\\Backend-NetCore-PetCare\\PetCare\\obj\\",
+        "projectPath": "F:\\VaccinationRecord\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "packagesPath": "C:\\Users\\EQUIPO\\.nuget\\packages\\",
+        "outputPath": "F:\\VaccinationRecord\\Backend-NetCore-PetCare\\PetCare\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\EQUIPO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
