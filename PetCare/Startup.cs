@@ -70,6 +70,9 @@ namespace PetCare
 
             services.AddScoped<IRolRepository, RolRepository>();
 
+            services.AddScoped<IRequestService, RequestService>();
+            services.AddScoped<IRequestRepository, RequestRepository>();
+
 
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));

@@ -10,6 +10,7 @@ namespace PetCare.Domain.Repositories
     {
         //Task<> FindByIdAsync(int serviceId);
         Task<Service> FindByNameAsync(string name);
+        Task<Service> FindByIdAsync(int serviceId);
         Task SaveByServiTypeIdAsync(int serviTypeId, Service service);
         Task<IEnumerable<Service>> ListByServiTypeIdAsync(int serviTypeId);
     }

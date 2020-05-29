@@ -20,7 +20,8 @@ namespace PetCare.Domain.Models
 
         public Account Account { get; set; }
         public int AccountId { get; set; }
-        
+
+        public IList<Request> Requests { get; set; } = new List<Request>();
 
     }
 }

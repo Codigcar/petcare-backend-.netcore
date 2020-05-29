@@ -13,6 +13,12 @@ namespace PetCare.Persistence.Repositories
     {
         public ServiceRepository(AppDbContext context) : base(context)
         { }
+
+        public async Task<Service> FindByIdAsync(int serviceId)
+        {
+            return await _context.Services.FindAsync(serviceId);
+        }
+
         public async Task<Service> FindByNameAsync(string name)
         {
             /* return await _context.Services

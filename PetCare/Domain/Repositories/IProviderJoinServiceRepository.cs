@@ -10,6 +10,7 @@ namespace PetCare.Domain.Repositories
     {
         Task<IEnumerable<ProviderJoinService>> ListByProviderIdAsync(int providerId);
         Task<IEnumerable<ProviderJoinService>> ListByServiceIdAsync(int serviceId);
+
         Task<ProviderJoinService> FindByProviderIdAndServiceId(int providerId, int serviceId);
         Task AssignProviderService(int providerId, int serviceId);
     }

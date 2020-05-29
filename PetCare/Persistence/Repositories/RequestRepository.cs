@@ -1,4 +1,5 @@
-﻿using PetCare.Domain.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using PetCare.Domain.Models;
 using PetCare.Domain.Repositories;
 using PetCare.Persistence.Context;
 using System;
@@ -15,9 +16,23 @@ namespace PetCare.Persistence.Repositories
 
         }
 
-        public Task AddAsyn(Request request)
+        public async Task<IEnumerable<Request>> ListByCustomerIdAsync(int customerId) =>
+            await _context.Requests
+            .Where(p => p.CustomerId == customerId)
+            .Include(p => p.Customer)
+            .ToListAsync();
+
+        public async Task<IEnumerable<Request>> ListByServiceIdAsync(int serviceId) =>
+            await _context.Requests
+            .Where(p => p.ServiceId == serviceId)
+            .Include(p => p.Service)
+            .ToListAsync();
+
+        public async Task SaveByCustomerIdAsync( Request request)
         {
-            throw new NotImplementedException();
+           // var customer = await _context.Customers.FindAsync(customerId);
+           // request.CustomerId = customer.Id;
+            await _context.Requests.AddAsync(request);
         }
     }
 }
