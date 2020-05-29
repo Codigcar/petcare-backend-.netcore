@@ -16,5 +16,6 @@ namespace PetCare.Domain.Services
         Task<PetResponse> DeleteAsync(int id);
         Task<PetResponse> SaveByCustomerIdAsync(int customerId, Pet pet);
         Task<IEnumerable<Pet>> ListByCostumerIdAsync(int customerId);
+        Task<PetResponse> FindByIdAsync(int petId);
     }
 }

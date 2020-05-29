@@ -113,8 +113,17 @@ namespace PetCare.Services
 
             try
             {
+
                 var provider = await _providerRepository.FindByIdAsync(id);
-                return new ProviderResponse(provider);
+                var aux = new ProviderResponse(provider);
+                if (provider == null)
+                {
+                    aux = new ProviderResponse(false, "No se encontro al proveedor porque no existe", provider);
+
+                }
+                return aux;
+                // var provider = await _providerRepository.FindByIdAsync(id);
+                //    return new ProviderResponse(provider);
             }
             catch (Exception ex)
             {

@@ -105,11 +105,17 @@ namespace PetCare.Services
 
         public async Task<CustomerResponse> FindByIdAsync(int id)
         {
-            
+
             try
             {
                 var customer = await _customerRepository.FindByIdAsync(id);
-                return new CustomerResponse(customer);
+                var aux = new CustomerResponse(customer);
+                if (customer == null)
+                {
+                    aux = new CustomerResponse(false, "No se encontro al customer porque no existe", customer);
+
+                }
+                return aux;
             }
             catch (Exception ex)
             {

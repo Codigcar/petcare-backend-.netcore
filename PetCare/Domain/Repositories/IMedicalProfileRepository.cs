@@ -17,6 +17,6 @@ namespace PetCare.Domain.Repositories
         Task SaveByPetIdAsync(int servicesproviderId, int customerId, int petId, MedicalProfile medicalprofile);
         Task<IEnumerable<MedicalProfile>> ListByPetIdAsync(int petId);
 
-
+        
     }
 }
