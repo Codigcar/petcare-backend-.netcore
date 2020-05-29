@@ -25,6 +25,8 @@ namespace PetCare.Mapping
             CreateMap<SaveMedicalProfileResource, MedicalProfile>();
             CreateMap<SaveMedicalRecordResource, MedicalRecord>();
             CreateMap<SaveVaccinationRecordResource,VaccinationRecord >();
+            CreateMap<SaveRequestResource, Request>();
+
         }
     }
 }

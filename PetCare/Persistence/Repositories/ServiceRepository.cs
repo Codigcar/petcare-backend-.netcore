@@ -36,5 +36,9 @@ namespace PetCare.Persistence.Repositories
             await _context.Services.AddAsync(service);
 
         }
+        public async Task<Service> FindByIdAsync(int serviceId)
+        {
+            return await _context.Services.FindAsync(serviceId);
+        }
     }
 }

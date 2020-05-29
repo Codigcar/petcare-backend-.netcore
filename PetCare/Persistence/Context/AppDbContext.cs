@@ -28,6 +28,9 @@ namespace PetCare.Persistence.Context
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Account> Accounts { get; set; }
 	public DbSet<VaccinationRecord> VaccinationRecords { get; set; }
+        public DbSet<Request> Requests { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -108,6 +111,17 @@ namespace PetCare.Persistence.Context
 	   //VaccinationRecord-MedicalProfile
             builder.Entity<MedicalProfile>().HasMany(x => x.VaccinationRecords).
                WithOne(p => p.Profile).HasForeignKey(x => x.ProfileId);
+
+            //Customer - Request ( one - many)
+            builder.Entity<Customer>().HasMany(x => x.Requests)
+                .WithOne(p => p.Customer)
+                .HasForeignKey(fk => fk.CustomerId);
+
+            //Service - Request ( one - many)
+            builder.Entity<Service>().HasMany(x => x.Requests)
+                .WithOne(p => p.Service)
+                .HasForeignKey(fk => fk.ServiceId);
+
 
             builder.Entity<SuscriptionPlan>().HasData
             (

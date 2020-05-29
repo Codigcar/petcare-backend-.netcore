@@ -8,6 +8,8 @@ namespace PetCare.Domain.Repositories
 {
     public interface IRequestRepository
     {
-        Task AddAsyn(Request request);
+        Task SaveByCustomerIdAsync(Request request);
+        Task<IEnumerable<Request>> ListByCustomerIdAsync(int customerId);
+        Task<IEnumerable<Request>> ListByServiceIdAsync(int serviceId);
     }
 }

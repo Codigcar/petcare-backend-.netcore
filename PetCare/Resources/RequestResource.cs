@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace PetCare.Domain.Models
+namespace PetCare.Resources.Save
 {
-    public class Request
+    public class RequestResource
     {
         public int Id { get; set; }
         public DateTime DateReservation { get; set; }
@@ -14,13 +14,7 @@ namespace PetCare.Domain.Models
         public bool Status { get; set; }
 
         public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
-
-        public int ServiceId { get; set; }
-        public Service Service { get; set; }
-
         public int PetId { get; set; }
-        public int ProviderId { get; set; }
-
+        public int ServiceId { get; set; }
     }
 }

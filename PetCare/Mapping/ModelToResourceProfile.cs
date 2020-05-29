@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PetCare.Domain.Models;
 using PetCare.Resources;
+using PetCare.Resources.Save;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace PetCare.Mapping
             CreateMap<MedicalProfile, MedicalProfileResource>();
             CreateMap<MedicalRecord, MedicalRecordResource>();
             CreateMap<VaccinationRecord, VaccinationRecordResource>();
-}
+            CreateMap<Request, RequestResource>();
+
+        }
     }
 }
