@@ -26,6 +26,7 @@ namespace PetCare.Mapping
             CreateMap<MedicalRecord, MedicalRecordResource>();
             CreateMap<VaccinationRecord, VaccinationRecordResource>();
             CreateMap<Request, RequestResource>();
+            CreateMap<Availability, AvailabilityResource>();
 
         }
     }
