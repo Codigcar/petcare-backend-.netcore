@@ -16,5 +16,6 @@ namespace PetCare.Domain.Models
 
         public Service Service { get; set; }
         public int ServiceId { get; set; }
+        //
     }
 }
