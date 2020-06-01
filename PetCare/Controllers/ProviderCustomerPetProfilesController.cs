@@ -13,17 +13,17 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicesproviders/{servicesproviderId}/customers/{customerId}/pets/{petId}/profiles")]
+    [Route("api/providers/{providerId}/customers/{customerId}/pets/{petId}/profiles")]
     public class MedicalProfileController : ControllerBase
     {
         private readonly IMedicalProfileService _medicalprofileService;
         private readonly IMedicalRecordService _medicalrecordService;
-        private readonly ICustomerService _customerService;
+        private readonly IPersonProfileService _customerService;
         private readonly IPetService _petService;
         private readonly IProviderService _providerService;
         private readonly IMapper _mapper;
 
-        public MedicalProfileController( IProviderService providerService, IPetService petService, ICustomerService customerService,IMedicalProfileService medicalprofileService, IMedicalRecordService medicalrecordService, IMapper mapper)
+        public MedicalProfileController( IProviderService providerService, IPetService petService, IPersonProfileService customerService,IMedicalProfileService medicalprofileService, IMedicalRecordService medicalrecordService, IMapper mapper)
         {
             _medicalprofileService = medicalprofileService;
             _medicalrecordService = medicalrecordService;
@@ -34,11 +34,11 @@ namespace PetCare.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int servicesproviderId, int customerId,int petId, [FromBody] SaveMedicalProfileResource resource)
+        public async Task<ActionResult> PostAsync(int providerId, int customerId,int petId, [FromBody] SaveMedicalProfileResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-              var Prid = await _providerService.FindByIdAsync(servicesproviderId
+              var Prid = await _providerService.FindByIdAsync(providerId
              );
             if (!Prid.Success)
                 return BadRequest(Prid.Message);
@@ -55,7 +55,7 @@ namespace PetCare.Controllers
                 return BadRequest(Pid.Message);
 
             var medicalprofile = _mapper.Map<SaveMedicalProfileResource, MedicalProfile>(resource);
-            var result = await _medicalprofileService.SaveByPetIdAsync(servicesproviderId,customerId,petId, medicalprofile);
+            var result = await _medicalprofileService.SaveByPetIdAsync(providerId, customerId,petId, medicalprofile);
             if (!result.Success)
                 return BadRequest(result.Message);
             var MedicalProfileResource = _mapper.Map<MedicalProfile, MedicalProfileResource>(result.MedicalProfile);
@@ -63,12 +63,12 @@ namespace PetCare.Controllers
         }
 
         [HttpPost("{profileId}/records")]
-        public async Task<ActionResult> SaveByProfileId(int profileId, int customerId, int petId,int servicesproviderId ,[FromBody] SaveMedicalRecordResource resource)
+        public async Task<ActionResult> SaveByProfileId(int profileId, int customerId, int petId,int providerId, [FromBody] SaveMedicalRecordResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var Prid = await _providerService.FindByIdAsync(servicesproviderId
+            var Prid = await _providerService.FindByIdAsync(providerId
              );
             if (!Prid.Success)
                 return BadRequest(Prid.Message);

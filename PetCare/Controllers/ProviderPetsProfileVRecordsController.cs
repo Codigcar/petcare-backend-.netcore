@@ -13,18 +13,18 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicesproviders/{providerId}/customers/{customerId}/pets/{petId}/profiles/{profileId}/vaccinationrecords")]
+    [Route("api/providers/{providerId}/customers/{customerId}/pets/{petId}/profiles/{profileId}/vaccinationrecords")]
     public class ProviderPetProfilesVRecordsController : ControllerBase
     {
         private readonly IMedicalProfileService _profileService;
-        private readonly ICustomerService _customerService;
+        private readonly IPersonProfileService _customerService;
         private readonly IPetService _petService;
         private readonly IProviderService _providerService;
         private readonly IVaccinationRecordService _vaccinationRecordService;
         private readonly IMapper _mapper;
 
 
-        public ProviderPetProfilesVRecordsController(IMedicalProfileService profileService, ICustomerService customerService, IPetService petService, IProviderService providerService, IVaccinationRecordService vaccinationRecordService, IMapper mapper)
+        public ProviderPetProfilesVRecordsController(IMedicalProfileService profileService, IPersonProfileService customerService, IPetService petService, IProviderService providerService, IVaccinationRecordService vaccinationRecordService, IMapper mapper)
         {
             _profileService = profileService;
             _customerService = customerService;

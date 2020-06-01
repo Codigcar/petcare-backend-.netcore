@@ -17,7 +17,7 @@ namespace PetCare.Domain.Models
         public string Password { get; set; }
 
         public int SuscriptionPlanId { get; set; }
-        public SuscriptionPlan SuscriptionPlan { get; set; }
+        public SubscriptionPlan SuscriptionPlan { get; set; }
 
         public Payment Payment{ get; set; }
 

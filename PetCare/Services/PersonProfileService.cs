@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace PetCare.Services
 {
-    public class CustomerService : ICustomerService
+    public class PersonProfileService : IPersonProfileService
     {
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IPersonProfileRepository _customerRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IRolRepository _rolRepository;
         private readonly IUnitOfWork _unitOfWork;
 
 
-        public CustomerService(ICustomerRepository customerRepository, IAccountRepository accountRepository,
+        public PersonProfileService(IPersonProfileRepository customerRepository, IAccountRepository accountRepository,
             IRolRepository rolRepository, IUnitOfWork unitOfWork)
         {
             _customerRepository = customerRepository;
@@ -26,18 +26,18 @@ namespace PetCare.Services
             _rolRepository = rolRepository;
         }
 
-        public async Task<IEnumerable<Customer>> ListAsync()
+        public async Task<IEnumerable<PersonProfile>> ListAsync()
         {
             return await _customerRepository.ListAsync();
         }
 
-        public async Task<CustomerResponse> SaveAsync(Customer customer)
+        public async Task<PersonProfileResponse> SaveAsync(PersonProfile customer)
         {
             Account account = new Account();
             account.User = customer.Email;
             account.Password = customer.Password;
             account.RolId = 1;
-            account.Customer = customer;
+            account.PersonProfile = customer;
             account.Rol = _rolRepository.FindByIdAsync(1).Result;
 
             try
@@ -46,20 +46,20 @@ namespace PetCare.Services
                 await _accountRepository.AddAsyn(account);
                 await _unitOfWork.CompleteAsync();
 
-                return new CustomerResponse(customer);
+                return new PersonProfileResponse(customer);
             }
             catch (Exception ex)
             {
-                return new CustomerResponse($"An error ocurred while saving the customer: {ex.Message}");
+                return new PersonProfileResponse($"An error ocurred while saving the customer: {ex.Message}");
             }
         }
 
-        public async Task<CustomerResponse> UpdateAsync(int id, Customer customer)
+        public async Task<PersonProfileResponse> UpdateAsync(int id, PersonProfile customer)
         {
             var existingCustomer = await _customerRepository.FindByIdAsync(id);
 
             if (existingCustomer == null)
-                return new CustomerResponse("customer not found");
+                return new PersonProfileResponse("customer not found");
 
             existingCustomer.Name = customer.Name;
             existingCustomer.LastName= customer.LastName;
@@ -75,51 +75,51 @@ namespace PetCare.Services
                 _customerRepository.Update(existingCustomer);
                 await _unitOfWork.CompleteAsync();
 
-                return new CustomerResponse(existingCustomer);
+                return new PersonProfileResponse(existingCustomer);
             }
             catch (Exception ex)
             {
-                return new CustomerResponse($"An error ocurred while updating the customer: {ex.Message}");
+                return new PersonProfileResponse($"An error ocurred while updating the customer: {ex.Message}");
             }
         }
        
-        public async Task<CustomerResponse> DeleteAsync(int id)
+        public async Task<PersonProfileResponse> DeleteAsync(int id)
         {
             var existingcustomer = await _customerRepository.FindByIdAsync(id);
 
             if (existingcustomer == null)
-                return new CustomerResponse("customer not found.");
+                return new PersonProfileResponse("customer not found.");
 
             try
             {
                 _customerRepository.Remove(existingcustomer);
                 await _unitOfWork.CompleteAsync();
-                return new CustomerResponse(existingcustomer);
+                return new PersonProfileResponse(existingcustomer);
             }
             catch (Exception ex)
             {
-                return new CustomerResponse($"An error ocurred while deleting the customer: {ex.Message}");
+                return new PersonProfileResponse($"An error ocurred while deleting the customer: {ex.Message}");
             }
          
         }
 
-        public async Task<CustomerResponse> FindByIdAsync(int id)
+        public async Task<PersonProfileResponse> FindByIdAsync(int id)
         {
 
             try
             {
                 var customer = await _customerRepository.FindByIdAsync(id);
-                var aux = new CustomerResponse(customer);
+                var aux = new PersonProfileResponse(customer);
                 if (customer == null)
                 {
-                    aux = new CustomerResponse(false, "No se encontro al customer porque no existe", customer);
+                    aux = new PersonProfileResponse(false, "No se encontro al customer porque no existe", customer);
 
                 }
                 return aux;
             }
             catch (Exception ex)
             {
-                return new CustomerResponse($"An error ocurred while deleting the customer: {ex.Message}");
+                return new PersonProfileResponse($"An error ocurred while deleting the customer: {ex.Message}");
             }
         }
     }

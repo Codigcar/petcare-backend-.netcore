@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace PetCare.Mapping
 {
-    public class ResourceToModelProfile : Profile
+    public class ResourceToModelProfile : AutoMapper.Profile
     {
         public ResourceToModelProfile()
         {
-            CreateMap<SaveCustomerResource, Customer>();
+            CreateMap<SaveCustomerResource, PersonProfile>();
             CreateMap<SaveProviderResource, Provider>();
             CreateMap<SavePetResource, Pet>();
-            CreateMap<SaveSuscriptionPlan, SuscriptionPlan>();
+            CreateMap<SaveSuscriptionPlan, SubscriptionPlan>();
             CreateMap<SavePaymentResource, Payment>();
             CreateMap<SaveRegisterPetResource, Pet>();
             CreateMap<SaveServiceResource, Service>();
@@ -25,7 +25,7 @@ namespace PetCare.Mapping
             CreateMap<SaveMedicalProfileResource, MedicalProfile>();
             CreateMap<SaveMedicalRecordResource, MedicalRecord>();
             CreateMap<SaveVaccinationRecordResource,VaccinationRecord >();
-            CreateMap<SaveRequestResource, Request>();
+            CreateMap<SaveRequestResource, PersonRequest>();
 
         }
     }

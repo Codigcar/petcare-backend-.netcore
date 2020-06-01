@@ -8,10 +8,10 @@ namespace PetCare.Domain.Repositories
 {
     public interface ISuscriptionPlanRepository
     {
-        Task<IEnumerable<SuscriptionPlan>> ListAsync();
-        Task AddAsyn(SuscriptionPlan suscriptionPlan);
-        Task<SuscriptionPlan> FindByIdAsync(int id);
-        void Update(SuscriptionPlan suscriptionPlan);
-        void Remove(SuscriptionPlan suscriptionPlan);
+        Task<IEnumerable<SubscriptionPlan>> ListAsync();
+        Task AddAsyn(SubscriptionPlan suscriptionPlan);
+        Task<SubscriptionPlan> FindByIdAsync(int id);
+        void Update(SubscriptionPlan suscriptionPlan);
+        void Remove(SubscriptionPlan suscriptionPlan);
     }
 }

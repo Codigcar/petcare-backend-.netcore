@@ -12,7 +12,7 @@ namespace PetCare.Services
     public class RequestService : IRequestService
     {
         private readonly IRequestRepository _requestRepository;
-        private readonly ICustomerRepository _customerRepository;
+        private readonly IPersonProfileRepository _customerRepository;
         private readonly IServiceRepository _serviceRepository;
         private readonly IPetRepository _petRepository;
         private readonly IProviderRepository _providerRepository;
@@ -20,7 +20,7 @@ namespace PetCare.Services
 
         private readonly IUnitOfWork _unitOfWork;
 
-        public RequestService(IRequestRepository requestRepository, ICustomerRepository customerRepository,
+        public RequestService(IRequestRepository requestRepository, IPersonProfileRepository customerRepository,
             IServiceRepository serviceRepository, IUnitOfWork unitOfWork)
         {
             _requestRepository = requestRepository;
@@ -29,19 +29,19 @@ namespace PetCare.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Request>> ListByCostumerIdAsync(int customerId)
+        public async Task<IEnumerable<PersonRequest>> ListByCostumerIdAsync(int customerId)
         {
             return await _requestRepository.ListByCustomerIdAsync(customerId);
         }
 
-        public async Task<IEnumerable<Request>> ListByServiceIdAsync(int providerId, int serviceId)
+        public async Task<IEnumerable<PersonRequest>> ListByServiceIdAsync(int providerId, int serviceId)
         {
             return await _requestRepository.ListByServiceIdAsync(serviceId);
         }
 
-        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int servicesId, int petId, Request request)
+        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int servicesId, int petId, PersonRequest request)
         {
-            Customer customer = await _customerRepository.FindByIdAsync(customerId);
+            PersonProfile customer = await _customerRepository.FindByIdAsync(customerId);
             Service service = await _serviceRepository.FindByIdAsync(servicesId);
             /*  Pet pet = await _petRepository.FindByIdAsync(petId);
               Provider provider = await _providerRepository.FindByIdAsync(providerId);*/
@@ -50,8 +50,8 @@ namespace PetCare.Services
                 /*    if (  pet.Id == petId )
                     {*/
                 request.PetId = petId;
-                request.CustomerId = customerId;
-                request.Customer = customer;
+                request.PersonProfileId = customerId;
+                request.PersonProfile = customer;
                 request.ProviderId = providerId;
                 request.Service = service;
                 request.ServiceId = servicesId;

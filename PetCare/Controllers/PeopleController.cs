@@ -13,12 +13,12 @@ using PetCare.Resources;
 namespace PetCare.Controllers
 {
     [Route("api/[controller]")]
-    public class CustomersController : ControllerBase
+    public class PeopleController : ControllerBase
     {
-        private readonly ICustomerService _customerService;
+        private readonly IPersonProfileService _customerService;
         private readonly IMapper _mapper;
 
-        public CustomersController(ICustomerService customerService, IMapper mapper)
+        public PeopleController(IPersonProfileService customerService, IMapper mapper)
         {
             _customerService = customerService;
             _mapper = mapper;
@@ -29,7 +29,7 @@ namespace PetCare.Controllers
         {
             
             var customers = await _customerService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerResource>>(customers);
+            var resources = _mapper.Map<IEnumerable<PersonProfile>, IEnumerable<CustomerResource>>(customers);
             return resources;
         }
 
@@ -40,11 +40,11 @@ namespace PetCare.Controllers
                 return BadRequest(ModelState.GetErrorMessages());
 
 
-            var customer = _mapper.Map<SaveCustomerResource, Customer>(resource);
+            var customer = _mapper.Map<SaveCustomerResource, PersonProfile>(resource);
             var result = await _customerService.SaveAsync(customer);
             if (!result.Success)
                 return BadRequest(result.Message);
-            var customerResource = _mapper.Map<Customer, CustomerResource>(result.Customer);
+            var customerResource = _mapper.Map<PersonProfile, CustomerResource>(result.Customer);
             return Ok(customerResource);
         }
 
@@ -52,7 +52,7 @@ namespace PetCare.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveCustomerResource resource)
         {
-            var customer = _mapper.Map<SaveCustomerResource, Customer>(resource);
+            var customer = _mapper.Map<SaveCustomerResource, PersonProfile>(resource);
             var result = await _customerService.UpdateAsync(id, customer);
 
             if (!result.Success)
@@ -60,7 +60,7 @@ namespace PetCare.Controllers
                 return BadRequest(result.Message);
             }
 
-            var customerResource = _mapper.Map<Customer, CustomerResource>(result.Customer);
+            var customerResource = _mapper.Map<PersonProfile, CustomerResource>(result.Customer);
             return Ok(customerResource);
         }
 
@@ -72,7 +72,7 @@ namespace PetCare.Controllers
             {
                 return BadRequest(result.Message);
             }
-            var categoryResource = _mapper.Map<Customer, CustomerResource>(result.Customer);
+            var categoryResource = _mapper.Map<PersonProfile, CustomerResource>(result.Customer);
             return Ok(categoryResource);
         }
     }

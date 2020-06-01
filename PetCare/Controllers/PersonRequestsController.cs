@@ -13,30 +13,30 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/customers/{customerId}/pets/{petId}/servicesproviders/{providerId}/services/{servicesId}/request")]
-    public class CustomerRequestsController : ControllerBase
+    [Route("api/people/{personId}/pets/{petId}/providers/{providerId}/services/{servicesId}/requests")]
+    public class PersonRequestsController : ControllerBase
     {
         private readonly IRequestService _requestService;
         private readonly IMapper _mapper;
 
-        public CustomerRequestsController(IRequestService RequestService, IMapper mapper)
+        public PersonRequestsController(IRequestService RequestService, IMapper mapper)
         {
             _requestService = RequestService;
             _mapper = mapper;
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int customerId, int providerId, int servicesId, int petId, [FromBody] SaveRequestResource resource)
+        public async Task<ActionResult> PostAsync(int personId, int providerId, int servicesId, int petId, [FromBody] SaveRequestResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
-            var request = _mapper.Map<SaveRequestResource, Request>(resource);
-            var result = await _requestService.SaveByCustomerIdAsync(customerId, providerId, servicesId, petId, request);
+            var request = _mapper.Map<SaveRequestResource, PersonRequest>(resource);
+            var result = await _requestService.SaveByCustomerIdAsync(personId, providerId, servicesId, petId, request);
             if (!result.Success)
                 return BadRequest(result.Message);
-            var requestResource = _mapper.Map<Request, RequestResource>(result.Request);
+            var requestResource = _mapper.Map<PersonRequest, RequestResource>(result.Request);
             return Ok(requestResource);
         }
 

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Domain.Models
 {
-    public class Request
+    public class PersonRequest
     {
         public int Id { get; set; }
         public DateTime DateReservation { get; set; }
@@ -13,8 +13,8 @@ namespace PetCare.Domain.Models
         public string EndTime { get; set; }
         public bool Status { get; set; }
 
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public int PersonProfileId { get; set; }
+        public PersonProfile PersonProfile { get; set; }
 
         public int ServiceId { get; set; }
         public Service Service { get; set; }

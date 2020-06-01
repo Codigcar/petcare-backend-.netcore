@@ -13,7 +13,7 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicesproviders/{providerId}/services")]
+    [Route("api/providers/{providerId}/services")]
     public class ProviderJoinServiceController : ControllerBase
     {
       //  private readonly IService

@@ -8,14 +8,14 @@ namespace PetCare.Domain.Comunication
 {
     public class SuscriptionPlanResponse : BaseResponse
     {
-        public SuscriptionPlan SuscriptionPlan { get; private set; }
+        public SubscriptionPlan SuscriptionPlan { get; private set; }
 
-        public SuscriptionPlanResponse(bool success, string message, SuscriptionPlan suscriptionPlan) : base(success, message)
+        public SuscriptionPlanResponse(bool success, string message, SubscriptionPlan suscriptionPlan) : base(success, message)
         {
             SuscriptionPlan = suscriptionPlan;
         }
 
-        public SuscriptionPlanResponse(SuscriptionPlan suscriptionPlan) : this(true, string.Empty, suscriptionPlan) { }
+        public SuscriptionPlanResponse(SubscriptionPlan suscriptionPlan) : this(true, string.Empty, suscriptionPlan) { }
 
         public SuscriptionPlanResponse(string message) : this(false, message, null) { }
 

@@ -17,7 +17,7 @@ namespace PetCare.Domain.Models
         public ServiType ServiType { get; set; }
         public int ServiTypeId { get; set; }
 
-        public IList<Request> Requests { get; set; } = new List<Request>();
+        public IList<PersonRequest> Requests { get; set; } = new List<PersonRequest>();
 
     }
 }

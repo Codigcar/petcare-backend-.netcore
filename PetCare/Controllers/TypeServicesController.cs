@@ -13,7 +13,7 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/typesservices/{typeserviceId}/services")]
+    [Route("api/typeproduts/{typeproductId}/services")]
     public class TypeServicesController : ControllerBase
     {
         private readonly IServiceS _service;
@@ -34,14 +34,14 @@ namespace PetCare.Controllers
         }
         */
         [HttpPost]
-        public async Task<ActionResult> SaveServiceByTypeIdAsync(int typeserviceId, [FromBody] SaveServiceResource saveServiceResource)
+        public async Task<ActionResult> SaveServiceByTypeIdAsync(int typeproductId, [FromBody] SaveServiceResource saveServiceResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
             var entity = _mapper.Map<SaveServiceResource, Service>(saveServiceResource);
-            var result = await _service.SaveByServiTypeIdAsync(typeserviceId, entity);
+            var result = await _service.SaveByServiTypeIdAsync(typeproductId, entity);
             if (!result.Success)
                 return BadRequest(result.Message);
 
@@ -51,9 +51,9 @@ namespace PetCare.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<ServiceResource>> GetAllByServiceTypeIdAsync(int typeserviceId)
+        public async Task<IEnumerable<ServiceResource>> GetAllByServiceTypeIdAsync(int typeproductId)
         {
-            var services = await _service.ListByServiTypeIdAsync(typeserviceId);
+            var services = await _service.ListByServiTypeIdAsync(typeproductId);
             var resources = _mapper.Map<IEnumerable<Service>, IEnumerable<ServiceResource>>(services);
             return resources;
         }
