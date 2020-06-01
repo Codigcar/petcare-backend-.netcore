@@ -13,7 +13,7 @@ namespace PetCare.Domain.Models
         public double Price { get; set; }
         public int Duration { get; set; }
 
-        public IList<Provider> ListServicesProvider { get; set; } = new List<Provider>();
+        public IList<Account> Accounts { get; set; } = new List<Account>();
 
     }
 }

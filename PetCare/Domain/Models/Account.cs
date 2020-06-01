@@ -15,6 +15,12 @@ namespace PetCare.Domain.Models
         public int RolId { get; set; }
 
         public PersonProfile PersonProfile { get; set; }
-        public Provider Provider { get; set; }
+        // public Provider Provider { get; set; }
+        public BusinessProfile BusinessProfile { get; set; }
+
+        public int SubscriptionPlanId { get; set; }
+        public SubscriptionPlan SubscriptionPlan { get; set; }
+
+       
     }
 }

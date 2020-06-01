@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class SaveCustomerResource 
+    public class SaveBusinessProfileResource
     {
         [Required]
         [MaxLength(30)]
@@ -38,5 +38,9 @@ namespace PetCare.Resources
         [MaxLength(2)]
         public string Age { get; set; }
 
+
+        public Boolean Owner { get; set; }
+
+        public int ProviderId { get; set; }
     }
 }

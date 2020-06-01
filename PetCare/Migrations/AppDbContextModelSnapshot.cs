@@ -29,12 +29,17 @@ namespace PetCare.Migrations
                     b.Property<int>("RolId")
                         .HasColumnType("int");
 
+                    b.Property<int>("SubscriptionPlanId")
+                        .HasColumnType("int");
+
                     b.Property<string>("User")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RolId");
+
+                    b.HasIndex("SubscriptionPlanId");
 
                     b.ToTable("Accounts");
                 });
@@ -70,7 +75,7 @@ namespace PetCare.Migrations
                     b.ToTable("Availabilities");
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.Customer", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.BusinessProfile", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -89,14 +94,13 @@ namespace PetCare.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("varchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(30)")
-                        .HasMaxLength(30);
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Owner")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Password")
                         .HasColumnType("text");
@@ -104,12 +108,17 @@ namespace PetCare.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("text");
 
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId")
                         .IsUnique();
 
-                    b.ToTable("Customers");
+                    b.HasIndex("ProviderId");
+
+                    b.ToTable("BusinessProfiles");
                 });
 
             modelBuilder.Entity("PetCare.Domain.Models.MedicalProfile", b =>
@@ -233,6 +242,87 @@ namespace PetCare.Migrations
                     b.ToTable("Payments");
                 });
 
+            modelBuilder.Entity("PetCare.Domain.Models.PersonProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Age")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Document")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId")
+                        .IsUnique();
+
+                    b.ToTable("PersonProfiles");
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.PersonRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateReservation")
+                        .HasColumnType("datetime");
+
+                    b.Property<string>("EndTime")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PersonProfileId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PetId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProviderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StartTime")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PersonProfileId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("Requests");
+                });
+
             modelBuilder.Entity("PetCare.Domain.Models.Pet", b =>
                 {
                     b.Property<int>("Id")
@@ -248,13 +338,13 @@ namespace PetCare.Migrations
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30);
+
+                    b.Property<int>("PersonProfileId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Photo")
                         .IsRequired()
@@ -268,7 +358,7 @@ namespace PetCare.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("PersonProfileId");
 
                     b.ToTable("Pets");
                 });
@@ -277,9 +367,6 @@ namespace PetCare.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("AccountId")
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
@@ -307,23 +394,12 @@ namespace PetCare.Migrations
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<string>("Password")
-                        .HasColumnType("text");
-
                     b.Property<string>("Region")
                         .IsRequired()
                         .HasColumnType("varchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<int>("SuscriptionPlanId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountId")
-                        .IsUnique();
-
-                    b.HasIndex("SuscriptionPlanId");
 
                     b.ToTable("ServicesProviders");
                 });
@@ -341,90 +417,6 @@ namespace PetCare.Migrations
                     b.HasIndex("ServiceId");
 
                     b.ToTable("ProviderJoinServices");
-                });
-
-            modelBuilder.Entity("PetCare.Domain.Models.ProviderRepresentative", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Direction")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("varchar(30)")
-                        .HasMaxLength(30);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("varchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("Phone1")
-                        .IsRequired()
-                        .HasColumnType("varchar(9)")
-                        .HasMaxLength(9);
-
-                    b.Property<string>("Phone2")
-                        .IsRequired()
-                        .HasColumnType("varchar(9)")
-                        .HasMaxLength(9);
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
-
-                    b.Property<int>("ProviderId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProviderId");
-
-                    b.ToTable("ProviderRepresentatives");
-                });
-
-            modelBuilder.Entity("PetCare.Domain.Models.Request", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateReservation")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("EndTime")
-                        .HasColumnType("text");
-
-                    b.Property<int>("PetId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProviderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StartTime")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("PetCare.Domain.Models.Rol", b =>
@@ -496,7 +488,7 @@ namespace PetCare.Migrations
                     b.ToTable("Services");
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.SuscriptionPlan", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.SubscriptionPlan", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -522,6 +514,14 @@ namespace PetCare.Migrations
                         new
                         {
                             Id = 1,
+                            Description = "Plan Free",
+                            Duration = 1,
+                            Name = "Free",
+                            Price = 0.0
+                        },
+                        new
+                        {
+                            Id = 2,
                             Description = "Plan Basico",
                             Duration = 1,
                             Name = "Basica",
@@ -529,7 +529,7 @@ namespace PetCare.Migrations
                         },
                         new
                         {
-                            Id = 2,
+                            Id = 3,
                             Description = "Plan Premium",
                             Duration = 1,
                             Name = "Premium",
@@ -569,6 +569,12 @@ namespace PetCare.Migrations
                         .HasForeignKey("RolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("PetCare.Domain.Models.SubscriptionPlan", "SubscriptionPlan")
+                        .WithMany("Accounts")
+                        .HasForeignKey("SubscriptionPlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PetCare.Domain.Models.Availability", b =>
@@ -586,11 +592,17 @@ namespace PetCare.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.Customer", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.BusinessProfile", b =>
                 {
                     b.HasOne("PetCare.Domain.Models.Account", "Account")
-                        .WithOne("Customer")
-                        .HasForeignKey("PetCare.Domain.Models.Customer", "AccountId")
+                        .WithOne("BusinessProfile")
+                        .HasForeignKey("PetCare.Domain.Models.BusinessProfile", "AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
+                        .WithMany("BusinessProfiles")
+                        .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -628,26 +640,35 @@ namespace PetCare.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.Pet", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.PersonProfile", b =>
                 {
-                    b.HasOne("PetCare.Domain.Models.Customer", "Customer")
-                        .WithMany("Pets")
-                        .HasForeignKey("CustomerId")
+                    b.HasOne("PetCare.Domain.Models.Account", "Account")
+                        .WithOne("PersonProfile")
+                        .HasForeignKey("PetCare.Domain.Models.PersonProfile", "AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.Provider", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.PersonRequest", b =>
                 {
-                    b.HasOne("PetCare.Domain.Models.Account", "Account")
-                        .WithOne("Provider")
-                        .HasForeignKey("PetCare.Domain.Models.Provider", "AccountId")
+                    b.HasOne("PetCare.Domain.Models.PersonProfile", "PersonProfile")
+                        .WithMany("Requests")
+                        .HasForeignKey("PersonProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PetCare.Domain.Models.SuscriptionPlan", "SuscriptionPlan")
-                        .WithMany("ListServicesProvider")
-                        .HasForeignKey("SuscriptionPlanId")
+                    b.HasOne("PetCare.Domain.Models.Service", "Service")
+                        .WithMany("Requests")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("PetCare.Domain.Models.Pet", b =>
+                {
+                    b.HasOne("PetCare.Domain.Models.PersonProfile", "PersonProfile")
+                        .WithMany("Pets")
+                        .HasForeignKey("PersonProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -662,30 +683,6 @@ namespace PetCare.Migrations
 
                     b.HasOne("PetCare.Domain.Models.Service", "Service")
                         .WithMany("ProviderServices")
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PetCare.Domain.Models.ProviderRepresentative", b =>
-                {
-                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
-                        .WithMany("ProviderRepresentatives")
-                        .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PetCare.Domain.Models.Request", b =>
-                {
-                    b.HasOne("PetCare.Domain.Models.Customer", "Customer")
-                        .WithMany("Requests")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetCare.Domain.Models.Service", "Service")
-                        .WithMany("Requests")
                         .HasForeignKey("ServiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

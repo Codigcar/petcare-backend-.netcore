@@ -37,6 +37,7 @@ namespace PetCare.Services
             account.User = customer.Email;
             account.Password = customer.Password;
             account.RolId = 1;
+            account.SubscriptionPlanId = 1; // Por defecto tiene el plan free
             account.PersonProfile = customer;
             account.Rol = _rolRepository.FindByIdAsync(1).Result;
 

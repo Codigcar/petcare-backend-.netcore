@@ -14,23 +14,20 @@ namespace PetCare.Domain.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
-        public string Password { get; set; }
-
-        public int SuscriptionPlanId { get; set; }
-        public SubscriptionPlan SuscriptionPlan { get; set; }
+        
+       
 
         public Payment Payment{ get; set; }
 
         public List<ProviderJoinService> ProviderServices { get; set; }
 
-        public IList<ProviderRepresentative> ProviderRepresentatives { get; set; } = new List<ProviderRepresentative>();
-
         public IList<MedicalProfile> MedicalProfiles { get; set; } = new List<MedicalProfile>();
 
-        //     public IList<Card> Payment{ get; set; } = new List<ServicesProvider>();
+        /*public Account Account { get; set; }
+        public int AccountId { get; set; }*/
 
-        public Account Account { get; set; }
-        public int AccountId { get; set; }
-        
+        public IList<BusinessProfile> BusinessProfiles { get; set; } = new List<BusinessProfile>();
+
+
     }
 }
