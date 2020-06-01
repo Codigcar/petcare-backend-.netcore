@@ -21,12 +21,12 @@ namespace PetCare.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<SuscriptionPlan>> ListAsync()
+        public async Task<IEnumerable<SubscriptionPlan>> ListAsync()
         {
             return await _suscriptionPlanRepository.ListAsync();
         }
 
-        public async Task<SuscriptionPlanResponse> SaveAsync(SuscriptionPlan suscriptionPlan)
+        public async Task<SuscriptionPlanResponse> SaveAsync(SubscriptionPlan suscriptionPlan)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace PetCare.Services
             }
         }
 
-        public async Task<SuscriptionPlanResponse> UpdateAsync(int id, SuscriptionPlan suscriptionPlan)
+        public async Task<SuscriptionPlanResponse> UpdateAsync(int id, SubscriptionPlan suscriptionPlan)
         {
             var existingSuscriptionPlan = await _suscriptionPlanRepository.FindByIdAsync(id);
 

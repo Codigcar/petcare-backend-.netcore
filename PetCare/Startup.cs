@@ -35,8 +35,8 @@ namespace PetCare
           );
 
             
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IPersonProfileRepository, PersonProfileRepository>();
+            services.AddScoped<IPersonProfileService, PersonProfileService>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
             services.AddScoped<IProviderService, ProviderService>();
             services.AddScoped<IPetService, PetService>();

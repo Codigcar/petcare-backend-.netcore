@@ -33,7 +33,7 @@ namespace PetCare.Persistence.Repositories
 
         public void Remove( Pet pet)
         {
-            //var customer =  _context.Customers.FindAsync(customerId);
+            //var customer =  _context.PersonProfiles.FindAsync(customerId);
    
             _context.Pets.Remove(pet);
         }
@@ -46,15 +46,15 @@ namespace PetCare.Persistence.Repositories
 
         public async Task SaveByCustomerIdAsync(int customerId,Pet pet)
         {
-            var customer =await _context.Customers.FindAsync(customerId);
-            pet.CustomerId = customer.Id;
+            var customer =await _context.PersonProfiles.FindAsync(customerId);
+            pet.PersonProfileId = customer.Id;
             await _context.Pets.AddAsync(pet); 
         }
 
         public async Task<IEnumerable<Pet>> ListByCustomerIdAsync(int customerId) =>
             await _context.Pets
-            .Where(p => p.CustomerId == customerId)
-            .Include(p => p.Customer)
+            .Where(p => p.PersonProfileId == customerId)
+            .Include(p => p.PersonProfile)
             .ToListAsync();
 
 

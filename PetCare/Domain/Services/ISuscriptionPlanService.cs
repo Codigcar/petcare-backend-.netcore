@@ -9,9 +9,9 @@ namespace PetCare.Domain.Services
 {
     public interface ISuscriptionPlanService
     {
-        Task<IEnumerable<SuscriptionPlan>> ListAsync();
-        Task<SuscriptionPlanResponse> SaveAsync(SuscriptionPlan suscriptionPlan);
-        Task<SuscriptionPlanResponse> UpdateAsync(int id, SuscriptionPlan suscriptionPlan);
+        Task<IEnumerable<SubscriptionPlan>> ListAsync();
+        Task<SuscriptionPlanResponse> SaveAsync(SubscriptionPlan suscriptionPlan);
+        Task<SuscriptionPlanResponse> UpdateAsync(int id, SubscriptionPlan suscriptionPlan);
         Task<SuscriptionPlanResponse> DeleteAsync(int id);
         Task<SuscriptionPlanResponse> GetById(int id);
     }

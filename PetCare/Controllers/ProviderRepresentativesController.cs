@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicesprovider/{servicesproviderId}/representative")]
+    [Route("api/provider/{providerId}/representative")]
     public class ProviderRepresentativesController:ControllerBase
     {
 
@@ -26,23 +26,23 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ProviderRepresentativeResource>> GetAllAsync(int servicesproviderId)
+        public async Task<IEnumerable<ProviderRepresentativeResource>> GetAllAsync(int providerId)
         {
 
-            var providerrepresentatives = await _providerrepresentativeService.ListByProviderIdAsync(servicesproviderId);
+            var providerrepresentatives = await _providerrepresentativeService.ListByProviderIdAsync(providerId);
             var resources = _mapper.Map<IEnumerable<ProviderRepresentative>, IEnumerable<ProviderRepresentativeResource>>(providerrepresentatives);
             return resources;
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int servicesproviderId, [FromBody] SaveProviderRepresentativeResource resource)
+        public async Task<ActionResult> PostAsync(int providerId, [FromBody] SaveProviderRepresentativeResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
             var providerrepresentative = _mapper.Map<SaveProviderRepresentativeResource, ProviderRepresentative>(resource);
-            var result = await _providerrepresentativeService.SaveByProviderIdAsync(servicesproviderId, providerrepresentative);
+            var result = await _providerrepresentativeService.SaveByProviderIdAsync(providerId, providerrepresentative);
             if (!result.Success)
                 return BadRequest(result.Message);
             var providerrepresentativeResource = _mapper.Map<ProviderRepresentative, ProviderRepresentativeResource>(result.ProviderRepresentative);

@@ -12,40 +12,40 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/customers/{customerId}/pets")]
-    public class CustomerPetsController : ControllerBase
+    [Route("api/people/{personId}/pets")]
+    public class PeoplePetsController : ControllerBase
     {
         private readonly IPetService _petService;
-        private readonly ICustomerService _customerService;
+        private readonly IPersonProfileService _personService;
         private readonly IMapper _mapper;
 
-        public CustomerPetsController(ICustomerService customerService,IPetService petService, IMapper mapper)
+        public PeoplePetsController(IPersonProfileService personService,IPetService petService, IMapper mapper)
         {
             _petService = petService;
             _mapper = mapper;
-            _customerService = customerService;
+            _personService = personService;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PetResource>> GetAllAsync(int customerId)
+        public async Task<IEnumerable<PetResource>> GetAllAsync(int personId)
         {
-            var customers = await _petService.ListByCostumerIdAsync(customerId);
-            var resources = _mapper.Map<IEnumerable<Pet>, IEnumerable<PetResource>>(customers);
+            var persons = await _petService.ListByCostumerIdAsync(personId);
+            var resources = _mapper.Map<IEnumerable<Pet>, IEnumerable<PetResource>>(persons);
             return resources;
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int customerId, [FromBody] SavePetResource resource)
+        public async Task<ActionResult> PostAsync(int personId, [FromBody] SavePetResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-            var Cid = await _customerService.FindByIdAsync(customerId
+            var Cid = await _personService.FindByIdAsync(personId
             );
             if (!Cid.Success)
                 return BadRequest(Cid.Message);
 
             var pet = _mapper.Map<SavePetResource, Pet>(resource);
-            var result = await _petService.SaveByCustomerIdAsync(customerId, pet);
+            var result = await _petService.SaveByCustomerIdAsync(personId, pet);
             if (!result.Success)
                 return BadRequest(result.Message);
             var petResource = _mapper.Map<Pet, PetResource>(result.Pet);
@@ -54,9 +54,9 @@ namespace PetCare.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int customerId,int id, [FromBody] SavePetResource resource)
+        public async Task<IActionResult> PutAsync(int personId,int id, [FromBody] SavePetResource resource)
         {
-            var Cid = await _customerService.FindByIdAsync(customerId
+            var Cid = await _personService.FindByIdAsync(personId
             );
             if (!Cid.Success)
                 return BadRequest(Cid.Message);
@@ -73,9 +73,9 @@ namespace PetCare.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int customerId,int id)
+        public async Task<IActionResult> DeleteAsync(int personId,int id)
         {
-            var Cid = await _customerService.FindByIdAsync(customerId
+            var Cid = await _personService.FindByIdAsync(personId
             );
             if (!Cid.Success)
                 return BadRequest(Cid.Message);

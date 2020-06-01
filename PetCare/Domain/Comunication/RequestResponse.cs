@@ -8,14 +8,14 @@ namespace PetCare.Domain.Comunication
 {
     public class RequestResponse : BaseResponse
     {
-        public Request Request { get; private set; }
+        public PersonRequest Request { get; private set; }
 
-        public RequestResponse(bool success, string message, Request request) : base(success, message)
+        public RequestResponse(bool success, string message, PersonRequest request) : base(success, message)
         {
             Request = request;
         }
 
-        public RequestResponse(Request request) : this(true, string.Empty, request) { }
+        public RequestResponse(PersonRequest request) : this(true, string.Empty, request) { }
 
         public RequestResponse(string message) : this(false, message, null) { }
 

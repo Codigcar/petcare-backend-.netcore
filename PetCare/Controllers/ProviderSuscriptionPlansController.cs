@@ -13,7 +13,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/servicesproviders/{providerId}/suscriptionplans")]
+    [Route("api/providers/{providerId}/suscriptionplans")]
     public class ProviderSuscriptionPlansController : ControllerBase
     {
         private readonly ISuscriptionPlanService _suscriptionPlanService;
@@ -28,7 +28,7 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<SuscriptionPlan>> GetAllAsync()
+        public async Task<IEnumerable<SubscriptionPlan>> GetAllAsync()
         {
             var suscriptionPlan = await _suscriptionPlanService.ListAsync();
             return suscriptionPlan;
@@ -41,11 +41,11 @@ namespace PetCare.Controllers
                 return BadRequest(ModelState.GetErrorMessages());
 
 
-            var suscriptionPlan = _mapper.Map<SaveSuscriptionPlan, SuscriptionPlan>(resource);
+            var suscriptionPlan = _mapper.Map<SaveSuscriptionPlan, SubscriptionPlan>(resource);
             var result = await _suscriptionPlanService.SaveAsync(suscriptionPlan);
             if (!result.Success)
                 return BadRequest(result.Message);
-            var Resource = _mapper.Map<SuscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
+            var Resource = _mapper.Map<SubscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
             return Ok(Resource);
         }
 
@@ -53,7 +53,7 @@ namespace PetCare.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveSuscriptionPlan resource)
         {
-            var servicesPlan = _mapper.Map<SaveSuscriptionPlan, SuscriptionPlan>(resource);
+            var servicesPlan = _mapper.Map<SaveSuscriptionPlan, SubscriptionPlan>(resource);
             var result = await _suscriptionPlanService.UpdateAsync(id, servicesPlan);
 
             if (!result.Success)
@@ -61,7 +61,7 @@ namespace PetCare.Controllers
                 return BadRequest(result.Message);
             }
 
-            var Resource = _mapper.Map<SuscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
+            var Resource = _mapper.Map<SubscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
             return Ok(Resource);
         }
 
@@ -73,7 +73,7 @@ namespace PetCare.Controllers
             {
                 return BadRequest(result.Message);
             }
-            var Resource = _mapper.Map<SuscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
+            var Resource = _mapper.Map<SubscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
             return Ok(Resource);
         }
 

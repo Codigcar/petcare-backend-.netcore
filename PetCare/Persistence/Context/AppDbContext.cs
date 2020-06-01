@@ -14,11 +14,11 @@ namespace PetCare.Persistence.Context
         { }
 
 
-        public DbSet<Customer> Customers { get; set; }
+        public DbSet<PersonProfile> PersonProfiles { get; set; }
         public DbSet<Provider> ServicesProviders { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<SuscriptionPlan> SuscriptionPlans { get; set; }
+        public DbSet<SubscriptionPlan> SuscriptionPlans { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<ProviderJoinService> ProviderJoinServices { get; set; }
         public DbSet<ServiType> ServiTypes{ get; set; }
@@ -27,15 +27,15 @@ namespace PetCare.Persistence.Context
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Account> Accounts { get; set; }
-	public DbSet<VaccinationRecord> VaccinationRecords { get; set; }
-        public DbSet<Request> Requests { get; set; }
+	    public DbSet<VaccinationRecord> VaccinationRecords { get; set; }
+        public DbSet<PersonRequest> Requests { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             
-            new CustomerConfig(builder.Entity<Customer>());
+            new PersonProfileConfig(builder.Entity<PersonProfile>());
             new ServicesProviderConfig(builder.Entity<Provider>());
             new PetConfig(builder.Entity<Pet>());
             new PaymentConfig(builder.Entity<Payment>());
@@ -43,11 +43,11 @@ namespace PetCare.Persistence.Context
 
 
             //SuscriptionPlan
-            builder.Entity<SuscriptionPlan>().HasMany(x => x.ListServicesProvider).
+            builder.Entity<SubscriptionPlan>().HasMany(x => x.ListServicesProvider).
                 WithOne(p => p.SuscriptionPlan).HasForeignKey(x => x.SuscriptionPlanId);
-            //Customer
-            builder.Entity<Customer>().HasMany(x => x.Pets).
-                WithOne(p => p.Customer).HasForeignKey(x => x.CustomerId);
+            //PersonProfle
+            builder.Entity<PersonProfile>().HasMany(x => x.Pets).
+                WithOne(p => p.PersonProfile).HasForeignKey(x => x.PersonProfileId);
             //Provider One-One
             builder.Entity<Provider>().HasOne(x => x.Payment)
                 .WithOne(p => p.ServicesProvider)
@@ -98,10 +98,10 @@ namespace PetCare.Persistence.Context
                 .WithOne(p => p.Rol)
                 .HasForeignKey(fk => fk.RolId);
 
-            //Account - Customer
-            builder.Entity<Account>().HasOne(x => x.Customer)
+            //Account - PersonProfile
+            builder.Entity<Account>().HasOne(x => x.PersonProfile)
                  .WithOne(p => p.Account)
-                 .HasForeignKey<Customer>(b => b.AccountId);
+                 .HasForeignKey<PersonProfile>(b => b.AccountId);
 
             //Account - Provider
             builder.Entity<Account>().HasOne(x => x.Provider)
@@ -112,10 +112,10 @@ namespace PetCare.Persistence.Context
             builder.Entity<MedicalProfile>().HasMany(x => x.VaccinationRecords).
                WithOne(p => p.Profile).HasForeignKey(x => x.ProfileId);
 
-            //Customer - Request ( one - many)
-            builder.Entity<Customer>().HasMany(x => x.Requests)
-                .WithOne(p => p.Customer)
-                .HasForeignKey(fk => fk.CustomerId);
+            //PersonProfile - Request ( one - many)
+            builder.Entity<PersonProfile>().HasMany(x => x.Requests)
+                .WithOne(p => p.PersonProfile)
+                .HasForeignKey(fk => fk.PersonProfileId);
 
             //Service - Request ( one - many)
             builder.Entity<Service>().HasMany(x => x.Requests)
@@ -123,10 +123,10 @@ namespace PetCare.Persistence.Context
                 .HasForeignKey(fk => fk.ServiceId);
 
 
-            builder.Entity<SuscriptionPlan>().HasData
+            builder.Entity<SubscriptionPlan>().HasData
             (
-                new SuscriptionPlan { Id = 1, Name = "Basica", Description = "Plan Basico", Price = 19.90, Duration = 1 },
-                new SuscriptionPlan { Id = 2, Name = "Premium", Description = "Plan Premium", Price = 39.90, Duration = 1 }
+                new SubscriptionPlan { Id = 1, Name = "Basica", Description = "Plan Basico", Price = 19.90, Duration = 1 },
+                new SubscriptionPlan { Id = 2, Name = "Premium", Description = "Plan Premium", Price = 39.90, Duration = 1 }
             );
             /* builder.Entity<Service>().HasData
             (

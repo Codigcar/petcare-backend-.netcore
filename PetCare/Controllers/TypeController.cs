@@ -13,7 +13,7 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/typesservices")]
+    [Route("api/typeproducts")]
     public class TypeController : ControllerBase
     {
         private readonly IServiTypeService _serviTypeService;
@@ -28,8 +28,8 @@ namespace PetCare.Controllers
         [HttpGet]
         public async Task<IEnumerable<ServiTypeResource>> GetAllAsync()
         {
-            var serviTypes = await _serviTypeService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<ServiType>, IEnumerable<ServiTypeResource>>(serviTypes);
+            var typeProducts = await _serviTypeService.ListAsync();
+            var resources = _mapper.Map<IEnumerable<ServiType>, IEnumerable<ServiTypeResource>>(typeProducts);
             return resources;
         }
 

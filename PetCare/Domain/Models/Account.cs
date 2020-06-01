@@ -14,7 +14,7 @@ namespace PetCare.Domain.Models
         public Rol Rol { get; set; }
         public int RolId { get; set; }
 
-        public Customer Customer { get; set; }
+        public PersonProfile PersonProfile { get; set; }
         public Provider Provider { get; set; }
     }
 }

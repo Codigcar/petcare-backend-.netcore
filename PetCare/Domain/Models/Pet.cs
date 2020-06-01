@@ -16,7 +16,7 @@ namespace PetCare.Domain.Models
 
       //  public int MedicalProfileId { get; set; }
         public MedicalProfile MedicalProfile { get; set; }
-        public int CustomerId { get; set; }
-        public Customer Customer { get; set; }
+        public int PersonProfileId { get; set; }
+        public PersonProfile PersonProfile { get; set; }
     }
 }
