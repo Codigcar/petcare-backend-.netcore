@@ -55,9 +55,8 @@ namespace PetCare.Services
         {
             Account account = new Account();
             account.User = servicesProvider.Email;
-            account.Password = servicesProvider.Password;
+          //  account.Password = servicesProvider.Password;
             account.RolId = 2;
-            account.Provider = servicesProvider;
             account.Rol = _rolRepository.FindByIdAsync(2).Result;
             try
             {
@@ -86,7 +85,6 @@ namespace PetCare.Services
             existingServicesProvider.Email = servicesProvider.Email;
             existingServicesProvider.Field = servicesProvider.Field;
             existingServicesProvider.Region = servicesProvider.Region;
-            existingServicesProvider.SuscriptionPlanId = servicesProvider.SuscriptionPlanId;
 
             try
             {

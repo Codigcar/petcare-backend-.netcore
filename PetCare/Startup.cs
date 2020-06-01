@@ -57,9 +57,6 @@ namespace PetCare
             services.AddScoped<IServiTypeRepository, ServiTypeRepository>();
             services.AddScoped<IServiTypeService, ServiTypeService>();
 
-            services.AddScoped<IProviderRepresentativeRepository, ProviderRepresentativeRepository>();
-            services.AddScoped<IProviderRepresentativeService, ProviderRepresentativeService>();
-
             services.AddScoped<IMedicalProfileService, MedicalProfileService>();
             services.AddScoped<IMedicalProfileRepository, MedicalProfileRepository>();
 
@@ -78,6 +75,9 @@ namespace PetCare
 
             services.AddScoped<IAvailabilityService, AvailabilityService>();
             services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+
+            services.AddScoped<IBusinessProfileService, BusinessProfileService>();
+            services.AddScoped<IBusinessProfileRepository, BusinessProfileRepository>();
 
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));

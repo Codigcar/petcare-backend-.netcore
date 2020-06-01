@@ -29,6 +29,10 @@ namespace PetCare.Persistence.Repositories
             return await _context.ServicesProviders.ToListAsync();
         }
 
+        public Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int categoryId)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Remove(Provider servicesProvider)
         {
@@ -40,11 +44,11 @@ namespace PetCare.Persistence.Repositories
             _context.Update(servicesProvider);
 
         }
-        public async Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int planId) =>
-            await _context.ServicesProviders
-            .Where(p => p.SuscriptionPlanId == planId)
-            .Include(p => p.SuscriptionPlan)
-            .ToListAsync();
+        /*public async Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int planId) =>
+        await _context.ServicesProviders
+          .Where(p => p.SuscriptionPlanId == planId)
+          .Include(p => p.SuscriptionPlan)
+          .ToListAsync();*/
 
 
     }

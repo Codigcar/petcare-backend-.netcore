@@ -25,7 +25,7 @@ namespace PetCare.Resources
 
         public string Description { get; set; }
 
-        public int SuscriptionPlanId { get; set; }
+       // public int SuscriptionPlanId { get; set; }
 
     }
 }

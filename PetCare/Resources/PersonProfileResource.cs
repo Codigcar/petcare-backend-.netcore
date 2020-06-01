@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Resources
 {
-    public class CustomerResource
+    public class PersonProfileResource
     {
         public int Id { get; set; }
         public string Name { get; set; }
