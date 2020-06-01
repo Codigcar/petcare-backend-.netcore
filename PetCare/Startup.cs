@@ -76,6 +76,9 @@ namespace PetCare
             services.AddScoped<IRequestService, RequestService>();
             services.AddScoped<IRequestRepository, RequestRepository>();
 
+            services.AddScoped<IAvailabilityService, AvailabilityService>();
+            services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();
+
             services.AddScoped<IUnitOfWork, unitOfWork>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>

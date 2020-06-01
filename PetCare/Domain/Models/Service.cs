@@ -18,6 +18,7 @@ namespace PetCare.Domain.Models
         public int ServiTypeId { get; set; }
 
         public IList<PersonRequest> Requests { get; set; } = new List<PersonRequest>();
+        public Availability Availability { get; set; }
 
     }
 }
