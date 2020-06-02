@@ -15,13 +15,13 @@ namespace PetCare.Persistence.Context
 
 
         public DbSet<PersonProfile> PersonProfiles { get; set; }
-        public DbSet<Provider> ServicesProviders { get; set; }
+        public DbSet<Provider> ProductProviders { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<SubscriptionPlan> SuscriptionPlans { get; set; }
-        public DbSet<Service> Services { get; set; }
-        public DbSet<ProviderJoinService> ProviderJoinServices { get; set; }
-        public DbSet<ServiType> ServiTypes{ get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProviderJoinProduct> ProviderJoinServices { get; set; }
+        public DbSet<TypeProduct> TypeProducts{ get; set; }
         public DbSet<MedicalProfile> MedicalProfiles { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Rol> Roles { get; set; }
@@ -38,7 +38,7 @@ namespace PetCare.Persistence.Context
             base.OnModelCreating(builder);
             
             new PersonProfileConfig(builder.Entity<PersonProfile>());
-            new ServicesProviderConfig(builder.Entity<Provider>());
+            new ProductsProviderConfig(builder.Entity<Provider>());
             new PetConfig(builder.Entity<Pet>());
             new PaymentConfig(builder.Entity<Payment>());
 
@@ -56,25 +56,25 @@ namespace PetCare.Persistence.Context
                 .HasForeignKey<Payment>(b => b.ServicesProviderForeignKey);
             
             //ProviderService
-            builder.Entity<ProviderJoinService>()
-            .HasKey(ps => new { ps.ProviderId, ps.ServiceId});
+            builder.Entity<ProviderJoinProduct>()
+            .HasKey(ps => new { ps.ProviderId, ps.ProductId});
 
-            builder.Entity<ProviderJoinService>()
+            builder.Entity<ProviderJoinProduct>()
                 .HasOne(ps => ps.Provider)
-                .WithMany(wm => wm.ProviderServices)
+                .WithMany(wm => wm.ProviderProducts)
                 .HasForeignKey(fk => fk.ProviderId);
 
-            builder.Entity<ProviderJoinService>()
-                .HasOne(ps => ps.Service)
-                .WithMany(wm => wm.ProviderServices)
-                .HasForeignKey(fk => fk.ServiceId);
+            builder.Entity<ProviderJoinProduct>()
+                .HasOne(ps => ps.Product)
+                .WithMany(wm => wm.ProviderProducts)
+                .HasForeignKey(fk => fk.ProductId);
 
             //TypeService
 
-            builder.Entity<ServiType>()
-                .HasMany(t => t.ListServices)
-                .WithOne(s => s.ServiType)
-                .HasForeignKey(fk => fk.ServiTypeId);
+            builder.Entity<TypeProduct>()
+                .HasMany(t => t.ListProducts)
+                .WithOne(s => s.TypeProduct)
+                .HasForeignKey(fk => fk.TypeProductId);
 
     
 
@@ -124,14 +124,14 @@ namespace PetCare.Persistence.Context
                 .HasForeignKey(fk => fk.PersonProfileId);
 
             //Service - Request ( one - many)
-            builder.Entity<Service>().HasMany(x => x.Requests)
-                .WithOne(p => p.Service)
-                .HasForeignKey(fk => fk.ServiceId);
+            builder.Entity<Product>().HasMany(x => x.Requests)
+                .WithOne(p => p.Product)
+                .HasForeignKey(fk => fk.ProductId);
 
             //Availability One-One Service
-            builder.Entity<Service>().HasOne(x => x.Availability)
-              .WithOne(p => p.Service)
-              .HasForeignKey<Availability>(b => b.ServiceId);
+            builder.Entity<Product>().HasOne(x => x.Availability)
+              .WithOne(p => p.Product)
+              .HasForeignKey<Availability>(b => b.ProductId);
 
             builder.Entity<SubscriptionPlan>().HasData
             (

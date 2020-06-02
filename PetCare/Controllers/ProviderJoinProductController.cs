@@ -13,16 +13,16 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/providers/{providerId}/services")]
-    public class ProviderJoinServiceController : ControllerBase
+    [Route("api/providers/{providerId}/products")]
+    public class ProviderJoinProductController : ControllerBase
     {
       //  private readonly IService
-        private readonly IProviderJoinServiceS _providerJoinService;
+        private readonly IProviderJoinProductService _providerJoinProducts;
         private readonly IMapper _mapper;
 
-        public ProviderJoinServiceController(IProviderJoinServiceS providerJoinService, IMapper mapper)
+        public ProviderJoinProductController(IProviderJoinProductService providerJoinProduct, IMapper mapper)
         {
-            _providerJoinService = providerJoinService;
+            _providerJoinProducts = providerJoinProduct;
             _mapper = mapper;
         }
         
@@ -30,7 +30,7 @@ namespace PetCare.Controllers
         public async Task<IActionResult> AssignProductTag(int providerId, int serviceId)
         {
 
-            var result = await _providerJoinService.AssignProviderService(providerId, serviceId);
+            var result = await _providerJoinProducts.AssignProviderProduct(providerId, serviceId);
             if (!result.Success)
                 return BadRequest(result.Message);
 
@@ -41,10 +41,10 @@ namespace PetCare.Controllers
     
 
         [HttpGet]
-        public async Task<IEnumerable<ServiceResource>> GetAllByProviderIdAsync(int providerId)
+        public async Task<IEnumerable<ProductResource>> GetAllByProviderIdAsync(int providerId)
         {
-            var servicess = await _providerJoinService.ListByProviderIdAsync(providerId);
-            var resources = _mapper.Map<IEnumerable<Service>, IEnumerable<ServiceResource>>(servicess);
+            var servicess = await _providerJoinProducts.ListByProviderIdAsync(providerId);
+            var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(servicess);
             return resources;
         }
 

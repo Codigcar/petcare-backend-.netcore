@@ -13,15 +13,15 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/typeproduts/{typeproductId}/services")]
+    [Route("api/typeproduts/{typeproductId}/products")]
     public class TypeServicesController : ControllerBase
     {
-        private readonly IServiceS _service;
+        private readonly IProductService _product;
         private readonly IMapper _mapper;
 
-        public TypeServicesController(IServiceS service, IMapper mapper)
+        public TypeServicesController(IProductService product, IMapper mapper)
         {
-            _service = service;
+            _product = product;
             _mapper = mapper;
         }
 /*
@@ -34,27 +34,27 @@ namespace PetCare.Controllers
         }
         */
         [HttpPost]
-        public async Task<ActionResult> SaveServiceByTypeIdAsync(int typeproductId, [FromBody] SaveServiceResource saveServiceResource)
+        public async Task<ActionResult> SaveServiceByTypeIdAsync(int typeproductId, [FromBody] SaveProductResource saveProductResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
-            var entity = _mapper.Map<SaveServiceResource, Service>(saveServiceResource);
-            var result = await _service.SaveByServiTypeIdAsync(typeproductId, entity);
+            var entity = _mapper.Map<SaveProductResource, Product>(saveProductResource);
+            var result = await _product.SaveByTypeProductIdAsync(typeproductId, entity);
             if (!result.Success)
                 return BadRequest(result.Message);
 
-            var Resource = _mapper.Map<Service, ServiceResource>(result.Service);
+            var Resource = _mapper.Map<Product, ProductResource>(result.Product);
             return Ok(Resource);
         }
 
 
         [HttpGet]
-        public async Task<IEnumerable<ServiceResource>> GetAllByServiceTypeIdAsync(int typeproductId)
+        public async Task<IEnumerable<ProductResource>> GetAllByServiceTypeIdAsync(int typeproductId)
         {
-            var services = await _service.ListByServiTypeIdAsync(typeproductId);
-            var resources = _mapper.Map<IEnumerable<Service>, IEnumerable<ServiceResource>>(services);
+            var products = await _product.ListByTypeProductIdAsync(typeproductId);
+            var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
             return resources;
         }
 

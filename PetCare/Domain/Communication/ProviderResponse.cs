@@ -8,12 +8,12 @@ namespace PetCare.Domain.Comunication
 {
     public class ProviderResponse : BaseResponse
     {
-        public Provider ServicesProvider { get; private set; }
-        public ProviderResponse(bool success, string message, Provider servicesProvider) : base(success, message)
+        public Provider ProductsProvider { get; private set; }
+        public ProviderResponse(bool success, string message, Provider productsProvider) : base(success, message)
         {
-            ServicesProvider = servicesProvider;
+            ProductsProvider = productsProvider;
         }
-        public ProviderResponse(Provider servicesProvider) : this(true, string.Empty, servicesProvider)
+        public ProviderResponse(Provider productsProvider) : this(true, string.Empty, productsProvider)
         { }
 
         public ProviderResponse(string message) : this(false, message, null) { }

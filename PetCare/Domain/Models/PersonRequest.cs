@@ -16,8 +16,8 @@ namespace PetCare.Domain.Models
         public int PersonProfileId { get; set; }
         public PersonProfile PersonProfile { get; set; }
 
-        public int ServiceId { get; set; }
-        public Service Service { get; set; }
+        public int ProductId { get; set; }
+        public Product Product { get; set; }
 
         public int PetId { get; set; }
         public int ProviderId { get; set; }

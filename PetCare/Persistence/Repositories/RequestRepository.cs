@@ -22,10 +22,10 @@ namespace PetCare.Persistence.Repositories
                 .Include(p => p.PersonProfile)
                 .ToListAsync();
 
-            public async Task<IEnumerable<PersonRequest>> ListByServiceIdAsync(int serviceId) =>
+            public async Task<IEnumerable<PersonRequest>> ListByProductIdAsync(int productId) =>
                 await _context.Requests
-                .Where(p => p.ServiceId == serviceId)
-                .Include(p => p.Service)
+                .Where(p => p.ProductId == productId)
+                .Include(p => p.Product)
                 .ToListAsync();
 
             public async Task SaveByCustomerIdAsync(PersonRequest request)

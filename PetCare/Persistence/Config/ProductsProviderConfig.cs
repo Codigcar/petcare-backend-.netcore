@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PetCare.Persistence.Config
 {
-    public class ServicesProviderConfig
+    public class ProductsProviderConfig
     {
-        public ServicesProviderConfig(EntityTypeBuilder<Provider> entityBuilder)
+        public ProductsProviderConfig(EntityTypeBuilder<Provider> entityBuilder)
         {
             entityBuilder.Property(x => x.BusinessName).IsRequired().HasMaxLength(30);
             entityBuilder.Property(x => x.Address).IsRequired().HasMaxLength(30);

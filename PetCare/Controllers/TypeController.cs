@@ -16,35 +16,35 @@ namespace PetCare.Controllers
     [Route("api/typeproducts")]
     public class TypeController : ControllerBase
     {
-        private readonly IServiTypeService _serviTypeService;
+        private readonly ITypeProductService _typeProductService;
         private readonly IMapper _mapper;
 
-        public TypeController(IServiTypeService serviTypeService, IMapper mapper)
+        public TypeController(ITypeProductService serviTypeService, IMapper mapper)
         {
-            _serviTypeService = serviTypeService;
+            _typeProductService = serviTypeService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<ServiTypeResource>> GetAllAsync()
+        public async Task<IEnumerable<TypeProductResource>> GetAllAsync()
         {
-            var typeProducts = await _serviTypeService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<ServiType>, IEnumerable<ServiTypeResource>>(typeProducts);
+            var typeProducts = await _typeProductService.ListAsync();
+            var resources = _mapper.Map<IEnumerable<TypeProduct>, IEnumerable<TypeProductResource>>(typeProducts);
             return resources;
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync( [FromBody] SaveServiTypeResource saveServiTypeResource)
+        public async Task<ActionResult> PostAsync( [FromBody] SaveProductTypeResource saveTypeProductResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
-            var serviType = _mapper.Map<SaveServiTypeResource, ServiType>(saveServiTypeResource);
-            var result = await _serviTypeService.SaveAsync(serviType);
+            var serviType = _mapper.Map<SaveProductTypeResource, TypeProduct>(saveTypeProductResource);
+            var result = await _typeProductService.SaveAsync(serviType);
             if (!result.Success)
                 return BadRequest(result.Message);
-            var resource = _mapper.Map<ServiType, ServiTypeResource>(result.ServiType);
+            var resource = _mapper.Map<TypeProduct, TypeProductResource>(result.TypeProduct);
             return Ok(resource);
         }
 

@@ -16,17 +16,17 @@ namespace PetCare.Persistence.Repositories
 
         public async Task AddAsyn(Provider servicesProvider)
         {
-            await _context.ServicesProviders.AddAsync(servicesProvider);
+            await _context.ProductProviders.AddAsync(servicesProvider);
         }
 
         public async Task<Provider> FindByIdAsync(int id)
         {
-            return await _context.ServicesProviders.FindAsync(id);
+            return await _context.ProductProviders.FindAsync(id);
         }
 
         public async Task<IEnumerable<Provider>> ListAsync()
         {
-            return await _context.ServicesProviders.ToListAsync();
+            return await _context.ProductProviders.ToListAsync();
         }
 
         public Task<IEnumerable<Provider>> ListBySuscriptionPlanIdAsync(int categoryId)
@@ -36,7 +36,7 @@ namespace PetCare.Persistence.Repositories
 
         public void Remove(Provider servicesProvider)
         {
-            _context.ServicesProviders.Remove(servicesProvider);
+            _context.ProductProviders.Remove(servicesProvider);
         }
 
         public void Update(Provider servicesProvider)
