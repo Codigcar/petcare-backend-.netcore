@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace PetCare.Domain.Services
 {
-    public interface IServiTypeService
+    public interface ITypeProductService
     {
-        Task<IEnumerable<ServiType>> ListAsync();
-        Task<ServiTypeResponse> SaveAsync(ServiType serviType);
+        Task<IEnumerable<TypeProduct>> ListAsync();
+        Task<TypeProductResponse> SaveAsync(TypeProduct serviType);
         //Task<CustomerResponse> UpdateAsync(int id, Customer customer);
         //Task<CustomerResponse> DeleteAsync(int id);
         //Task<CustomerResponse> FindByIdAsync(int id);

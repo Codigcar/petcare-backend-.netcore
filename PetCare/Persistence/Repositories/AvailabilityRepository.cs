@@ -31,10 +31,10 @@ namespace PetCare.Persistence.Repositories
             return await _context.Availabilities.ToListAsync();
         }
 
-        public async Task<IEnumerable<Availability>> ListByServiceIdAsync(int serviceId)=>
+        public async Task<IEnumerable<Availability>> ListByProductIdAsync(int productId) =>
             await _context.Availabilities
-            .Where(p => p.ServiceId == serviceId)
-            .Include(p => p.Service)
+            .Where(p => p.ProductId == productId)
+            .Include(p => p.Product)
             .ToListAsync();
 
         public void Remove(Availability availability)
@@ -42,12 +42,12 @@ namespace PetCare.Persistence.Repositories
             _context.Availabilities.Remove(availability);
         }
 
-        public async Task SaveByServiceIdAsync(int providerId, int serviceId, Availability availability)
+        public async Task SaveByProductIdAsync(int providerId, int serviceId, Availability availability)
         {
-            var provider = await _context.ServicesProviders.FindAsync(providerId);
-            var provider_join_services = await _context.ProviderJoinServices.FindAsync(providerId, serviceId);
-            availability.ProviderId = provider_join_services.ProviderId;
-            availability.ServiceId= provider_join_services.ServiceId;
+            var provider = await _context.ProductProviders.FindAsync(providerId);
+            var provider_join_products = await _context.ProviderJoinServices.FindAsync(providerId, serviceId);
+            availability.ProviderId = provider_join_products.ProviderId;
+            availability.ProductId= provider_join_products.ProductId;
             await _context.Availabilities.AddAsync(availability);
         }
 

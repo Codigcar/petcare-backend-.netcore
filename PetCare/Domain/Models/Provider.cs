@@ -19,7 +19,7 @@ namespace PetCare.Domain.Models
 
         public Payment Payment{ get; set; }
 
-        public List<ProviderJoinService> ProviderServices { get; set; }
+        public List<ProviderJoinProduct> ProviderProducts { get; set; }
 
         public IList<MedicalProfile> MedicalProfiles { get; set; } = new List<MedicalProfile>();
 

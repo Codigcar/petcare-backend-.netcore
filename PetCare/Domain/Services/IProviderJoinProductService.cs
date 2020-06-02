@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace PetCare.Domain.Services
 {
-    public interface IProviderJoinServiceS
+    public interface IProviderJoinProductService
     {
-        Task<ProviderJoinServiceResponse> AssignProviderService(int providerId, int serviceId);
-        Task<IEnumerable<Service>> ListByProviderIdAsync(int providerId);
+        Task<ProviderJoinProductResponse> AssignProviderProduct(int providerId, int productId);
+        Task<IEnumerable<Product>> ListByProviderIdAsync(int providerId);
        
     }
 }

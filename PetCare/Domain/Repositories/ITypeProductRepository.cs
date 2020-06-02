@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace PetCare.Domain.Repositories
 {
-    public interface IServiTypeRepository
+    public interface ITypeProductRepository
     {
-        Task<IEnumerable<ServiType>> ListAsync();
-        Task AddAsyn(ServiType serviType);
+        Task<IEnumerable<TypeProduct>> ListAsync();
+        Task AddAsyn(TypeProduct typeProduct);
        // Task<Customer> FindByIdAsync(int id);
        // void Update(Customer customer);
        // void Remove(Customer customer);

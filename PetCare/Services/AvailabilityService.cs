@@ -13,14 +13,14 @@ namespace PetCare.Services
     {
         private readonly IAvailabilityRepository _availabilityRepository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IProviderJoinServiceRepository _serviceRepository;
+        private readonly IProviderJoinProductRepository _productRepository;
 
 
-        public AvailabilityService(IAvailabilityRepository availabilityRepository, IProviderJoinServiceRepository serviceRepository, IUnitOfWork unitOfWork)
+        public AvailabilityService(IAvailabilityRepository availabilityRepository, IProviderJoinProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _availabilityRepository = availabilityRepository;
             _unitOfWork = unitOfWork;
-            _serviceRepository = serviceRepository;
+            _productRepository = productRepository;
         }
 
 
@@ -89,19 +89,19 @@ namespace PetCare.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Availability>> ListByProviderIdAndServiceIdAsync(int providerId, int serviceId)
+        public async Task<IEnumerable<Availability>> ListByProviderIdAndProductIdAsync(int providerId, int productId)
         {
 
-            return await _availabilityRepository.ListByServiceIdAsync(serviceId);
+            return await _availabilityRepository.ListByProductIdAsync(productId);
         }
 
-        public async Task<AvailabilityResponse> SaveByServiceIdAsync(int providerId, int serviceId, Availability availability)
+        public async Task<AvailabilityResponse> SaveByProductIdAsync(int providerId, int productId, Availability availability)
         {
 
             try
             {
                 //var providerByServiceId = _serviceRepository.ListByProviderIdAsync(serviceId);
-                await _availabilityRepository.SaveByServiceIdAsync(providerId, serviceId, availability);
+                await _availabilityRepository.SaveByProductIdAsync(providerId, productId, availability);
                 await _unitOfWork.CompleteAsync();
 
                 return new AvailabilityResponse(availability);

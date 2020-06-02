@@ -48,14 +48,14 @@ namespace PetCare
             services.AddScoped<ISuscriptionPlanRepository, SuscriptionPlanRepository>();
             services.AddScoped<ISuscriptionPlanService, SuscriptionPlanService>();
 
-            services.AddScoped<IProviderJoinServiceRepository, ProviderJoinServiceRepository>();
-            services.AddScoped<IProviderJoinServiceS, ProviderJoinServiceS>();
+            services.AddScoped<IProviderJoinProductRepository, ProviderJoinProductRepository>();
+            services.AddScoped<IProviderJoinProductService, ProviderJoinProductService>();
 
-            services.AddScoped<IServiceRepository, ServiceRepository>();
-            services.AddScoped<IServiceS, ServiceS>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductService, ProductService>();
 
-            services.AddScoped<IServiTypeRepository, ServiTypeRepository>();
-            services.AddScoped<IServiTypeService, ServiTypeService>();
+            services.AddScoped<ITypeProductRepository, TypeProductRepository>();
+            services.AddScoped<ITypeProductService, TypeProductService>();
 
             services.AddScoped<IMedicalProfileService, MedicalProfileService>();
             services.AddScoped<IMedicalProfileRepository, MedicalProfileRepository>();

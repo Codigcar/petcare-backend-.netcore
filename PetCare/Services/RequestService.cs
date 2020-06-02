@@ -13,7 +13,7 @@ namespace PetCare.Services
     {
         private readonly IRequestRepository _requestRepository;
         private readonly IPersonProfileRepository _customerRepository;
-        private readonly IServiceRepository _serviceRepository;
+        private readonly IProductRepository _serviceRepository;
         private readonly IPetRepository _petRepository;
         private readonly IProviderRepository _providerRepository;
 
@@ -21,7 +21,7 @@ namespace PetCare.Services
         private readonly IUnitOfWork _unitOfWork;
 
         public RequestService(IRequestRepository requestRepository, IPersonProfileRepository customerRepository,
-            IServiceRepository serviceRepository, IUnitOfWork unitOfWork)
+            IProductRepository serviceRepository, IUnitOfWork unitOfWork)
         {
             _requestRepository = requestRepository;
             _customerRepository = customerRepository;
@@ -34,15 +34,15 @@ namespace PetCare.Services
             return await _requestRepository.ListByCustomerIdAsync(customerId);
         }
 
-        public async Task<IEnumerable<PersonRequest>> ListByServiceIdAsync(int providerId, int serviceId)
+        public async Task<IEnumerable<PersonRequest>> ListByProductIdAsync(int providerId, int serviceId)
         {
-            return await _requestRepository.ListByServiceIdAsync(serviceId);
+            return await _requestRepository.ListByProductIdAsync(serviceId);
         }
 
         public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int servicesId, int petId, PersonRequest request)
         {
             PersonProfile customer = await _customerRepository.FindByIdAsync(customerId);
-            Service service = await _serviceRepository.FindByIdAsync(servicesId);
+            Product service = await _serviceRepository.FindByIdAsync(servicesId);
             /*  Pet pet = await _petRepository.FindByIdAsync(petId);
               Provider provider = await _providerRepository.FindByIdAsync(providerId);*/
             try
@@ -53,8 +53,8 @@ namespace PetCare.Services
                 request.PersonProfileId = customerId;
                 request.PersonProfile = customer;
                 request.ProviderId = providerId;
-                request.Service = service;
-                request.ServiceId = servicesId;
+                request.Product = service;
+                request.ProductId = servicesId;
 
                 await _requestRepository.SaveByCustomerIdAsync(request);
                 await _unitOfWork.CompleteAsync();

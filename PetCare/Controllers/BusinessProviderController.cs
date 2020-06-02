@@ -37,7 +37,7 @@ namespace PetCare.Controllers
                 return BadRequest(result.Message);
             }
 
-            var servicesProviderResource = _mapper.Map<Provider, ProviderResource>(result.ServicesProvider);
+            var servicesProviderResource = _mapper.Map<Provider, ProviderResource>(result.ProductsProvider);
             return Ok(servicesProviderResource);
         }
 
@@ -49,7 +49,7 @@ namespace PetCare.Controllers
             {
                 return BadRequest(result.Message);
             }
-            var categoryResource = _mapper.Map<Provider, ProviderResource>(result.ServicesProvider);
+            var categoryResource = _mapper.Map<Provider, ProviderResource>(result.ProductsProvider);
             return Ok(categoryResource);
         }
 

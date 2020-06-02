@@ -14,7 +14,7 @@ namespace PetCare.Domain.Repositories
             Task<Availability> FindByIdAsync(int id);
             void Update(Availability availability);
             void Remove(Availability availability);
-            Task SaveByServiceIdAsync(int providerId, int serviceId, Availability availability);
-            Task<IEnumerable<Availability>> ListByServiceIdAsync(int serviceId);
+            Task SaveByProductIdAsync(int providerId, int productId, Availability availability);
+            Task<IEnumerable<Availability>> ListByProductIdAsync(int productId);
         }
 }

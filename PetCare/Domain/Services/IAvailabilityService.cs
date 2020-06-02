@@ -13,7 +13,7 @@ namespace PetCare.Domain.Services
         Task<AvailabilityResponse> SaveAsync(Availability availability);
         Task<AvailabilityResponse> UpdateAsync(int id, Availability availability);
         Task<AvailabilityResponse> DeleteAsync(int id);
-        Task<AvailabilityResponse> SaveByServiceIdAsync(int providerId, int servicesproviderId, Availability availability);
-        Task<IEnumerable<Availability>> ListByProviderIdAndServiceIdAsync(int providerId, int serviceId);
+        Task<AvailabilityResponse> SaveByProductIdAsync(int providerId, int productsproviderId, Availability availability);
+        Task<IEnumerable<Availability>> ListByProviderIdAndProductIdAsync(int providerId, int productId);
     }
 }

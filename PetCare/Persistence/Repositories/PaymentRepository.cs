@@ -46,7 +46,7 @@ namespace PetCare.Persistence.Repositories
 
         public async Task SaveByServicesProviderIdAsync(int sproviderId, Payment Payment)
         {
-            var servicesProvider = await _context.ServicesProviders.FindAsync(sproviderId);
+            var servicesProvider = await _context.ProductProviders.FindAsync(sproviderId);
             Payment.ServicesProviderForeignKey = servicesProvider.Id;
             await _context.Payments.AddAsync(Payment);
         }
