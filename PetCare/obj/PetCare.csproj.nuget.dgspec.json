@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Angie\\Desktop\\NetCore-PetCare\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
+    "C:\\Users\\GUILLERMO\\Desktop\\PETCARE_ULTIMO\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Angie\\Desktop\\NetCore-PetCare\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
+    "C:\\Users\\GUILLERMO\\Desktop\\PETCARE_ULTIMO\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Angie\\Desktop\\NetCore-PetCare\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "projectUniqueName": "C:\\Users\\GUILLERMO\\Desktop\\PETCARE_ULTIMO\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
         "projectName": "PetCare",
-        "projectPath": "C:\\Users\\Angie\\Desktop\\NetCore-PetCare\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
-        "packagesPath": "C:\\Users\\Angie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Angie\\Desktop\\NetCore-PetCare\\Backend-NetCore-PetCare\\PetCare\\obj\\",
+        "projectPath": "C:\\Users\\GUILLERMO\\Desktop\\PETCARE_ULTIMO\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "packagesPath": "C:\\Users\\GUILLERMO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\GUILLERMO\\Desktop\\PETCARE_ULTIMO\\Backend-NetCore-PetCare\\PetCare\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Angie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\GUILLERMO\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -110,7 +110,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

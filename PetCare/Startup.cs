@@ -67,11 +67,14 @@ namespace PetCare
 
             services.AddScoped<IRolRepository, RolRepository>();
 
-	    services.AddScoped<IVaccinationRecordService, VaccinationRecordService>();
+	        services.AddScoped<IVaccinationRecordService, VaccinationRecordService>();
             services.AddScoped<IVaccinationRecordRepository, VaccinationRecordRepository>();
 
             services.AddScoped<IRequestService, RequestService>();
             services.AddScoped<IRequestRepository, RequestRepository>();
+
+            services.AddScoped<IReviewRepository, ReviewRepository>();
+            services.AddScoped<IReviewService, ReviewService>();
 
             services.AddScoped<IAvailabilityService, AvailabilityService>();
             services.AddScoped<IAvailabilityRepository, AvailabilityRepository>();

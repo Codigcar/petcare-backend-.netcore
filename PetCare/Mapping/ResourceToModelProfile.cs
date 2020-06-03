@@ -27,8 +27,8 @@ namespace PetCare.Mapping
             CreateMap<SaveRequestResource, PersonRequest>();
             CreateMap<SaveAvailabilityResource, Availability>();
             CreateMap<SaveBusinessProfileResource, BusinessProfile>();
+            CreateMap<SaveReviewResource, Review>();
 
-            
 
         }
     }
