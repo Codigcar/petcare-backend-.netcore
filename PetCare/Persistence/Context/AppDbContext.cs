@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PetCare.Domain.Models;
+using PetCare.Extensions;
 using PetCare.Persistence.Config;
 using System;
 using System.Collections.Generic;
@@ -145,6 +146,10 @@ namespace PetCare.Persistence.Context
                  new Rol { Id = 1, Name = "Usuario", Description = "Busca veterinarias", Publish = false },
                  new Rol { Id = 2, Name = "ServicesProvider", Description = "Ofrece Servicios", Publish = true }
               );
+
+            // Naming conventions Policy
+            builder.ApplySnakeCaseNamingConvention();
+
         }
     }
 }
