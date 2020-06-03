@@ -13,8 +13,11 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/providers/{providerId}/customers/{customerId}/pets/{petId}/profiles")]
+   [Route("api/business/{businessId}/providers/{providerId}/people/{customerId}/pets/{petId}/petprofiles")]
     public class MedicalProfileController : ControllerBase
+
+
+
     {
         private readonly IMedicalProfileService _medicalprofileService;
         private readonly IMedicalRecordService _medicalrecordService;
