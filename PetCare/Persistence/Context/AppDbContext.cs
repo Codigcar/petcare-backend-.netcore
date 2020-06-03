@@ -31,7 +31,7 @@ namespace PetCare.Persistence.Context
         public DbSet<PersonRequest> Requests { get; set; }
         public DbSet<Availability> Availabilities { get; set; }
         public DbSet<BusinessProfile> BusinessProfiles{ get; set; }
-
+        public DbSet<Review> Reviews { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -42,6 +42,7 @@ namespace PetCare.Persistence.Context
             new ProductsProviderConfig(builder.Entity<Provider>());
             new PetConfig(builder.Entity<Pet>());
             new PaymentConfig(builder.Entity<Payment>());
+            new ReviewConfig(builder.Entity<Review>());
 
             //Account - SubscriptionPlan (one - many) 
             builder.Entity<SubscriptionPlan>().HasMany(x => x.Accounts)
@@ -128,6 +129,16 @@ namespace PetCare.Persistence.Context
             builder.Entity<Product>().HasMany(x => x.Requests)
                 .WithOne(p => p.Product)
                 .HasForeignKey(fk => fk.ProductId);
+
+            //PersonProfile - Review (one - many)
+            builder.Entity<PersonProfile>().HasMany(x => x.Reviews)
+                .WithOne(p => p.PersonProfile)
+                .HasForeignKey(fk => fk.PersonProfileId);
+
+            //Provider - Review (one- many)
+            builder.Entity<Provider>().HasMany(x => x.Reviews)
+                .WithOne(p => p.Provider)
+                .HasForeignKey(fk => fk.ProviderId);
 
             //Availability One-One Service
             builder.Entity<Product>().HasOne(x => x.Availability)

@@ -27,7 +27,7 @@ namespace PetCare.Domain.Models
         public int AccountId { get; set; }*/
 
         public IList<BusinessProfile> BusinessProfiles { get; set; } = new List<BusinessProfile>();
-
+        public IList<Review> Reviews { get; set; } = new List<Review>();
 
     }
 }
