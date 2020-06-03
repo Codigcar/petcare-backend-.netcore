@@ -9,8 +9,8 @@ using PetCare.Persistence.Context;
 namespace PetCare.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200601045332_porfa3")]
-    partial class porfa3
+    [Migration("20200603065504_abejas")]
+    partial class abejas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,10 +58,10 @@ namespace PetCare.Migrations
                     b.Property<string>("EndTime")
                         .HasColumnType("text");
 
-                    b.Property<int>("ProviderId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ServiceId")
+                    b.Property<int>("ProviderId")
                         .HasColumnType("int");
 
                     b.Property<string>("StartTime")
@@ -69,10 +69,10 @@ namespace PetCare.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProviderId");
-
-                    b.HasIndex("ServiceId")
+                    b.HasIndex("ProductId")
                         .IsUnique();
+
+                    b.HasIndex("ProviderId");
 
                     b.ToTable("Availabilities");
                 });
@@ -304,10 +304,10 @@ namespace PetCare.Migrations
                     b.Property<int>("PetId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProviderId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ServiceId")
+                    b.Property<int>("ProviderId")
                         .HasColumnType("int");
 
                     b.Property<string>("StartTime")
@@ -320,7 +320,7 @@ namespace PetCare.Migrations
 
                     b.HasIndex("PersonProfileId");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Requests");
                 });
@@ -365,6 +365,25 @@ namespace PetCare.Migrations
                     b.ToTable("Pets");
                 });
 
+            modelBuilder.Entity("PetCare.Domain.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("TypeProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TypeProductId");
+
+                    b.ToTable("Products");
+                });
+
             modelBuilder.Entity("PetCare.Domain.Models.Provider", b =>
                 {
                     b.Property<int>("Id")
@@ -403,22 +422,22 @@ namespace PetCare.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServicesProviders");
+                    b.ToTable("ProductProviders");
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.ProviderJoinService", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderJoinProduct", b =>
                 {
                     b.Property<int>("ProviderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ServiceId")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProviderId", "ServiceId");
+                    b.HasKey("ProviderId", "ProductId");
 
-                    b.HasIndex("ServiceId");
+                    b.HasIndex("ProductId");
 
-                    b.ToTable("ProviderJoinServices");
+                    b.ToTable("ProviderJoinProducts");
                 });
 
             modelBuilder.Entity("PetCare.Domain.Models.Rol", b =>
@@ -455,39 +474,6 @@ namespace PetCare.Migrations
                             Name = "ServicesProvider",
                             Publish = true
                         });
-                });
-
-            modelBuilder.Entity("PetCare.Domain.Models.ServiType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ServiTypes");
-                });
-
-            modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int>("ServiTypeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServiTypeId");
-
-                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("PetCare.Domain.Models.SubscriptionPlan", b =>
@@ -539,6 +525,20 @@ namespace PetCare.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PetCare.Domain.Models.TypeProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeProducts");
+                });
+
             modelBuilder.Entity("PetCare.Domain.Models.VaccinationRecord", b =>
                 {
                     b.Property<int>("Id")
@@ -581,15 +581,15 @@ namespace PetCare.Migrations
 
             modelBuilder.Entity("PetCare.Domain.Models.Availability", b =>
                 {
-                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
-                        .WithMany()
-                        .HasForeignKey("ProviderId")
+                    b.HasOne("PetCare.Domain.Models.Product", "Product")
+                        .WithOne("Availability")
+                        .HasForeignKey("PetCare.Domain.Models.Availability", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PetCare.Domain.Models.Service", "Service")
-                        .WithOne("Availability")
-                        .HasForeignKey("PetCare.Domain.Models.Availability", "ServiceId")
+                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
+                        .WithMany()
+                        .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -659,9 +659,9 @@ namespace PetCare.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PetCare.Domain.Models.Service", "Service")
+                    b.HasOne("PetCare.Domain.Models.Product", "Product")
                         .WithMany("Requests")
-                        .HasForeignKey("ServiceId")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -675,26 +675,26 @@ namespace PetCare.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.ProviderJoinService", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.Product", b =>
                 {
-                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
-                        .WithMany("ProviderServices")
-                        .HasForeignKey("ProviderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PetCare.Domain.Models.Service", "Service")
-                        .WithMany("ProviderServices")
-                        .HasForeignKey("ServiceId")
+                    b.HasOne("PetCare.Domain.Models.TypeProduct", "TypeProduct")
+                        .WithMany("ListProducts")
+                        .HasForeignKey("TypeProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PetCare.Domain.Models.Service", b =>
+            modelBuilder.Entity("PetCare.Domain.Models.ProviderJoinProduct", b =>
                 {
-                    b.HasOne("PetCare.Domain.Models.ServiType", "ServiType")
-                        .WithMany("ListServices")
-                        .HasForeignKey("ServiTypeId")
+                    b.HasOne("PetCare.Domain.Models.Product", "Product")
+                        .WithMany("ProviderProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PetCare.Domain.Models.Provider", "Provider")
+                        .WithMany("ProviderProducts")
+                        .HasForeignKey("ProviderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

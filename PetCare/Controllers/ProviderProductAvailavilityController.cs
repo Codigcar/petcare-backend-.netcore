@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Controllers
 {
-    [Route("api/providers/{providerId}/products/{productId}/availability")]
+    [Route("api/business/{bussinessId}/providers/{providerId}/products/{productId}/availability")]
     public class ProviderProductAvailavilityController : ControllerBase
     {
         private readonly IProviderService _providerService;
@@ -27,15 +27,16 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<AvailabilityResource>> GetByProviderIdAndServiceIdAsync(int providerId, int serviceId)
+        public async Task<IEnumerable<AvailabilityResource>> GetByProviderIdAndProductIdAsync(int providerId, int productId)
         {
-            var providers = await _availabilityService.ListByProviderIdAndProductIdAsync(providerId, serviceId);
+            var providers = await _availabilityService.ListByProviderIdAndProductIdAsync(providerId, productId);
             var resources = _mapper.Map<IEnumerable<Availability>, IEnumerable<AvailabilityResource>>(providers);
             return resources;
+
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int providerId, int serviceId, [FromBody] SaveAvailabilityResource resource)
+        public async Task<ActionResult> PostAsync(int providerId, int productId, [FromBody] SaveAvailabilityResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
@@ -44,7 +45,7 @@ namespace PetCare.Controllers
             if (!Productid.Success)
                 return BadRequest(Productid.Message);
             var availability = _mapper.Map<SaveAvailabilityResource, Availability>(resource);
-            var result = await _availabilityService.SaveByProductIdAsync(providerId, serviceId, availability);
+            var result = await _availabilityService.SaveByProductIdAsync(providerId, productId, availability);
             if (!result.Success)
                 return BadRequest(result.Message);
             var AvailabilityResource = _mapper.Map<Availability, AvailabilityResource>(result.Availability);

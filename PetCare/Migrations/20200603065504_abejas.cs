@@ -4,27 +4,12 @@ using MySql.Data.EntityFrameworkCore.Metadata;
 
 namespace PetCare.Migrations
 {
-    public partial class porfa3 : Migration
+    public partial class abejas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Roles",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Publish = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Roles", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ServicesProviders",
+                name: "ProductProviders",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -38,20 +23,22 @@ namespace PetCare.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServicesProviders", x => x.Id);
+                    table.PrimaryKey("PK_ProductProviders", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "ServiTypes",
+                name: "Roles",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Publish = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ServiTypes", x => x.Id);
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,6 +58,19 @@ namespace PetCare.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TypeProducts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypeProducts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Payments",
                 columns: table => new
                 {
@@ -86,29 +86,9 @@ namespace PetCare.Migrations
                 {
                     table.PrimaryKey("PK_Payments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payments_ServicesProviders_ServicesProviderForeignKey",
+                        name: "FK_Payments_ProductProviders_ServicesProviderForeignKey",
                         column: x => x.ServicesProviderForeignKey,
-                        principalTable: "ServicesProviders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Services",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(nullable: true),
-                    ServiTypeId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Services", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Services_ServiTypes_ServiTypeId",
-                        column: x => x.ServiTypeId,
-                        principalTable: "ServiTypes",
+                        principalTable: "ProductProviders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -142,54 +122,21 @@ namespace PetCare.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Availabilities",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    DateAvailability = table.Column<string>(nullable: true),
-                    StartTime = table.Column<string>(nullable: true),
-                    EndTime = table.Column<string>(nullable: true),
-                    ProviderId = table.Column<int>(nullable: false),
-                    ServiceId = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true),
+                    TypeProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Availabilities", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Availabilities_ServicesProviders_ProviderId",
-                        column: x => x.ProviderId,
-                        principalTable: "ServicesProviders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Availabilities_Services_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Services",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProviderJoinServices",
-                columns: table => new
-                {
-                    ProviderId = table.Column<int>(nullable: false),
-                    ServiceId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProviderJoinServices", x => new { x.ProviderId, x.ServiceId });
-                    table.ForeignKey(
-                        name: "FK_ProviderJoinServices_ServicesProviders_ProviderId",
-                        column: x => x.ProviderId,
-                        principalTable: "ServicesProviders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProviderJoinServices_Services_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Services",
+                        name: "FK_Products_TypeProducts_TypeProductId",
+                        column: x => x.TypeProductId,
+                        principalTable: "TypeProducts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -221,9 +168,9 @@ namespace PetCare.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BusinessProfiles_ServicesProviders_ProviderId",
+                        name: "FK_BusinessProfiles_ProductProviders_ProviderId",
                         column: x => x.ProviderId,
-                        principalTable: "ServicesProviders",
+                        principalTable: "ProductProviders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -250,6 +197,59 @@ namespace PetCare.Migrations
                         name: "FK_PersonProfiles_Accounts_AccountId",
                         column: x => x.AccountId,
                         principalTable: "Accounts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Availabilities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    DateAvailability = table.Column<string>(nullable: true),
+                    StartTime = table.Column<string>(nullable: true),
+                    EndTime = table.Column<string>(nullable: true),
+                    ProviderId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Availabilities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Availabilities_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Availabilities_ProductProviders_ProviderId",
+                        column: x => x.ProviderId,
+                        principalTable: "ProductProviders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProviderJoinProducts",
+                columns: table => new
+                {
+                    ProviderId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProviderJoinProducts", x => new { x.ProviderId, x.ProductId });
+                    table.ForeignKey(
+                        name: "FK_ProviderJoinProducts_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProviderJoinProducts_ProductProviders_ProviderId",
+                        column: x => x.ProviderId,
+                        principalTable: "ProductProviders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -289,7 +289,7 @@ namespace PetCare.Migrations
                     EndTime = table.Column<string>(nullable: true),
                     Status = table.Column<bool>(nullable: false),
                     PersonProfileId = table.Column<int>(nullable: false),
-                    ServiceId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
                     PetId = table.Column<int>(nullable: false),
                     ProviderId = table.Column<int>(nullable: false)
                 },
@@ -303,9 +303,9 @@ namespace PetCare.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Requests_Services_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Services",
+                        name: "FK_Requests_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -341,9 +341,9 @@ namespace PetCare.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_MedicalProfiles_ServicesProviders_ProviderId",
+                        name: "FK_MedicalProfiles_ProductProviders_ProviderId",
                         column: x => x.ProviderId,
-                        principalTable: "ServicesProviders",
+                        principalTable: "ProductProviders",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -423,15 +423,15 @@ namespace PetCare.Migrations
                 column: "SubscriptionPlanId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Availabilities_ProductId",
+                table: "Availabilities",
+                column: "ProductId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Availabilities_ProviderId",
                 table: "Availabilities",
                 column: "ProviderId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Availabilities_ServiceId",
-                table: "Availabilities",
-                column: "ServiceId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_BusinessProfiles_AccountId",
@@ -478,9 +478,14 @@ namespace PetCare.Migrations
                 column: "PersonProfileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProviderJoinServices_ServiceId",
-                table: "ProviderJoinServices",
-                column: "ServiceId");
+                name: "IX_Products_TypeProductId",
+                table: "Products",
+                column: "TypeProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProviderJoinProducts_ProductId",
+                table: "ProviderJoinProducts",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Requests_PersonProfileId",
@@ -488,14 +493,9 @@ namespace PetCare.Migrations
                 column: "PersonProfileId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Requests_ServiceId",
+                name: "IX_Requests_ProductId",
                 table: "Requests",
-                column: "ServiceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Services_ServiTypeId",
-                table: "Services",
-                column: "ServiTypeId");
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VaccinationRecords_ProfileId",
@@ -518,7 +518,7 @@ namespace PetCare.Migrations
                 name: "Payments");
 
             migrationBuilder.DropTable(
-                name: "ProviderJoinServices");
+                name: "ProviderJoinProducts");
 
             migrationBuilder.DropTable(
                 name: "Requests");
@@ -527,19 +527,19 @@ namespace PetCare.Migrations
                 name: "VaccinationRecords");
 
             migrationBuilder.DropTable(
-                name: "Services");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "MedicalProfiles");
 
             migrationBuilder.DropTable(
-                name: "ServiTypes");
+                name: "TypeProducts");
 
             migrationBuilder.DropTable(
                 name: "Pets");
 
             migrationBuilder.DropTable(
-                name: "ServicesProviders");
+                name: "ProductProviders");
 
             migrationBuilder.DropTable(
                 name: "PersonProfiles");

@@ -9,15 +9,14 @@ namespace PetCare.Resources.Save
     public class SaveAvailabilityResource
     {
         [Required]
-        [MaxLength(10)]
         public string DateAvailability { get; set; }
 
         [Required]
-        [MaxLength(4)]
+        [MaxLength(5)]
         public string StartTime { get; set; }
 
         [Required]
-        [MaxLength(4)]
+        [MaxLength(5)]
         public string EndTime { get; set; }
     }
 }

@@ -21,18 +21,18 @@ namespace PetCare.Persistence.Repositories
            if (providerJoinProduct == null)
            {
                 providerJoinProduct = new ProviderJoinProduct { ProviderId = providerId, ProductId = productId };
-               await _context.ProviderJoinServices.AddAsync(providerJoinProduct);
+               await _context.ProviderJoinProducts.AddAsync(providerJoinProduct);
            }
        }
 
         public async Task<ProviderJoinProduct> FindByProviderIdAndProductId(int providerId, int productId)
         {
-            return await _context.ProviderJoinServices.FindAsync(providerId, productId);
+            return await _context.ProviderJoinProducts.FindAsync(providerId, productId);
         }
 
         public async Task<IEnumerable<ProviderJoinProduct>> ListByProviderIdAsync(int providerId)
          {
-             return await _context.ProviderJoinServices
+             return await _context.ProviderJoinProducts
                 .Where(ps => ps.ProviderId == providerId)
                 .Include(ps => ps.Provider)
                 .Include(ps => ps.Product)
@@ -41,7 +41,7 @@ namespace PetCare.Persistence.Repositories
 
          public async Task<IEnumerable<ProviderJoinProduct>> ListByProductIdAsync(int providerId)
          {
-             return await _context.ProviderJoinServices
+             return await _context.ProviderJoinProducts
                 .Where(ps => ps.ProductId == providerId)
                 .Include(ps => ps.Provider)
                 .Include(ps => ps.Product)

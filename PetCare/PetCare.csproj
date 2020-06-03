@@ -5,18 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200528041502_S.cs" />
-    <Compile Remove="Migrations\20200528041502_S.Designer.cs" />
-    <Compile Remove="Migrations\20200529213446_initial.cs" />
-    <Compile Remove="Migrations\20200529213446_initial.Designer.cs" />
-    <Compile Remove="Migrations\20200529233426_initial2.cs" />
-    <Compile Remove="Migrations\20200529233426_initial2.Designer.cs" />
-    <Compile Remove="Migrations\20200601013048_profile.cs" />
-    <Compile Remove="Migrations\20200601013048_profile.Designer.cs" />
-    <Compile Remove="Migrations\20200601013419_profile.cs" />
-    <Compile Remove="Migrations\20200601013419_profile.Designer.cs" />
-    <Compile Remove="Migrations\20200601045152_porfa2.cs" />
-    <Compile Remove="Migrations\20200601045152_porfa2.Designer.cs" />
+    <Compile Remove="Migrations\20200603053303_abejas.cs" />
+    <Compile Remove="Migrations\20200603053303_abejas.Designer.cs" />
+    <Compile Remove="Migrations\20200603062244_abejas.cs" />
+    <Compile Remove="Migrations\20200603062244_abejas.Designer.cs" />
+    <Compile Remove="Migrations\20200603064502_abejas.cs" />
+    <Compile Remove="Migrations\20200603064502_abejas.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -100,7 +100,6 @@ namespace PetCare.Services
 
             try
             {
-                //var providerByServiceId = _serviceRepository.ListByProviderIdAsync(serviceId);
                 await _availabilityRepository.SaveByProductIdAsync(providerId, productId, availability);
                 await _unitOfWork.CompleteAsync();
 

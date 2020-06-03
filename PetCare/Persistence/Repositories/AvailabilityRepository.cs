@@ -42,10 +42,10 @@ namespace PetCare.Persistence.Repositories
             _context.Availabilities.Remove(availability);
         }
 
-        public async Task SaveByProductIdAsync(int providerId, int serviceId, Availability availability)
+        public async Task SaveByProductIdAsync(int providerId, int productId, Availability availability)
         {
             var provider = await _context.ProductProviders.FindAsync(providerId);
-            var provider_join_products = await _context.ProviderJoinServices.FindAsync(providerId, serviceId);
+            var provider_join_products = await _context.ProviderJoinProducts.FindAsync(providerId, productId);
             availability.ProviderId = provider_join_products.ProviderId;
             availability.ProductId= provider_join_products.ProductId;
             await _context.Availabilities.AddAsync(availability);

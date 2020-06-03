@@ -20,7 +20,7 @@ namespace PetCare.Persistence.Context
         public DbSet<Payment> Payments { get; set; }
         public DbSet<SubscriptionPlan> SuscriptionPlans { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProviderJoinProduct> ProviderJoinServices { get; set; }
+        public DbSet<ProviderJoinProduct> ProviderJoinProducts { get; set; }
         public DbSet<TypeProduct> TypeProducts{ get; set; }
         public DbSet<MedicalProfile> MedicalProfiles { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }

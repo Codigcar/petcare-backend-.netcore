@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
+    "C:\\Users\\joaqu\\Downloads\\03062020\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
+    "C:\\Users\\joaqu\\Downloads\\03062020\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "projectUniqueName": "C:\\Users\\joaqu\\Downloads\\03062020\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
         "projectName": "PetCare",
-        "projectPath": "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
-        "packagesPath": "C:\\Users\\Angie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\obj\\",
+        "projectPath": "C:\\Users\\joaqu\\Downloads\\03062020\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "packagesPath": "C:\\Users\\joaqu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\joaqu\\Downloads\\03062020\\Backend-NetCore-PetCare\\PetCare\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Angie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\joaqu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -102,6 +99,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.2, 3.1.2]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -110,7 +113,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
