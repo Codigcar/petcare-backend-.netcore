@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Angie\\Desktop\\PetCare-NetCore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
+    "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Angie\\Desktop\\PetCare-NetCore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
+    "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Angie\\Desktop\\PetCare-NetCore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "projectUniqueName": "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
         "projectName": "PetCare",
-        "projectPath": "C:\\Users\\Angie\\Desktop\\PetCare-NetCore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+        "projectPath": "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
         "packagesPath": "C:\\Users\\Angie\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Angie\\Desktop\\PetCare-NetCore\\Backend-NetCore-PetCare\\PetCare\\obj\\",
+        "outputPath": "C:\\Users\\Angie\\Desktop\\PetCare-Netcore\\Backend-NetCore-PetCare\\PetCare\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
