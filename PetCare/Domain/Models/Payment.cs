@@ -8,9 +8,9 @@ namespace PetCare.Domain.Models
     public class Payment
     {
         public int Id { get; set; }
-        public string Number { get; set; }
+        public long Number { get; set; }
         public string Name { get; set; }
-        public string CVV { get; set; }
+        public int CVV { get; set; }
         public string DateOfExpiry { get; set; }
 
         public int ServicesProviderForeignKey { get; set; }

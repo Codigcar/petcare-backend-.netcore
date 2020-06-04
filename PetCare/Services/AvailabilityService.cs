@@ -52,9 +52,9 @@ namespace PetCare.Services
             if (existingavailability == null)
                 return new AvailabilityResponse(" availability not found");
 
-            existingavailability.DateAvailability = availability.DateAvailability;
-            existingavailability.StartTime = availability.DateAvailability;
-            existingavailability.EndTime = availability.DateAvailability;
+            existingavailability.DayAvailability = availability.DayAvailability;
+            existingavailability.StartTime = availability.DayAvailability;
+            existingavailability.EndTime = availability.DayAvailability;
 
             try
             {

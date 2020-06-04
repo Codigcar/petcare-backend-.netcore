@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetCare.Resources
 {
@@ -15,10 +16,11 @@ namespace PetCare.Resources
         public string Name { get; set; }
 
         [Required]
-        public string Number { get; set; }
+        [Index(IsUnique = true)]
+        public long Number { get; set; }
 
         [Required]
-        public string CVV { get; set; }
+        public int CVV { get; set; }
 
 
         [Required]

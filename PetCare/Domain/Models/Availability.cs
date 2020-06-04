@@ -8,7 +8,7 @@ namespace PetCare.Domain.Models
     public class Availability
     {
         public int Id { get; set; }
-        public string DateAvailability { get; set; }
+        public string DayAvailability { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
         public Provider Provider { get; set; }
