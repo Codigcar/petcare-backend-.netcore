@@ -7,9 +7,14 @@ namespace PetCare.Domain.Models
 {
     public class ProviderJoinProduct
     {
+        public int  Id { get; set; }
+
         public int ProviderId { get; set; }
         public Provider Provider { get; set; }
-        public int ProductId { get; set; }
-        public Product Product { get; set; }
+        public int TypeProductId { get; set; }
+        public TypeProduct TypeProduct { get; set; }
+
+        public IList<Product> Products { get; set; } = new List<Product>();
+
     }
 }

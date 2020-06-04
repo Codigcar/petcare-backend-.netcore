@@ -13,6 +13,12 @@ namespace PetCare.Persistence.Repositories
     {
         public ProductRepository(AppDbContext context) : base(context)
         { }
+
+        public Task<Product> FindByIdAsync(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Product> FindByNameAsync(string name)
         {
             /* return await _context.Services
@@ -22,23 +28,33 @@ namespace PetCare.Persistence.Repositories
             return await _context.Products.Where(a => a.Name == name).FirstAsync();
         }
 
-        public async Task<IEnumerable<Product>> ListByTypeProductIdAsync(int serviTypeId) => 
-            await _context.Products
-            .Where(s => s.TypeProductId == serviTypeId)
-            .Include(i => i.TypeProduct)
-            .ToListAsync();
-       
-
-        public async Task SaveByTypeProductIdAsync(int serviTypeId, Product service)
+        public Task<IEnumerable<Product>> ListByTypeProductIdAsync(int typeProductId)
         {
-            var serviType = await _context.TypeProducts.FindAsync(serviTypeId);
-            service.TypeProductId = serviType.Id; 
-            await _context.Products.AddAsync(service);
+            throw new NotImplementedException();
+        }
 
-        }
-        public async Task<Product> FindByIdAsync(int serviceId)
+        public Task SaveByTypeProductIdAsync(int typeProductId, Product product)
         {
-            return await _context.Products.FindAsync(serviceId);
+            throw new NotImplementedException();
         }
+
+        /*  public async Task<IEnumerable<Product>> ListByTypeProductIdAsync(int serviTypeId) => 
+              await _context.Products
+              .Where(s => s.TypeProductId == serviTypeId)
+              .Include(i => i.TypeProduct)
+              .ToListAsync();
+
+
+          public async Task SaveByTypeProductIdAsync(int serviTypeId, Product service)
+          {
+              var serviType = await _context.TypeProducts.FindAsync(serviTypeId);
+              service.TypeProductId = serviType.Id; 
+              await _context.Products.AddAsync(service);
+
+          }
+          public async Task<Product> FindByIdAsync(int serviceId)
+          {
+              return await _context.Products.FindAsync(serviceId);
+          }*/
     }
 }

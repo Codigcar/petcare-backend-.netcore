@@ -10,7 +10,7 @@ namespace PetCare.Domain.Repositories
     {
         Task<IEnumerable<TypeProduct>> ListAsync();
         Task AddAsyn(TypeProduct typeProduct);
-       // Task<Customer> FindByIdAsync(int id);
+        Task<TypeProduct> FindByIdAsync(int id);
        // void Update(Customer customer);
        // void Remove(Customer customer);
     }
