@@ -11,7 +11,7 @@ namespace PetCare.Persistence.Config
     {
         public AvailabilityConfig(EntityTypeBuilder<Availability> entityBuilder)
         {
-            entityBuilder.Property(x => x.DateAvailability).IsRequired();
+            entityBuilder.Property(x => x.DayAvailability).IsRequired();
             entityBuilder.Property(x => x.StartTime).IsRequired().HasMaxLength(5);
             entityBuilder.Property(x => x.EndTime).IsRequired().HasMaxLength(5);
 

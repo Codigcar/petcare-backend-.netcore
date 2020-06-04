@@ -16,7 +16,7 @@ namespace PetCare.Persistence.Context
 
 
         public DbSet<PersonProfile> PersonProfiles { get; set; }
-        public DbSet<Provider> ProductProviders { get; set; }
+        public DbSet<Provider> Providers { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<SubscriptionPlan> SuscriptionPlans { get; set; }

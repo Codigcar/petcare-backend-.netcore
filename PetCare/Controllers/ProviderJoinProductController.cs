@@ -13,7 +13,7 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/providers/{providerId}/products")]
+    [Route("api/business/{businessId}/providers/{providerId}/products")]
     public class ProviderJoinProductController : ControllerBase
     {
       //  private readonly IService
@@ -26,11 +26,11 @@ namespace PetCare.Controllers
             _mapper = mapper;
         }
         
-        [HttpPost("{serviceId}")]
-        public async Task<IActionResult> AssignProductTag(int providerId, int serviceId)
+        [HttpPost("{productId}")]
+        public async Task<IActionResult> AssignProductTag(int providerId, int productId)
         {
 
-            var result = await _providerJoinProducts.AssignProviderProduct(providerId, serviceId);
+            var result = await _providerJoinProducts.AssignProviderProduct(providerId, productId);
             if (!result.Success)
                 return BadRequest(result.Message);
 
