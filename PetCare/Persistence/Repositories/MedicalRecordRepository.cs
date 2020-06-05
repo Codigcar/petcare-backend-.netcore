@@ -22,11 +22,9 @@ namespace PetCare.Persistence.Repositories
             .Include(mr => mr.MedicalProfile)
             .ToListAsync();
 
-        public async Task SaveByMedicalProfile(int profileId, MedicalRecord medicalRecord)
+        public async Task AddAsync( MedicalRecord medicalRecord)
         {
-            var profile = await _context.MedicalRecords.FindAsync(profileId); // validar
-
-            medicalRecord.MedicalProfileId = profileId;
+    
             await _context.MedicalRecords.AddAsync(medicalRecord);
         }
     }

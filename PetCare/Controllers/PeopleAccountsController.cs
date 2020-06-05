@@ -13,19 +13,19 @@ using PetCare.Resources;
 namespace PetCare.Controllers
 {
     [Route("api/[controller]")]
-    public class PeopleController : ControllerBase
+    public class PeopleAccountsController : ControllerBase
     {
         private readonly IPersonProfileService _customerService;
         private readonly IMapper _mapper;
 
-        public PeopleController(IPersonProfileService customerService, IMapper mapper)
+        public PeopleAccountsController(IPersonProfileService customerService, IMapper mapper)
         {
             _customerService = customerService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PersonProfileResource>> GetAllAsync()
+        public async Task<IEnumerable<PersonProfileResource>> GetAllPeople()
         {
             
             var customers = await _customerService.ListAsync();
@@ -34,7 +34,7 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] SavePersonProfileResource resource)
+        public async Task<ActionResult> RegisterPeople([FromBody] SavePersonProfileResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
@@ -50,7 +50,7 @@ namespace PetCare.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] SavePersonProfileResource resource)
+        public async Task<IActionResult> EditPeopleRegister(int id, [FromBody] SavePersonProfileResource resource)
         {
             var customer = _mapper.Map<SavePersonProfileResource, PersonProfile>(resource);
             var result = await _customerService.UpdateAsync(id, customer);
@@ -65,7 +65,7 @@ namespace PetCare.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> UnRegisterPeople(int id)
         {
             var result = await _customerService.DeleteAsync(id);
             if (!result.Success)

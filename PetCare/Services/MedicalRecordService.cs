@@ -12,12 +12,14 @@ namespace PetCare.Services
 {
     public class MedicalRecordService : IMedicalRecordService
     {
-        private readonly IMedicalRecordRepository _medicalProfileRepository;
+        private readonly IMedicalRecordRepository _medicalRecordRepository;
+        private readonly IMedicalProfileRepository _medicalProfileRepository;
         private readonly IUnitOfWork _unitOfWork;
 
 
-        public MedicalRecordService(IMedicalRecordRepository medicalProfileRepository, IUnitOfWork unitOfWork)
+        public MedicalRecordService(IMedicalRecordRepository medicalRecordRepository, IMedicalProfileRepository medicalProfileRepository,  IUnitOfWork unitOfWork)
         {
+            _medicalRecordRepository = medicalRecordRepository;
             _medicalProfileRepository = medicalProfileRepository;
             _unitOfWork = unitOfWork;
         }
@@ -27,7 +29,11 @@ namespace PetCare.Services
         {
             try
             {
-                await _medicalProfileRepository.SaveByMedicalProfile(profileId, medicalRecord);
+                var medicalProfileDB = _medicalProfileRepository.FindByIdAsync(profileId);
+                medicalRecord.MedicalProfile = medicalProfileDB.Result;
+                medicalRecord.MedicalProfileId = profileId;
+
+                await _medicalRecordRepository.AddAsync( medicalRecord);
                 await _unitOfWork.CompleteAsync();
 
                 return new MedicalRecordResponse(medicalRecord);

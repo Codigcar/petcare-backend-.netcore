@@ -30,5 +30,12 @@ namespace PetCare.Persistence.Repositories
         {
             return await _context.TypeProducts.ToListAsync();
         }
+
+
+        public async Task<TypeProduct> FindByName(string name) =>
+            await _context.TypeProducts
+            .Where(w => w.Name == name)
+            .FirstOrDefaultAsync();
+
     }
 }

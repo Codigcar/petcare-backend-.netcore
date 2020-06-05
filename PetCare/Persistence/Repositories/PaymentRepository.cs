@@ -44,10 +44,11 @@ namespace PetCare.Persistence.Repositories
             _context.Payments.Remove(Payment);
         }
 
-        public async Task SaveByServicesProviderIdAsync(int sproviderId, Payment Payment)
+        public async Task SaveByServicesProviderIdAsync(int providerId, Payment Payment)
         {
-            var servicesProvider = await _context.Providers.FindAsync(sproviderId);
-            Payment.ServicesProviderForeignKey = servicesProvider.Id;
+            var provider = await _context.Providers.FindAsync(providerId);
+            Payment.ServicesProviderForeignKey = providerId;
+            Payment.ServicesProvider = provider;
             await _context.Payments.AddAsync(Payment);
         }
 

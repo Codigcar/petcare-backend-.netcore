@@ -15,14 +15,16 @@ namespace PetCare.Services
         private readonly IMedicalProfileRepository _medicalprofileRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPetRepository _petRepository;
+        private readonly IProviderRepository _providerRepository;
       //  private readonly ICustomerRepository _customerRepository;
 
 
-        public MedicalProfileService(IMedicalProfileRepository medicalprofileRepository, IPetRepository petRepository,IUnitOfWork unitOfWork)
+        public MedicalProfileService(IMedicalProfileRepository medicalprofileRepository, IPetRepository petRepository, IProviderRepository providerRepository,IUnitOfWork unitOfWork)
         {
             _medicalprofileRepository = medicalprofileRepository;
             _unitOfWork = unitOfWork;
             _petRepository = petRepository;
+            _providerRepository = providerRepository;
         }
 
 
@@ -125,7 +127,7 @@ namespace PetCare.Services
             return await _medicalprofileRepository.ListByPetIdAsync(petId);
         }
 
-        public async Task<MedicalProfileResponse> SaveByPetIdAsync(int servicesproviderId, int customerId, int petId, MedicalProfile medicalprofile)
+        public async Task<MedicalProfileResponse> SaveByPetIdAsync(int providerId, int customerId, int petId, MedicalProfile medicalprofile)
         {
            /* var customer = _customerRepository.FindByIdAsync(customerId);
             if ( customer==null )
@@ -133,12 +135,18 @@ namespace PetCare.Services
                 return new MedicalProfileResponse("Not Found customer");
             }
             */
-            var pet_Id = _petRepository.FindByIdAsync(petId);
+            
            
             try
             {
-                var customerByPetId = _petRepository.ListByCustomerIdAsync(petId);
-                await _medicalprofileRepository.SaveByPetIdAsync(servicesproviderId, customerId, petId, medicalprofile);
+                var petDB = _petRepository.FindByIdAsync(petId);
+                var providerDB = _providerRepository.FindByIdAsync(providerId);
+                medicalprofile.Pet = petDB.Result;
+                medicalprofile.PetId = petId;
+                medicalprofile.Provider = providerDB.Result;
+                medicalprofile.ProviderId = providerId;
+               
+                await _medicalprofileRepository.AddAsyn(medicalprofile);
                 await _unitOfWork.CompleteAsync();
 
                 return new MedicalProfileResponse(medicalprofile);

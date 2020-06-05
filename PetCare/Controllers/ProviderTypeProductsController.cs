@@ -13,20 +13,20 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/typeproducts")]
-    public class TypeProductController : ControllerBase
+    [Route("api/dashboard/typeproducts")]
+    public class ProviderTypeProductsController : ControllerBase
     {
         private readonly ITypeProductService _typeProductService;
         private readonly IMapper _mapper;
 
-        public TypeProductController(ITypeProductService serviTypeService, IMapper mapper)
+        public ProviderTypeProductsController(ITypeProductService serviTypeService, IMapper mapper)
         {
             _typeProductService = serviTypeService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<TypeProductResource>> GetAllAsync()
+        public async Task<IEnumerable<TypeProductResource>> GetAllTypeProducts()
         {
             var typeProducts = await _typeProductService.ListAsync();
             var resources = _mapper.Map<IEnumerable<TypeProduct>, IEnumerable<TypeProductResource>>(typeProducts);
@@ -34,7 +34,7 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync( [FromBody] SaveProductTypeResource saveTypeProductResource)
+        public async Task<ActionResult> RegisterTypeProduct( [FromBody] SaveProductTypeResource saveTypeProductResource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());

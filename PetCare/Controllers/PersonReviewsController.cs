@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 namespace PetCare.Controllers
 {
     [Route("api/people/{personId}/providers/{providerId}/reviews")]
-    public class ReviewController : ControllerBase
+    public class PersonReviewsController : ControllerBase
     {
         private readonly IReviewService _reviewService;
         private readonly IMapper _mapper;
 
-        public ReviewController(IReviewService reviewService, IMapper mapper)
+        public PersonReviewsController(IReviewService reviewService, IMapper mapper)
         {
             _reviewService = reviewService;
             _mapper = mapper;
@@ -33,7 +33,7 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int personId, int providerId, [FromBody] SaveReviewResource resource)
+        public async Task<ActionResult> RegisterReview(int personId, int providerId, [FromBody] SaveReviewResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
@@ -49,7 +49,7 @@ namespace PetCare.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveReviewResource resource)
+        public async Task<IActionResult> EditRegisterReview(int id, [FromBody] SaveReviewResource resource)
         {
             var review = _mapper.Map<SaveReviewResource, Review>(resource);
             var result = await _reviewService.UpdateAsync(id, review);
@@ -64,7 +64,7 @@ namespace PetCare.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> UnRegisterReview(int id)
         {
             var result = await _reviewService.DeleteAsync(id);
             if (!result.Success)

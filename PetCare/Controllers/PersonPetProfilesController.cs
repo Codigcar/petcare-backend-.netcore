@@ -27,14 +27,12 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<MedicalProfileResource>> GetByCustomerIdAndPetIdAsync(int personId, int petId)
+        public async Task<IEnumerable<MedicalProfileResource>> GetProfileByPetId(int personId, int petId)
         {
             var people = await _medicalprofileService.ListByCustomerIdAndPetIdAsync(personId, petId);
             var resources = _mapper.Map<IEnumerable<MedicalProfile>, IEnumerable<MedicalProfileResource>>(people);
             return resources;
         }
 
-
-      
     }
 }

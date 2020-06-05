@@ -31,7 +31,7 @@ namespace PetCare.Resources
         public string Password { get; set; }
 
         [Required]
-        [Phone]
+       // [Phone]
         public long Phone { get; set; }
 
         [Required]
@@ -40,6 +40,5 @@ namespace PetCare.Resources
 
         public Boolean Owner { get; set; }
 
-        public int ProviderId { get; set; }
     }
 }

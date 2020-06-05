@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 
 namespace PetCare.Controllers
 {
-    [Route("api/business/{bussinessId}/providers/{providerId}/products/{productId}/availability")]
-    public class ProviderProductAvailavilityController : ControllerBase
+    [Route("api/business/{bussinessId}/providers/{providerId}/typeproducts/{typeproductId}/products/{productId}/availability")]
+    public class ProviderAvailavilitiesController : ControllerBase
     {
         private readonly IProviderService _providerService;
         private readonly IAvailabilityService _availabilityService;
         private readonly IMapper _mapper;
 
-        public ProviderProductAvailavilityController(IProviderService providerService,IAvailabilityService availabilityService, IMapper mapper)
+        public ProviderAvailavilitiesController(IProviderService providerService,IAvailabilityService availabilityService, IMapper mapper)
         {
             _availabilityService = availabilityService;
             _providerService = providerService;
@@ -27,7 +27,7 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<AvailabilityResource>> GetByProviderIdAndProductIdAsync(int providerId, int productId)
+        public async Task<IEnumerable<AvailabilityResource>> GetAllAvailavilitiesByProductId(int providerId, int productId)
         {
             var providers = await _availabilityService.ListByProviderIdAndProductIdAsync(providerId, productId);
             var resources = _mapper.Map<IEnumerable<Availability>, IEnumerable<AvailabilityResource>>(providers);
@@ -36,14 +36,14 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int providerId, int productId, [FromBody] SaveAvailabilityResource resource)
+        public async Task<ActionResult> RegisterAvailabilityByProductId(int providerId, int productId, [FromBody] SaveAvailabilityResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var Productid = await _providerService.FindByIdAsync(providerId);
-            if (!Productid.Success)
-                return BadRequest(Productid.Message);
+          //  var Productid = await _providerService.FindByIdAsync(providerId);
+          //  if (!Productid.Success)
+          //      return BadRequest(Productid.Message);
             var availability = _mapper.Map<SaveAvailabilityResource, Availability>(resource);
             var result = await _availabilityService.SaveByProductIdAsync(providerId, productId, availability);
             if (!result.Success)

@@ -21,19 +21,16 @@ namespace PetCare.Domain.Models
        public string Description { get; set; }
        public string Photo { get; set; }
        public string Age { get; set; }
+
        public Provider Provider { get; set; }
        public int ProviderId { get; set; }
-        // public MedicalRecord medicalrecord { get; set; }
-        // public int ServicesMedicalRecordForeignKey { get; set; }
+       public Pet Pet { get; set; }
        public int PetId { get; set; }
-       public Pet pet { get; set; }
-
-        public int CustomerId { get; set; }
+    //   public int CustomerId { get; set; }
 
         //Medical Record
-        public IList<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
-
-	  public IList<VaccinationRecord> VaccinationRecords { get; set; } = new List<VaccinationRecord>();
+       public IList<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
+       public IList<VaccinationRecord> VaccinationRecords { get; set; } = new List<VaccinationRecord>();
 
 
     }

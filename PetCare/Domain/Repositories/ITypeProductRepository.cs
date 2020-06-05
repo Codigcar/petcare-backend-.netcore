@@ -11,7 +11,9 @@ namespace PetCare.Domain.Repositories
         Task<IEnumerable<TypeProduct>> ListAsync();
         Task AddAsyn(TypeProduct typeProduct);
         Task<TypeProduct> FindByIdAsync(int id);
-       // void Update(Customer customer);
-       // void Remove(Customer customer);
+        Task<TypeProduct> FindByName(string name);
+
+        // void Update(Customer customer);
+        // void Remove(Customer customer);
     }
 }

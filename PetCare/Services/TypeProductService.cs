@@ -28,12 +28,18 @@ namespace PetCare.Services
 
         public async Task<TypeProductResponse> SaveAsync(TypeProduct typeProduct)
         {
+            var typeProductDB = _typeProductRepository.FindByName(typeProduct.Name);
             try
             {
-                await _typeProductRepository.AddAsyn(typeProduct);
-                await _unitOfWork.CompleteAsync();
+              //  if (typeProductDB == null)
+               // {
+                    await _typeProductRepository.AddAsyn(typeProduct);
+                    await _unitOfWork.CompleteAsync();
 
-                return new TypeProductResponse(typeProduct);
+                    return new TypeProductResponse(typeProduct);
+               // }
+
+             //   return new TypeProductResponse("Name used. Insert another name");
             }
             catch (Exception ex)
             {

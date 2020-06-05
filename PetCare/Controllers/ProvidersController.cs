@@ -13,12 +13,12 @@ using PetCare.Resources;
 namespace PetCare.Controllers
 {
     [Route("api/business/{businessId}/providers")]
-    public class BusinessProviderController : ControllerBase
+    public class ProvidersController : ControllerBase
     {
         private readonly IProviderService _servicesProviderService;
         private readonly IMapper _mapper;
 
-        public BusinessProviderController(IProviderService servicesProviderService, IMapper mapper)
+        public ProvidersController(IProviderService servicesProviderService, IMapper mapper)
         {
             _servicesProviderService = servicesProviderService;
             _mapper = mapper;
@@ -27,7 +27,7 @@ namespace PetCare.Controllers
      
 
         [HttpPut("{providerId}")]
-        public async Task<IActionResult> PutAsync(int providerId, [FromBody] SaveProviderResource resource)
+        public async Task<IActionResult> RegisterProvider(int providerId, [FromBody] SaveProviderResource resource)
         {
             var servicesProvider = _mapper.Map<SaveProviderResource, Provider>(resource);
             var result = await _servicesProviderService.UpdateAsync(providerId, servicesProvider);
@@ -42,7 +42,7 @@ namespace PetCare.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> UnRegister(int id)
         {
             var result = await _servicesProviderService.DeleteAsync(id);
             if (!result.Success)

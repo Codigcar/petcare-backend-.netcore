@@ -13,7 +13,7 @@ namespace PetCare.Services
     {
         private readonly IRequestRepository _requestRepository;
         private readonly IPersonProfileRepository _customerRepository;
-        private readonly IProductRepository _serviceRepository;
+        private readonly IProductRepository _productepository;
         private readonly IPetRepository _petRepository;
         private readonly IProviderRepository _providerRepository;
 
@@ -25,7 +25,7 @@ namespace PetCare.Services
         {
             _requestRepository = requestRepository;
             _customerRepository = customerRepository;
-            _serviceRepository = serviceRepository;
+            _productepository = serviceRepository;
             _unitOfWork = unitOfWork;
         }
 
@@ -39,10 +39,10 @@ namespace PetCare.Services
             return await _requestRepository.ListByProductIdAsync(serviceId);
         }
 
-        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int servicesId, int petId, PersonRequest request)
+        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int productId, int petId, PersonRequest request)
         {
             PersonProfile customer = await _customerRepository.FindByIdAsync(customerId);
-            Product service = await _serviceRepository.FindByIdAsync(servicesId);
+            Product product = await _productepository.FindByIdAsync(productId);
             /*  Pet pet = await _petRepository.FindByIdAsync(petId);
               Provider provider = await _providerRepository.FindByIdAsync(providerId);*/
             try
@@ -53,8 +53,9 @@ namespace PetCare.Services
                 request.PersonProfileId = customerId;
                 request.PersonProfile = customer;
                 request.ProviderId = providerId;
-                request.Product = service;
-                request.ProductId = servicesId;
+                request.Product = product;
+                request.ProductId = productId;
+                request.Status = false;
 
                 await _requestRepository.SaveByCustomerIdAsync(request);
                 await _unitOfWork.CompleteAsync();

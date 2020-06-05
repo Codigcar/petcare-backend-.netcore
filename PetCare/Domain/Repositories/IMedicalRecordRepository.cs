@@ -9,7 +9,7 @@ namespace PetCare.Domain.Repositories
     public interface IMedicalRecordRepository
     {
 
-        Task SaveByMedicalProfile(int profileId, MedicalRecord medicalRecord);
+        Task AddAsync( MedicalRecord medicalRecord);
         Task<IEnumerable<MedicalRecord>> ListByMedicalProfile(int profileId);
 
     }

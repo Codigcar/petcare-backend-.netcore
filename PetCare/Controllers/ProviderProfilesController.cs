@@ -13,11 +13,8 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-   [Route("api/business/{businessId}/providers/{providerId}/people/{customerId}/pets/{petId}/petprofiles")]
+   [Route("api/business/{businessId}/providers/{providerId}/people/{personId}/pets/{petId}/petprofiles")]
     public class MedicalProfileController : ControllerBase
-
-
-
     {
         private readonly IMedicalProfileService _medicalprofileService;
         private readonly IMedicalRecordService _medicalrecordService;
@@ -37,28 +34,13 @@ namespace PetCare.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int providerId, int customerId,int petId, [FromBody] SaveMedicalProfileResource resource)
+        public async Task<ActionResult> RegisterMedicalProfile(int providerId, int personId,int petId, [FromBody] SaveMedicalProfileResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
-              var Prid = await _providerService.FindByIdAsync(providerId
-             );
-            if (!Prid.Success)
-                return BadRequest(Prid.Message);
 
-
-            var Cid = await _customerService.FindByIdAsync(customerId
-             );
-            if (!Cid.Success)
-                return BadRequest(Cid.Message);
-
-            var Pid = await _petService.FindByIdAsync(petId
-          );
-            if (!Pid.Success)
-                return BadRequest(Pid.Message);
-
-            var medicalprofile = _mapper.Map<SaveMedicalProfileResource, MedicalProfile>(resource);
-            var result = await _medicalprofileService.SaveByPetIdAsync(providerId, customerId,petId, medicalprofile);
+       var medicalprofile = _mapper.Map<SaveMedicalProfileResource, MedicalProfile>(resource);
+            var result = await _medicalprofileService.SaveByPetIdAsync(providerId, personId,petId, medicalprofile);
             if (!result.Success)
                 return BadRequest(result.Message);
             var MedicalProfileResource = _mapper.Map<MedicalProfile, MedicalProfileResource>(result.MedicalProfile);
@@ -66,26 +48,12 @@ namespace PetCare.Controllers
         }
 
         [HttpPost("{profileId}/records")]
-        public async Task<ActionResult> SaveByProfileId(int profileId, int customerId, int petId,int providerId, [FromBody] SaveMedicalRecordResource resource)
+        public async Task<ActionResult> SaveByProfileId(int profileId, int personId, int petId,int providerId, [FromBody] SaveMedicalRecordResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
-            var Prid = await _providerService.FindByIdAsync(providerId
-             );
-            if (!Prid.Success)
-                return BadRequest(Prid.Message);
-
-
-            var Cid = await _customerService.FindByIdAsync(customerId
-             );
-            if (!Cid.Success)
-                return BadRequest(Cid.Message);
-
-            var Pid = await _petService.FindByIdAsync(petId
-          );
-            if (!Pid.Success)
-                return BadRequest(Pid.Message);
+       
 
             var medicalrecord = _mapper.Map<SaveMedicalRecordResource, MedicalRecord>(resource);
             var result = await _medicalrecordService.SaveByProfileIdAsync(profileId, medicalrecord);
