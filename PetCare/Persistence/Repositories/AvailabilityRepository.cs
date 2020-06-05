@@ -11,38 +11,37 @@ namespace PetCare.Persistence.Repositories
 {
     public class AvailabilityRepository : BaseRepository, IAvailabilityRepository
     {
-        public AvailabilityRepository(AppDbContext context) : base(context)
+       public AvailabilityRepository(AppDbContext context) : base(context)
         {
 
         }
 
-        public async Task AddAsyn(Availability availability)
+        public Task AddAsyn(Availability availability)
         {
-            await _context.Availabilities.AddAsync(availability);
+            throw new NotImplementedException();
         }
 
-        public async Task<Availability> FindByIdAsync(int id)
+        public Task<Availability> FindByIdAsync(int id)
         {
-            return await _context.Availabilities.FindAsync(id);
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Availability>> ListAsync()
+        public Task<IEnumerable<Availability>> ListAsync()
         {
-            return await _context.Availabilities.ToListAsync();
+            throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Availability>> ListByProductIdAsync(int productId) =>
-            await _context.Availabilities
-            .Where(p => p.ProductId == productId)
-            .Include(p => p.Product)
-            .ToListAsync();
+        public Task<IEnumerable<Availability>> ListByProductIdAsync(int productId)
+        {
+            throw new NotImplementedException();
+        }
 
         public void Remove(Availability availability)
         {
-            _context.Availabilities.Remove(availability);
+            throw new NotImplementedException();
         }
 
-        public async Task SaveByProductIdAsync(int providerId, int productId, Availability availability)
+        public Task SaveByProductIdAsync(int providerId, int productId, Availability availability)
         {
             var provider = await _context.Providers.FindAsync(providerId);
             var provider_join_products = await _context.ProviderJoinProducts.FindAsync(providerId, productId);
@@ -53,7 +52,47 @@ namespace PetCare.Persistence.Repositories
 
         public void Update(Availability availability)
         {
-            _context.Update(availability);
+            throw new NotImplementedException();
         }
+        /*
+       public async Task AddAsyn(Availability availability)
+       {
+           await _context.Availabilities.AddAsync(availability);
+       }
+
+       public async Task<Availability> FindByIdAsync(int id)
+       {
+           return await _context.Availabilities.FindAsync(id);
+       }
+
+       public async Task<IEnumerable<Availability>> ListAsync()
+       {
+           return await _context.Availabilities.ToListAsync();
+       }
+
+       public async Task<IEnumerable<Availability>> ListByProductIdAsync(int productId) =>
+           await _context.Availabilities
+           .Where(p => p.ProductId == productId)
+           .Include(p => p.Product)
+           .ToListAsync();
+
+       public void Remove(Availability availability)
+       {
+           _context.Availabilities.Remove(availability);
+       }
+
+       public async Task SaveByProductIdAsync(int providerId, int productId, Availability availability)
+       {
+           var provider = await _context.ProductProviders.FindAsync(providerId);
+           var provider_join_products = await _context.ProviderJoinProducts.FindAsync(providerId, productId);
+           availability.ProviderId = provider_join_products.ProviderId;
+           availability.ProductId= provider_join_products.ProductId;
+           await _context.Availabilities.AddAsync(availability);
+       }
+
+       public void Update(Availability availability)
+       {
+           _context.Update(availability);
+       }*/
     }
 }

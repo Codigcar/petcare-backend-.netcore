@@ -21,6 +21,11 @@ namespace PetCare.Persistence.Repositories
              await _context.TypeProducts.AddAsync(serviType);
         }
 
+        public async Task<TypeProduct> FindByIdAsync(int id)
+        {
+            return await _context.TypeProducts.FindAsync(id);
+        }
+
         public async Task<IEnumerable<TypeProduct>> ListAsync()
         {
             return await _context.TypeProducts.ToListAsync();

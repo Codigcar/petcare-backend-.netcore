@@ -10,6 +10,8 @@ namespace PetCare.Domain.Models
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public IList<Product> ListProducts { get; set; } = new List<Product>();
+        //  public IList<Product> ListProducts { get; set; } = new List<Product>();
+        public IList<ProviderJoinProduct> ProviderJoinProducts { get; set; } = new List<ProviderJoinProduct>();
+
     }
 }

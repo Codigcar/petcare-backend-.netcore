@@ -57,9 +57,10 @@ namespace PetCare.Persistence.Context
                 .WithOne(p => p.ServicesProvider)
                 .HasForeignKey<Payment>(b => b.ServicesProviderForeignKey);
             
-            //ProviderService
+            //ProviderService---------------------------------------------
+            /*
             builder.Entity<ProviderJoinProduct>()
-            .HasKey(ps => new { ps.ProviderId, ps.ProductId});
+            .HasKey(ps => new { ps.ProviderId, ps.TypeProductId});
 
             builder.Entity<ProviderJoinProduct>()
                 .HasOne(ps => ps.Provider)
@@ -67,17 +68,17 @@ namespace PetCare.Persistence.Context
                 .HasForeignKey(fk => fk.ProviderId);
 
             builder.Entity<ProviderJoinProduct>()
-                .HasOne(ps => ps.Product)
-                .WithMany(wm => wm.ProviderProducts)
-                .HasForeignKey(fk => fk.ProductId);
-
+                .HasOne(ps => ps.TypeProduct)
+                .WithMany(wm => wm.providerJoinProducts)
+                .HasForeignKey(fk => fk.TypeProductId);
+                */
             //TypeService
 
-            builder.Entity<TypeProduct>()
+           /* builder.Entity<TypeProduct>()
                 .HasMany(t => t.ListProducts)
                 .WithOne(s => s.TypeProduct)
                 .HasForeignKey(fk => fk.TypeProductId);
-
+*/
     
 
             //MedicalProfile One-One Pet
@@ -125,7 +126,7 @@ namespace PetCare.Persistence.Context
                 .WithOne(p => p.PersonProfile)
                 .HasForeignKey(fk => fk.PersonProfileId);
 
-            //Service - Request ( one - many)
+            //Product - Request ( one - many)
             builder.Entity<Product>().HasMany(x => x.Requests)
                 .WithOne(p => p.Product)
                 .HasForeignKey(fk => fk.ProductId);
@@ -144,6 +145,30 @@ namespace PetCare.Persistence.Context
             builder.Entity<Product>().HasOne(x => x.Availability)
               .WithOne(p => p.Product)
               .HasForeignKey<Availability>(b => b.ProductId);
+            //--------------------------------------------------------------
+            //ProviderJoinTypeProduct - Product
+
+             builder.Entity<ProviderJoinProduct>()
+                   .HasMany(x => x.Products)
+                   .WithOne(p => p.PJP)
+                   .HasForeignKey(fk => fk.PJPId);
+
+           /* builder.Entity<Product>()
+                .HasOne(p => p.ProviderJoinProduct)
+                .WithMany(x => x.Products)
+                .HasForeignKey(fk => fk.ProviderJoinTypeProductId);
+                */
+
+            //Provider - ProviderJoinTypeProduct
+            builder.Entity<Provider>().HasMany(x => x.ProviderProducts)
+               .WithOne(p => p.Provider)
+               .HasForeignKey(b => b.ProviderId);
+
+            //TypeProduct - ProviderJoinTypeProduct 
+            builder.Entity<TypeProduct>().HasMany(x => x.ProviderJoinProducts)
+                 .WithOne(p => p.TypeProduct)
+                 .HasForeignKey(b => b.TypeProductId);
+
 
             builder.Entity<SubscriptionPlan>().HasData
             (
