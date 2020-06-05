@@ -11,9 +11,10 @@ namespace PetCare.Domain.Models
         public string DayAvailability { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
-        public Provider Provider { get; set; }
-        public int ProviderId { get; set; }
-
+        //Provider
+       /// public Provider Provider { get; set; }
+        //public int ProviderId { get; set; }
+        //Product
         public Product Product { get; set; }
         public int ProductId { get; set; }
         //

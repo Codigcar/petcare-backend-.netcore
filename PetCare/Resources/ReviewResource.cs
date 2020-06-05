@@ -11,7 +11,5 @@ namespace PetCare.Resources
         public int Qualification { get; set; }
         public string Commentary { get; set; }
 
-        public int PersonProfileId { get; set; }
-        public int ProviderId { get; set; }
     }
 }

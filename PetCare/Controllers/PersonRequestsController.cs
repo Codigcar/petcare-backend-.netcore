@@ -26,14 +26,14 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int personId, int providerId, int servicesId, int petId, [FromBody] SaveRequestResource resource)
+        public async Task<ActionResult> RegisterRequestByPersonId(int personId, int petId, int providerId, int productId, [FromBody] SaveRequestResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
             var request = _mapper.Map<SaveRequestResource, PersonRequest>(resource);
-            var result = await _requestService.SaveByCustomerIdAsync(personId, providerId, servicesId, petId, request);
+            var result = await _requestService.SaveByCustomerIdAsync(personId, providerId, productId, petId, request);
             if (!result.Success)
                 return BadRequest(result.Message);
             var requestResource = _mapper.Map<PersonRequest, RequestResource>(result.Request);

@@ -12,13 +12,13 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/[controller]")]
-    public class BusinessController : ControllerBase
+    [Route("api/business")]
+    public class BusinessAccountController : ControllerBase
     {
         private readonly IBusinessProfileService _businessService;
         private readonly IMapper _mapper;
 
-        public BusinessController(IBusinessProfileService businessService, IMapper mapper)
+        public BusinessAccountController(IBusinessProfileService businessService, IMapper mapper)
         {
             _businessService = businessService;
             _mapper = mapper;
@@ -27,7 +27,7 @@ namespace PetCare.Controllers
     
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] SaveBusinessProfileResource resource)
+        public async Task<ActionResult> RegisterAccount([FromBody] SaveBusinessProfileResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());

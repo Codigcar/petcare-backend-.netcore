@@ -41,12 +41,12 @@ namespace PetCare.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task SaveByProductIdAsync(int providerId, int productId, Availability availability)
+        public async Task SaveByProductIdAsync(int providerId, int productId, Availability availability)
         {
-            var provider = await _context.Providers.FindAsync(providerId);
-            var provider_join_products = await _context.ProviderJoinProducts.FindAsync(providerId, productId);
-            availability.ProviderId = provider_join_products.ProviderId;
-            availability.ProductId= provider_join_products.ProductId;
+            //var provider = await _context.Providers.FindAsync(providerId);
+            //var provider_join_products = await _context.ProviderJoinProducts.FindAsync(providerId, productId);
+            //availability.ProviderId = provider_join_products.ProviderId;
+            //availability.ProductId= provider_join_products.TypeProductId;
             await _context.Availabilities.AddAsync(availability);
         }
 

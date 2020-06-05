@@ -20,5 +20,7 @@ namespace PetCare.Domain.Models
         //providerJoinTypeProduct
         public int PJPId { get; set; }
         public ProviderJoinProduct PJP { get; set; }
+
+        public int TypeProductId { get; set; }
     }
 }

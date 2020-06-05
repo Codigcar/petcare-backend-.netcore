@@ -13,19 +13,19 @@ using PetCare.Resources;
 namespace PetCare.Controllers
 {
     [Route("api/business/{businessId}/providers/{providerId}/payments")]
-    public class ProviderPaymentController : ControllerBase
+    public class ProviderPaymentsController : ControllerBase
     {
         private readonly IPaymentService _PaymentService;
         private readonly IMapper _mapper;
 
-        public ProviderPaymentController(IPaymentService PaymentService, IMapper mapper)
+        public ProviderPaymentsController(IPaymentService PaymentService, IMapper mapper)
         {
             _PaymentService = PaymentService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PaymentResource>> GetListByCustomerIdAsync(int providerId)
+        public async Task<IEnumerable<PaymentResource>> GetAllPaymentByProviderId(int providerId)
         {
 
             var payments = await _PaymentService.ListByServicesProviderIdAsync(providerId);
@@ -34,7 +34,7 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int providerId, [FromBody] SavePaymentResource resource)
+        public async Task<ActionResult> RegisterPaymentByProviderId(int providerId, [FromBody] SavePaymentResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
@@ -49,11 +49,11 @@ namespace PetCare.Controllers
             return Ok(PaymentResource);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] SavePaymentResource resource)
+        [HttpPut("{paymentId}")]
+        public async Task<IActionResult> EditPayment(int paymentId, [FromBody] SavePaymentResource resource)
         {
             var customer = _mapper.Map<SavePaymentResource, Payment>(resource);
-            var result = await _PaymentService.UpdateAsync(id, customer);
+            var result = await _PaymentService.UpdateAsync(paymentId, customer);
 
             if (!result.Success)
             {
@@ -64,10 +64,10 @@ namespace PetCare.Controllers
             return Ok(customerResource);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        [HttpDelete("{paymentId}")]
+        public async Task<IActionResult> UnRegisterPayment(int paymentId)
         {
-            var result = await _PaymentService.DeleteAsync(id);
+            var result = await _PaymentService.DeleteAsync(paymentId);
             if (!result.Success)
             {
                 return BadRequest(result.Message);

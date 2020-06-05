@@ -13,7 +13,7 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/providers/{providerId}/product/{productId}/request")]
+    [Route("api/business/{business}/providers/{providerId}/typeproducts/{typeproductId}/product/{productId}/request")]
     public class RequestController : ControllerBase
     {
         private readonly IRequestService _requestService;
@@ -26,9 +26,9 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<RequestResource>> GetAllByServiceIdAsync(int providerId, int serviceId)
+        public async Task<IEnumerable<RequestResource>> GetAllRequestByProductId(int providerId, int productId)
         {
-            var requests = await _requestService.ListByProductIdAsync(providerId, serviceId);
+            var requests = await _requestService.ListByProductIdAsync(providerId, productId);
             var resources = _mapper.Map<IEnumerable<PersonRequest>, IEnumerable<RequestResource>>(requests);
             return resources;
         }

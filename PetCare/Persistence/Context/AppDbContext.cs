@@ -83,10 +83,10 @@ namespace PetCare.Persistence.Context
 
             //MedicalProfile One-One Pet
             builder.Entity<Pet>().HasOne(x => x.MedicalProfile)
-              .WithOne(p => p.pet)
+              .WithOne(p => p.Pet)
               .HasForeignKey<MedicalProfile>(b => b.PetId);
 
-            //MedicalProfe One - Many ServicesProvider
+            //MedicalProfe One - Many Provider
             builder.Entity<Provider>().HasMany(x => x.MedicalProfiles)
                 .WithOne(p => p.Provider)
                 .HasForeignKey(fk => fk.ProviderId);

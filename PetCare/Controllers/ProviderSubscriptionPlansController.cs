@@ -13,15 +13,15 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/[controller]")]
-    public class SuscriptionPlansController : ControllerBase
+    [Route("api/dashboard/subscriptionplans")]
+    public class ProviderSubscriptionPlansController : ControllerBase
     {
         private readonly ISuscriptionPlanService _suscriptionPlanService;
         private readonly IMapper _mapper;
         
 
 
-        public SuscriptionPlansController(ISuscriptionPlanService suscriptionPlanService, IMapper mapper)
+        public ProviderSubscriptionPlansController(ISuscriptionPlanService suscriptionPlanService, IMapper mapper)
         {
             _suscriptionPlanService = suscriptionPlanService;
             _mapper = mapper;

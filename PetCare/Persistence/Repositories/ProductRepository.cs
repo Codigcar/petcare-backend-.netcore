@@ -14,9 +14,9 @@ namespace PetCare.Persistence.Repositories
         public ProductRepository(AppDbContext context) : base(context)
         { }
 
-        public Task<Product> FindByIdAsync(int productId)
+        public async Task<Product> FindByIdAsync(int productId)
         {
-            throw new NotImplementedException();
+            return  await _context.Products.FindAsync(productId);
         }
 
         public async Task<Product> FindByNameAsync(string name)
@@ -33,9 +33,12 @@ namespace PetCare.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public Task SaveByTypeProductIdAsync(int typeProductId, Product product)
+        public async Task SaveByTypeProductIdAsync(int typeProductId, Product product)
         {
-            throw new NotImplementedException();
+            var ProviderJoinTypeProduct = await _context.ProviderJoinProducts.FindAsync(typeProductId);
+            product.PJPId = ProviderJoinTypeProduct.Id;
+            product.TypeProductId = ProviderJoinTypeProduct.TypeProductId;
+            await _context.Products.AddAsync(product);
         }
 
         /*  public async Task<IEnumerable<Product>> ListByTypeProductIdAsync(int serviTypeId) => 

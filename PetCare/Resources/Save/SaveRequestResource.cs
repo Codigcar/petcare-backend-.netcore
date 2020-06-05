@@ -10,7 +10,7 @@ namespace PetCare.Resources.Save
         public DateTime DateReservation { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }
-        public bool Status { get; set; }
+        
 
     }
 }

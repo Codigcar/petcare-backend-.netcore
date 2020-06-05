@@ -13,21 +13,21 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/providers/{providerId}/typeproducts")]
-    public class ProviderJoinProductController : ControllerBase
+    [Route("api/business/{businessId}/providers/{providerId}/typeproducts")]
+    public class ProviderJoinTypeProductsController : ControllerBase
     {
       //  private readonly IService
         private readonly IProviderJoinProductService _providerJoinProducts;
         private readonly IMapper _mapper;
 
-        public ProviderJoinProductController(IProviderJoinProductService providerJoinProduct, IMapper mapper)
+        public ProviderJoinTypeProductsController(IProviderJoinProductService providerJoinProduct, IMapper mapper)
         {
             _providerJoinProducts = providerJoinProduct;
             _mapper = mapper;
         }
         
         [HttpPost("{typeproductId}")]
-        public async Task<IActionResult> AssignProductTag(int providerId, int typeproductId)
+        public async Task<IActionResult> AssignTypeProduct(int providerId, int typeproductId)
         {
 
           var result = await _providerJoinProducts.AssignProviderProduct(providerId, typeproductId);
@@ -41,7 +41,7 @@ namespace PetCare.Controllers
     
 
         [HttpGet]
-        public async Task<IEnumerable<ProductResource>> GetAllByProviderIdAsync(int providerId)
+        public async Task<IEnumerable<ProductResource>> GetAllTypeProductByProviderId(int providerId)
         {
             var servicess = await _providerJoinProducts.ListByProviderIdAsync(providerId);
             var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(servicess);

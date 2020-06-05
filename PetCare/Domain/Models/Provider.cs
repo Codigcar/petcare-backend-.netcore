@@ -15,18 +15,10 @@ namespace PetCare.Domain.Models
         public string Email { get; set; }
         public string Description { get; set; }
         
-       
-
         public Payment Payment{ get; set; }
-
         public List<ProviderJoinProduct> ProviderProducts { get; set; }
-
-        public IList<MedicalProfile> MedicalProfiles { get; set; } = new List<MedicalProfile>();
-
-        /*public Account Account { get; set; }
-        public int AccountId { get; set; }*/
-
         public IList<BusinessProfile> BusinessProfiles { get; set; } = new List<BusinessProfile>();
+        public IList<MedicalProfile> MedicalProfiles { get; set; } = new List<MedicalProfile>();
         public IList<Review> Reviews { get; set; } = new List<Review>();
 
     }

@@ -13,10 +13,10 @@ namespace PetCare.Services
     {
         private readonly IAvailabilityRepository _availabilityRepository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IProviderJoinProductRepository _productRepository;
+        private readonly IProductRepository _productRepository;
 
 
-        public AvailabilityService(IAvailabilityRepository availabilityRepository, IProviderJoinProductRepository productRepository, IUnitOfWork unitOfWork)
+        public AvailabilityService(IAvailabilityRepository availabilityRepository, IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _availabilityRepository = availabilityRepository;
             _unitOfWork = unitOfWork;
@@ -97,13 +97,24 @@ namespace PetCare.Services
 
         public async Task<AvailabilityResponse> SaveByProductIdAsync(int providerId, int productId, Availability availability)
         {
-
+            var productDB = _productRepository.FindByIdAsync(productId);
             try
             {
-                await _availabilityRepository.SaveByProductIdAsync(providerId, productId, availability);
-                await _unitOfWork.CompleteAsync();
+                
+                if (productDB != null)
+                {
+                    availability.Product = productDB.Result;
+                    availability.ProductId = productId;
+                    await _availabilityRepository.SaveByProductIdAsync(providerId, productId, availability);
+                    await _unitOfWork.CompleteAsync();
 
-                return new AvailabilityResponse(availability);
+                    return new AvailabilityResponse(availability);
+                }
+
+
+                return new AvailabilityResponse("Product not found");
+
+
             }
             catch (Exception ex)
             {

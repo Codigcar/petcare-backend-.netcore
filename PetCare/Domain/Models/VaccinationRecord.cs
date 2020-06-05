@@ -12,6 +12,7 @@ namespace PetCare.Domain.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Create_at { get; set; }
+
         public MedicalProfile Profile { get; set; }
         public int ProfileId { get; set; }
 

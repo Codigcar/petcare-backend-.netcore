@@ -14,7 +14,7 @@ namespace PetCare.Domain.Repositories
         Task<MedicalProfile> FindByIdAsync(int id);
         void Update(MedicalProfile medicalprofile);
         void Remove(MedicalProfile medicalprofile);
-        Task SaveByPetIdAsync(int servicesproviderId, int customerId, int petId, MedicalProfile medicalprofile);
+       
         Task<IEnumerable<MedicalProfile>> ListByPetIdAsync(int petId);
 
         

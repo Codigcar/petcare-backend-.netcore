@@ -13,13 +13,13 @@ using PetCare.Resources;
 namespace PetCare.Controllers
 {
     [Route("api/people/{personId}/pets")]
-    public class PeoplePetsController : ControllerBase
+    public class PetsController : ControllerBase
     {
         private readonly IPetService _petService;
         private readonly IPersonProfileService _personService;
         private readonly IMapper _mapper;
 
-        public PeoplePetsController(IPersonProfileService personService,IPetService petService, IMapper mapper)
+        public PetsController(IPersonProfileService personService,IPetService petService, IMapper mapper)
         {
             _petService = petService;
             _mapper = mapper;
@@ -27,7 +27,7 @@ namespace PetCare.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<PetResource>> GetAllAsync(int personId)
+        public async Task<IEnumerable<PetResource>> GetAllPetsByPersonId(int personId)
         {
             var persons = await _petService.ListByCostumerIdAsync(personId);
             var resources = _mapper.Map<IEnumerable<Pet>, IEnumerable<PetResource>>(persons);
@@ -35,7 +35,7 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync(int personId, [FromBody] SavePetResource resource)
+        public async Task<ActionResult> RegisterPetByPersonId(int personId, [FromBody] SavePetResource resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
@@ -54,7 +54,7 @@ namespace PetCare.Controllers
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int personId,int id, [FromBody] SavePetResource resource)
+        public async Task<IActionResult> EditPetByPersonId(int personId,int id, [FromBody] SavePetResource resource)
         {
             var Cid = await _personService.FindByIdAsync(personId
             );
@@ -73,7 +73,7 @@ namespace PetCare.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(int personId,int id)
+        public async Task<IActionResult> UnRegisterPetByPersonId(int personId,int id)
         {
             var Cid = await _personService.FindByIdAsync(personId
             );
