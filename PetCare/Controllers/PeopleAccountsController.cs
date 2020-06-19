@@ -12,7 +12,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/people")]
     public class PeopleAccountsController : ControllerBase
     {
         private readonly IPersonProfileService _customerService;
@@ -31,6 +31,14 @@ namespace PetCare.Controllers
             var customers = await _customerService.ListAsync();
             var resources = _mapper.Map<IEnumerable<PersonProfile>, IEnumerable<PersonProfileResource>>(customers);
             return resources;
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPersonById(int id)
+        {
+
+            var result = await _customerService.FindByIdAsync(id);
+            var resources = _mapper.Map<PersonProfile, PersonProfileResource>(result.Customer);
+            return Ok(resources);
         }
 
         [HttpPost]

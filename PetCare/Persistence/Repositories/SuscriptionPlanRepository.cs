@@ -18,23 +18,23 @@ namespace PetCare.Persistence.Repositories
 
         public async Task AddAsyn(SubscriptionPlan suscriptionPlan)
         {
-            await _context.SuscriptionPlans.AddAsync(suscriptionPlan);
+            await _context.SubscriptionPlans.AddAsync(suscriptionPlan);
         }
 
         public async Task<SubscriptionPlan> FindByIdAsync(int id)
         {
-            return await _context.SuscriptionPlans.FindAsync(id);
+            return await _context.SubscriptionPlans.FindAsync(id);
         }
 
         public async Task<IEnumerable<SubscriptionPlan>> ListAsync()
         {
-            return await _context.SuscriptionPlans.ToListAsync();
+            return await _context.SubscriptionPlans.ToListAsync();
            // return await _context.SuscriptionPlans.Include(x => x.SuscriptionPlan).ToListAsync();
         }
 
         public void Remove(SubscriptionPlan suscriptionPlan)
         {
-            _context.SuscriptionPlans.Remove(suscriptionPlan);
+            _context.SubscriptionPlans.Remove(suscriptionPlan);
         }
 
         public void Update(SubscriptionPlan suscriptionPlan)
