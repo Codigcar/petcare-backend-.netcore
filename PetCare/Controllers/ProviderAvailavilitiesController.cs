@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Controllers
 {
-    [Route("api/business/{bussinessId}/providers/{providerId}/typeproducts/{typeproductId}/products/{productId}/availability")]
+    [Route("api/business/{bussinessId}/providers/{providerId}/typeproducts/{typeproductId}/products/{productId}/availabilities")]
     public class ProviderAvailavilitiesController : ControllerBase
     {
         private readonly IProviderService _providerService;

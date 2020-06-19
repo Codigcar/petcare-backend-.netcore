@@ -35,25 +35,25 @@ namespace PetCare.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> PostAsync([FromBody] SaveSuscriptionPlan resource)
+        public async Task<ActionResult> PostAsync([FromBody] SaveSubscriptionPlan resource)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
 
 
-            var suscriptionPlan = _mapper.Map<SaveSuscriptionPlan, SubscriptionPlan>(resource);
+            var suscriptionPlan = _mapper.Map<SaveSubscriptionPlan, SubscriptionPlan>(resource);
             var result = await _suscriptionPlanService.SaveAsync(suscriptionPlan);
             if (!result.Success)
                 return BadRequest(result.Message);
-            var Resource = _mapper.Map<SubscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
+            var Resource = _mapper.Map<SubscriptionPlan, SubscriptionPlanResource>(result.SuscriptionPlan);
             return Ok(Resource);
         }
 
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveSuscriptionPlan resource)
+        public async Task<IActionResult> PutAsync(int id, [FromBody] SaveSubscriptionPlan resource)
         {
-            var servicesPlan = _mapper.Map<SaveSuscriptionPlan, SubscriptionPlan>(resource);
+            var servicesPlan = _mapper.Map<SaveSubscriptionPlan, SubscriptionPlan>(resource);
             var result = await _suscriptionPlanService.UpdateAsync(id, servicesPlan);
 
             if (!result.Success)
@@ -61,7 +61,7 @@ namespace PetCare.Controllers
                 return BadRequest(result.Message);
             }
 
-            var Resource = _mapper.Map<SubscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
+            var Resource = _mapper.Map<SubscriptionPlan, SubscriptionPlanResource>(result.SuscriptionPlan);
             return Ok(Resource);
         }
 
@@ -73,7 +73,7 @@ namespace PetCare.Controllers
             {
                 return BadRequest(result.Message);
             }
-            var Resource = _mapper.Map<SubscriptionPlan, SuscriptionPlanResource>(result.SuscriptionPlan);
+            var Resource = _mapper.Map<SubscriptionPlan, SubscriptionPlanResource>(result.SuscriptionPlan);
             return Ok(Resource);
         }
 

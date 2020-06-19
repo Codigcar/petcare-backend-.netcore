@@ -19,7 +19,7 @@ namespace PetCare.Persistence.Context
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<SubscriptionPlan> SuscriptionPlans { get; set; }
+        public DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProviderJoinProduct> ProviderJoinProducts { get; set; }
         public DbSet<TypeProduct> TypeProducts{ get; set; }
@@ -184,7 +184,7 @@ namespace PetCare.Persistence.Context
               );
 
             // Naming conventions Policy
-            builder.ApplySnakeCaseNamingConvention();
+          //  builder.ApplySnakeCaseNamingConvention();
 
         }
     }

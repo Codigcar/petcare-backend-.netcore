@@ -30,9 +30,13 @@ namespace PetCare
         {
             services.AddControllers();
 
-            services.AddDbContext<AppDbContext>(opt =>
-            opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection"))
-          );
+            /*services.AddDbContext<AppDbContext>(opt =>
+            opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
+*/
+            services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+     
 
             
             services.AddScoped<IPersonProfileRepository, PersonProfileRepository>();

@@ -24,6 +24,10 @@ namespace PetCare.Services
             _unitOfWork = unitOfWork;
         }
 
+        public Task<IEnumerable<MedicalRecord>> ListByProfileIdAsync(int profileId)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<MedicalRecordResponse> SaveByProfileIdAsync(int profileId, MedicalRecord medicalRecord)
         {
@@ -44,9 +48,6 @@ namespace PetCare.Services
             }
         }
 
-        public async Task<IEnumerable<MedicalRecord>> ListByProfileIdAsync(int profileId)
-        {
-            return await _medicalProfileRepository.ListByMedicalProfile(profileId);
-        }
+      
     }
 }
