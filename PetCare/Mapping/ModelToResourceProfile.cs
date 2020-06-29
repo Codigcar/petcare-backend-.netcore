@@ -28,6 +28,8 @@ namespace PetCare.Mapping
             CreateMap<Availability, AvailabilityResource>();
             CreateMap<BusinessProfile, BusinessProfileResource>();
             CreateMap<Review, ReviewResource>();
+            CreateMap<ProviderJoinProduct, ProviderJoinProductTypeResource>();
+
         }
     }
 }

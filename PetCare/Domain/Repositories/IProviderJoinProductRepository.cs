@@ -12,5 +12,6 @@ namespace PetCare.Domain.Repositories
         Task<IEnumerable<ProviderJoinProduct>> ListByProductIdAsync(int productId);
         Task<ProviderJoinProduct> FindByProviderIdAndProductId(int providerId, int productId);
         Task AssignProviderTypeProduct(ProviderJoinProduct providerJoinProduct);
+        Task<IEnumerable<ProviderJoinProduct>> ListProductTypeByProviderId(int providerId);
     }
 }

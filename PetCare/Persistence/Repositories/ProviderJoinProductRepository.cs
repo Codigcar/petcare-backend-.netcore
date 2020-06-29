@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.CodeAnalysis.FlowAnalysis;
+using Microsoft.EntityFrameworkCore;
 using PetCare.Domain.Models;
 using PetCare.Domain.Repositories;
 using PetCare.Persistence.Context;
@@ -33,6 +34,25 @@ namespace PetCare.Persistence.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<ProviderJoinProduct>> ListProductTypeByProviderId(int providerId) =>
+            await _context.ProviderJoinProducts
+            .Where(x => x.ProviderId == providerId)
+            .Include(x => x.TypeProduct)
+            .ToListAsync();
+
+
+
+        /*    var person = (from p in _context.ProviderJoinProducts
+                          join pt in _context.TypeProducts
+                          on p.TypeProductId equals pt.Id
+                          where p.TypeProductId == pt.Id
+                          
+                          ).ToList();
+
+            return person;*/
+
+        /* 
+         */
 
 
         /*  public async Task AssignProviderProduct(int providerId, int productId)

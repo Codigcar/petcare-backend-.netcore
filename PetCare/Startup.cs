@@ -87,6 +87,13 @@ namespace PetCare
             services.AddScoped<IBusinessProfileRepository, BusinessProfileRepository>();
 
             services.AddScoped<IUnitOfWork, unitOfWork>();
+
+
+            services.AddCors(options => {
+                options.AddPolicy("Todos",
+                    builder => builder.WithOrigins("*").WithHeaders("*").WithMethods("*"));
+            });
+
             services.AddAutoMapper(typeof(Startup));
             services.AddSwaggerGen(c =>
             {
@@ -104,6 +111,9 @@ namespace PetCare
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("Todos");
+
 
             app.UseRouting();
 

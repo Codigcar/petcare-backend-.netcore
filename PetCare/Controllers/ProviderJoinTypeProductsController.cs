@@ -41,10 +41,10 @@ namespace PetCare.Controllers
     
 
         [HttpGet]
-        public async Task<IEnumerable<ProductResource>> GetAllTypeProductByProviderId(int providerId)
+        public async Task<IEnumerable<ProviderJoinProductTypeResource>> GetAllTypeProductByProviderId(int providerId)
         {
             var servicess = await _providerJoinProducts.ListByProviderIdAsync(providerId);
-            var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(servicess);
+            var resources = _mapper.Map<IEnumerable<ProviderJoinProduct>, IEnumerable<ProviderJoinProductTypeResource>>(servicess);
             return resources;
         }
 

@@ -28,10 +28,7 @@ namespace PetCare.Persistence.Repositories
             return await _context.Products.Where(a => a.Name == name).FirstAsync();
         }
 
-        public Task<IEnumerable<Product>> ListByTypeProductIdAsync(int typeProductId)
-        {
-            throw new NotImplementedException();
-        }
+      
 
         public async Task SaveByTypeProductIdAsync(int typeProductId, Product product)
         {
@@ -40,14 +37,14 @@ namespace PetCare.Persistence.Repositories
             product.TypeProductId = ProviderJoinTypeProduct.TypeProductId;
             await _context.Products.AddAsync(product);
         }
-
-        /*  public async Task<IEnumerable<Product>> ListByTypeProductIdAsync(int serviTypeId) => 
+         
+         public async Task<IEnumerable<Product>> ListByTypeProductIdAsync(int providerId,int serviTypeId) => 
               await _context.Products
-              .Where(s => s.TypeProductId == serviTypeId)
-              .Include(i => i.TypeProduct)
+              .Where(x => x.PJP.ProviderId == providerId && x.PJP.TypeProductId == serviTypeId )
+              .Include(i => i.PJP)
               .ToListAsync();
 
-
+        /*
           public async Task SaveByTypeProductIdAsync(int serviTypeId, Product service)
           {
               var serviType = await _context.TypeProducts.FindAsync(serviTypeId);

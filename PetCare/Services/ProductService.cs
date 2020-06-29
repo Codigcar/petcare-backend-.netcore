@@ -32,10 +32,10 @@ namespace PetCare.Services
                 return new ProductResponse($"An error ocurred the ServiceType: {ex.Message}");
             }
         }
-
-        public async Task<IEnumerable<Product>> ListByTypeProductIdAsync(int serviTypeId)
+         
+        public async Task<IEnumerable<Product>> ListByTypeProductIdAsync(int providerId,int serviTypeId)
         {
-            return await _productRepository.ListByTypeProductIdAsync(serviTypeId);
+            return await _productRepository.ListByTypeProductIdAsync(providerId,serviTypeId);
         }
 
         public async Task<ProductResponse> SaveByTypeProductIdAsync(int serviTypeId, Product service)

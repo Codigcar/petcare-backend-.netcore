@@ -35,9 +35,9 @@ namespace PetCare.Services
 
                 ProviderJoinProduct providerJoinProduct = new ProviderJoinProduct();
                 providerJoinProduct.Provider = providerBD.Result;
-                providerJoinProduct.ProviderId = providerBD.Id;
+                providerJoinProduct.ProviderId = providerId;
                 providerJoinProduct.TypeProduct = typeproductBD.Result;
-                providerJoinProduct.TypeProductId = typeproductBD.Id;
+                providerJoinProduct.TypeProductId = typeproductId;
 
                 await _providerJoinProductRepository.AssignProviderTypeProduct(providerJoinProduct);
                 await _unitOfWork.CompleteAsync();
@@ -53,9 +53,10 @@ namespace PetCare.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Product>> ListByProviderIdAsync(int providerId)
+        public async Task<IEnumerable<ProviderJoinProduct>> ListByProviderIdAsync(int providerId)
         {
-            throw new NotImplementedException();
+            return await _providerJoinProductRepository.ListProductTypeByProviderId(providerId);
+      
         }
 
 

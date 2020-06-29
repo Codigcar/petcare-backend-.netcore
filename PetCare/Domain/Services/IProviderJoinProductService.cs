@@ -11,7 +11,7 @@ namespace PetCare.Domain.Services
     public interface IProviderJoinProductService
     {
       Task<ProviderJoinProductResponse> AssignProviderProduct(int providerId, int typeproductId);
-        Task<IEnumerable<Product>> ListByProviderIdAsync(int providerId);
+        Task<IEnumerable<ProviderJoinProduct>> ListByProviderIdAsync(int providerId);
       
     }
 }

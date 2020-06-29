@@ -42,9 +42,9 @@ namespace PetCare.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<ProductResource>> GetAllProductByTypeProductId(int typeproductId)
+        public async Task<IEnumerable<ProductResource>> GetAllProductByTypeProductId(int providerId,int typeproductId)
         {
-            var products = await _product.ListByTypeProductIdAsync(typeproductId);
+            var products = await _product.ListByTypeProductIdAsync(providerId,typeproductId);
             var resources = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductResource>>(products);
             return resources;
         }
