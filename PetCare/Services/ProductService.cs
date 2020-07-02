@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Services
 {
-    public class ProductService : IProductService
+    public class ProductService : IProductService 
     {
         private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
@@ -18,6 +18,19 @@ namespace PetCare.Services
         {
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;
+        }
+
+        public async Task<ProductResponse> FindById(int productId)
+        {
+            try
+            {
+                var productBD = _productRepository.FindByIdAsync(productId);
+                return new ProductResponse(productBD.Result);
+            }
+            catch (Exception ex)
+            {
+                return new ProductResponse($"An error ocurred the FindByproductId: {ex.Message}");
+            }
         }
 
         public async Task<ProductResponse> findByName(string name)

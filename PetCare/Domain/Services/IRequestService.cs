@@ -9,8 +9,9 @@ namespace PetCare.Domain.Services
 {
     public interface IRequestService
     {
-        Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int productId, int petId, PersonRequest Request);
+        Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId,int productTypeId, int productId, int petId, PersonRequest Request);
         Task<IEnumerable<PersonRequest>> ListByCostumerIdAsync(int customerId);
-        Task<IEnumerable<PersonRequest>> ListByProductIdAsync(int providerId, int productId);
+        Task<IEnumerable<PersonRequest>> ListByProductIdAsync(int providerId);
+        Task<PersonRequest> Update(int requestId, PersonRequest personRequest);
     }
 }

@@ -133,5 +133,10 @@ namespace PetCare.Services
                 return new PetResponse($"An error ocurred while deleting the pet: {ex.Message}");
             }
         }
+
+        public async Task<Pet> FindPetByPersonId(int personId, int petId)
+        {
+            return await _petRepository.FindPetByPersonId(personId, petId);
+        }
     }
 }

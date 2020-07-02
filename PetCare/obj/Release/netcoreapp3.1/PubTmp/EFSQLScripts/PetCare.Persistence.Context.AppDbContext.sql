@@ -9,7 +9,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Providers] (
         [Id] int NOT NULL IDENTITY,
@@ -25,7 +25,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Roles] (
         [Id] int NOT NULL IDENTITY,
@@ -38,7 +38,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [SubscriptionPlans] (
         [Id] int NOT NULL IDENTITY,
@@ -52,7 +52,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [TypeProducts] (
         [Id] int NOT NULL IDENTITY,
@@ -63,7 +63,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Payments] (
         [Id] int NOT NULL IDENTITY,
@@ -79,7 +79,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Accounts] (
         [Id] int NOT NULL IDENTITY,
@@ -95,7 +95,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [ProviderJoinProducts] (
         [Id] int NOT NULL IDENTITY,
@@ -109,7 +109,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [BusinessProfiles] (
         [Id] int NOT NULL IDENTITY,
@@ -131,7 +131,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [PersonProfiles] (
         [Id] int NOT NULL IDENTITY,
@@ -150,7 +150,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Products] (
         [Id] int NOT NULL IDENTITY,
@@ -164,7 +164,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Pets] (
         [Id] int NOT NULL IDENTITY,
@@ -181,7 +181,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Reviews] (
         [Id] int NOT NULL IDENTITY,
@@ -197,7 +197,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Availabilities] (
         [Id] int NOT NULL IDENTITY,
@@ -212,18 +212,24 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [Requests] (
         [Id] int NOT NULL IDENTITY,
-        [DateReservation] datetime2 NOT NULL,
-        [StartTime] nvarchar(max) NULL,
         [EndTime] nvarchar(max) NULL,
-        [Status] bit NOT NULL,
+        [ProviderId] int NOT NULL,
+        [ProductTypeId] int NOT NULL,
+        [PetId] int NOT NULL,
         [PersonProfileId] int NOT NULL,
         [ProductId] int NOT NULL,
-        [PetId] int NOT NULL,
-        [ProviderId] int NOT NULL,
+        [VeterinaryName] nvarchar(max) NULL,
+        [ProductTypeName] nvarchar(max) NULL,
+        [ProductName] nvarchar(max) NULL,
+        [PetName] nvarchar(max) NULL,
+        [DateReservation] datetime2 NOT NULL,
+        [StartTime] nvarchar(max) NULL,
+        [Status] int NOT NULL,
+        [PersonName] nvarchar(max) NULL,
         CONSTRAINT [PK_Requests] PRIMARY KEY ([Id]),
         CONSTRAINT [FK_Requests_PersonProfiles_PersonProfileId] FOREIGN KEY ([PersonProfileId]) REFERENCES [PersonProfiles] ([Id]) ON DELETE CASCADE,
         CONSTRAINT [FK_Requests_Products_ProductId] FOREIGN KEY ([ProductId]) REFERENCES [Products] ([Id]) ON DELETE CASCADE
@@ -232,7 +238,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [MedicalProfiles] (
         [Id] int NOT NULL IDENTITY,
@@ -257,7 +263,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [MedicalRecords] (
         [Id] int NOT NULL IDENTITY,
@@ -273,7 +279,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE TABLE [VaccinationRecords] (
         [Id] int NOT NULL IDENTITY,
@@ -288,7 +294,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Description', N'Name', N'Publish') AND [object_id] = OBJECT_ID(N'[Roles]'))
         SET IDENTITY_INSERT [Roles] ON;
@@ -301,7 +307,7 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Description', N'Duration', N'Name', N'Price') AND [object_id] = OBJECT_ID(N'[SubscriptionPlans]'))
         SET IDENTITY_INSERT [SubscriptionPlans] ON;
@@ -315,143 +321,143 @@ END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Accounts_RolId] ON [Accounts] ([RolId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Accounts_SubscriptionPlanId] ON [Accounts] ([SubscriptionPlanId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE UNIQUE INDEX [IX_Availabilities_ProductId] ON [Availabilities] ([ProductId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE UNIQUE INDEX [IX_BusinessProfiles_AccountId] ON [BusinessProfiles] ([AccountId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_BusinessProfiles_ProviderId] ON [BusinessProfiles] ([ProviderId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE UNIQUE INDEX [IX_MedicalProfiles_PetId] ON [MedicalProfiles] ([PetId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_MedicalProfiles_ProviderId] ON [MedicalProfiles] ([ProviderId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_MedicalRecords_MedicalProfileId] ON [MedicalRecords] ([MedicalProfileId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE UNIQUE INDEX [IX_Payments_ServicesProviderForeignKey] ON [Payments] ([ServicesProviderForeignKey]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE UNIQUE INDEX [IX_PersonProfiles_AccountId] ON [PersonProfiles] ([AccountId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Pets_PersonProfileId] ON [Pets] ([PersonProfileId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Products_PJPId] ON [Products] ([PJPId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_ProviderJoinProducts_ProviderId] ON [ProviderJoinProducts] ([ProviderId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_ProviderJoinProducts_TypeProductId] ON [ProviderJoinProducts] ([TypeProductId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Requests_PersonProfileId] ON [Requests] ([PersonProfileId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Requests_ProductId] ON [Requests] ([ProductId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Reviews_PersonProfileId] ON [Reviews] ([PersonProfileId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_Reviews_ProviderId] ON [Reviews] ([ProviderId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     CREATE INDEX [IX_VaccinationRecords_ProfileId] ON [VaccinationRecords] ([ProfileId]);
 END;
 
 GO
 
-IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200619143442_ultimate3')
+IF NOT EXISTS(SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = N'20200701041816_ultimate5')
 BEGIN
     INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-    VALUES (N'20200619143442_ultimate3', N'3.1.3');
+    VALUES (N'20200701041816_ultimate5', N'3.1.3');
 END;
 
 GO

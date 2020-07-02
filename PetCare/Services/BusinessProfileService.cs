@@ -88,6 +88,15 @@ namespace PetCare.Services
         {
             return await _businessRepository.ListAsync();
         }
-      
+
+        public async Task<IEnumerable<BusinessProfile>> ListFindByProviderId(int providerId)
+        {
+            return await _businessRepository.ListFindByProviderId(providerId);
+        }
+
+        public async Task<BusinessProfile> FindByProviderId(int providerId)
+        {
+            return await _businessRepository.FindByProviderId(providerId);
+        }
     }
 }

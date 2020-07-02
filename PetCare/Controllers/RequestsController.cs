@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Asn1.Ocsp;
 using PetCare.Domain.Models;
 using PetCare.Domain.Services;
 using PetCare.Extensions;
@@ -13,24 +14,25 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/business/{business}/providers/{providerId}/request")]
-    public class RequestController : ControllerBase
+    [Route("api/people/{personId}/requests")]
+    public class RequestsController : ControllerBase
     {
         private readonly IRequestService _requestService;
         private readonly IMapper _mapper;
 
-        public RequestController(IRequestService RequestService, IMapper mapper)
+        public RequestsController(IRequestService RequestService, IMapper mapper)
         {
             _requestService = RequestService;
             _mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<RequestResource>> GetAllRequestByProductId(int providerId)
+        public async Task<IEnumerable<RequestResource>> GetAllRequestByPersonId(int personId)
         {
-            var requests = await _requestService.ListByProductIdAsync(providerId);
-            var resources = _mapper.Map<IEnumerable<PersonRequest>, IEnumerable<RequestResource>>(requests);
-            return resources;
+            var requestDB = await _requestService.ListByCostumerIdAsync(personId);
+            var resource = _mapper.Map<IEnumerable<PersonRequest>, IEnumerable<RequestResource>>(requestDB);
+            return resource;
+
         }
 
     }

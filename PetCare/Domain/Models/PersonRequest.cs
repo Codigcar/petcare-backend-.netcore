@@ -8,20 +8,24 @@ namespace PetCare.Domain.Models
     public class PersonRequest
     {
         public int Id { get; set; }
-        public DateTime DateReservation { get; set; }
-        public string StartTime { get; set; }
         public string EndTime { get; set; }
-        public bool Status { get; set; }
-        //Person
+
+        public int ProviderId { get; set; }
+        public int ProductTypeId { get; set; }
+        public int PetId { get; set; }
+
         public int PersonProfileId { get; set; }
         public PersonProfile PersonProfile { get; set; }
-        //Product
         public int ProductId { get; set; }
         public Product Product { get; set; }
-        //Pet
-        public int PetId { get; set; }
-        //Provider
-        public int ProviderId { get; set; }
 
+        public string VeterinaryName { get; set; }
+        public string ProductTypeName { get; set; }
+        public string ProductName { get; set; }
+        public string PetName { get; set; }
+        public DateTime DateReservation { get; set; }
+        public string StartTime { get; set; }
+        public int Status { get; set; }
+        public string PersonName { get; set; }
     }
 }

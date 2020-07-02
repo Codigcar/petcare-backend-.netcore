@@ -296,14 +296,29 @@ namespace PetCare.Migrations
                     b.Property<string>("EndTime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PersonName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PersonProfileId")
                         .HasColumnType("int");
 
                     b.Property<int>("PetId")
                         .HasColumnType("int");
 
+                    b.Property<string>("PetName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProductTypeName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ProviderId")
                         .HasColumnType("int");
@@ -311,8 +326,11 @@ namespace PetCare.Migrations
                     b.Property<string>("StartTime")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VeterinaryName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

@@ -33,8 +33,16 @@ namespace PetCare.Controllers
             return resources;
         }
 
+        [HttpGet("{providerId}")]
+        public async Task<ProviderResource> GetProviderById(int providerId)
+        {
+            var providerDB = await _servicesProviderService.FindByIdAsync(providerId);
+            var resource = _mapper.Map<Provider, ProviderResource>(providerDB.ProductsProvider);
+            return resource;
+        }
 
-        
+
+
 
     }
 }

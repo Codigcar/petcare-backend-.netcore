@@ -41,6 +41,15 @@ namespace PetCare.Controllers
             return Ok(customerResource);
         }
 
+        [HttpGet("{providerId}")]
+        public async Task<BusinessProfileResource> GetBusinessProfileByProviderId(int providerId)
+        {
+            var businessDB = await _businessService.FindByProviderId(providerId);
+            var resources = _mapper.Map<BusinessProfile, BusinessProfileResource>(businessDB);
+
+            return resources;
+        }
+
 
      
     }

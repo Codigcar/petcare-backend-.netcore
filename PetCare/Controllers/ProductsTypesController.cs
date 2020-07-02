@@ -13,13 +13,13 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
-    [Route("api/dashboard/typeproducts")]
-    public class ProviderTypeProductsController : ControllerBase
+    [Route("api/dashboard/products-types")]
+    public class ProductsTypesController : ControllerBase
     {
         private readonly ITypeProductService _typeProductService;
         private readonly IMapper _mapper;
 
-        public ProviderTypeProductsController(ITypeProductService serviTypeService, IMapper mapper)
+        public ProductsTypesController(ITypeProductService serviTypeService, IMapper mapper)
         {
             _typeProductService = serviTypeService;
             _mapper = mapper;
@@ -47,6 +47,17 @@ namespace PetCare.Controllers
             var resource = _mapper.Map<TypeProduct, TypeProductResource>(result.TypeProduct);
             return Ok(resource);
         }
+        [HttpGet("{producttypeId}")]
+        public async Task<IActionResult> GetProductTypeById(int producttypeId)
+        {
+            var productType = await _typeProductService.FindByIdAsync(producttypeId);
+            
+
+            var productTypeResource = _mapper.Map<TypeProduct, TypeProductResource>(productType.TypeProduct);
+            return Ok(productTypeResource);
+        }
+
+
 
 
     }

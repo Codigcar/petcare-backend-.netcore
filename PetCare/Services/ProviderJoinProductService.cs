@@ -34,9 +34,9 @@ namespace PetCare.Services
                 var typeproductBD = _typeProductRepository.FindByIdAsync(typeproductId);
 
                 ProviderJoinProduct providerJoinProduct = new ProviderJoinProduct();
-                providerJoinProduct.Provider = providerBD.Result;
+               // providerJoinProduct.Provider = providerBD.Result;
                 providerJoinProduct.ProviderId = providerId;
-                providerJoinProduct.TypeProduct = typeproductBD.Result;
+              //  providerJoinProduct.TypeProduct = typeproductBD.Result;
                 providerJoinProduct.TypeProductId = typeproductId;
 
                 await _providerJoinProductRepository.AssignProviderTypeProduct(providerJoinProduct);

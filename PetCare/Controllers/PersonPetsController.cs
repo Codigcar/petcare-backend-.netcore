@@ -87,5 +87,12 @@ namespace PetCare.Controllers
             var categoryResource = _mapper.Map<Pet, PetResource>(result.Pet);
             return Ok(categoryResource);
         }
+        [HttpGet("{petId}")]
+        public async Task<IActionResult> GetPetByPersonId(int personId,int petId)
+        {
+            var result = await _petService.FindPetByPersonId(personId, petId);
+            var petResource = _mapper.Map<Pet, PetResource>(result);
+            return Ok(petResource);
+        }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PetCare.Migrations
 {
-    public partial class ultimate3 : Migration
+    public partial class ultimate5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -307,14 +307,20 @@ namespace PetCare.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DateReservation = table.Column<DateTime>(nullable: false),
-                    StartTime = table.Column<string>(nullable: true),
                     EndTime = table.Column<string>(nullable: true),
-                    Status = table.Column<bool>(nullable: false),
+                    ProviderId = table.Column<int>(nullable: false),
+                    ProductTypeId = table.Column<int>(nullable: false),
+                    PetId = table.Column<int>(nullable: false),
                     PersonProfileId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
-                    PetId = table.Column<int>(nullable: false),
-                    ProviderId = table.Column<int>(nullable: false)
+                    VeterinaryName = table.Column<string>(nullable: true),
+                    ProductTypeName = table.Column<string>(nullable: true),
+                    ProductName = table.Column<string>(nullable: true),
+                    PetName = table.Column<string>(nullable: true),
+                    DateReservation = table.Column<DateTime>(nullable: false),
+                    StartTime = table.Column<string>(nullable: true),
+                    Status = table.Column<int>(nullable: false),
+                    PersonName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

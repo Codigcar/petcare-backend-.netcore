@@ -12,5 +12,6 @@ namespace PetCare.Domain.Services
         Task<ProductResponse> findByName(string name);
         Task<ProductResponse> SaveByTypeProductIdAsync(int typeProductId, Product product);
         Task<IEnumerable<Product>> ListByTypeProductIdAsync(int providerId, int typeProductId);
+        Task<ProductResponse> FindById(int productId);
     }
 }

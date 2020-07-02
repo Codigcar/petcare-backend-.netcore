@@ -26,6 +26,19 @@ namespace PetCare.Persistence.Repositories
             throw new NotImplementedException();
         }
 
+        public async Task<IEnumerable<BusinessProfile>> ListFindByProviderId(int providerId) =>
+            await _context.BusinessProfiles
+            .Where(x => x.ProviderId == providerId && x.Owner == true )
+            .Include(x => x.Provider)
+            .ToListAsync();
+
+        public async Task<BusinessProfile> FindByProviderId(int providerId) =>
+            await _context.BusinessProfiles
+            .Where(x => x.ProviderId == providerId && x.Owner == true)
+            .Include(x => x.Provider)
+            .FirstOrDefaultAsync();
+
+
         public async Task<IEnumerable<BusinessProfile>> ListAsync()
         {
             return await _context.BusinessProfiles.ToListAsync();
@@ -40,6 +53,7 @@ namespace PetCare.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
+
 
         /*public async Task AddAsyn(PersonProfile customer)
         {

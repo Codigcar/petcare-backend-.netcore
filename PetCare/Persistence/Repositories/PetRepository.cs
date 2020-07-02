@@ -57,6 +57,12 @@ namespace PetCare.Persistence.Repositories
             .Include(p => p.PersonProfile)
             .ToListAsync();
 
+        public async Task<Pet> FindPetByPersonId(int personId, int petId) =>
+            await _context.Pets
+            .Where(x => x.PersonProfileId == personId && x.Id == petId)
+            .Include(x => x.PersonProfile)
+            .FirstOrDefaultAsync();
+
 
 
         /* public async Task<IEnumerable<ServicesProvider>> ListBySuscriptionPlanIdAsync(int planId) =>

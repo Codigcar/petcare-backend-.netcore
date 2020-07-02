@@ -34,12 +34,12 @@ namespace PetCare.Services
             return await _requestRepository.ListByCustomerIdAsync(customerId);
         }
 
-        public async Task<IEnumerable<PersonRequest>> ListByProductIdAsync(int providerId, int serviceId)
+        public async Task<IEnumerable<PersonRequest>> ListByProductIdAsync(int providerId)
         {
-            return await _requestRepository.ListByProductIdAsync(serviceId);
+            return await _requestRepository.ListByProductIdAsync(providerId);
         }
 
-        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int productId, int petId, PersonRequest request)
+        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId,int productTypeId, int productId, int petId, PersonRequest request)
         {
             PersonProfile customer = await _customerRepository.FindByIdAsync(customerId);
             Product product = await _productepository.FindByIdAsync(productId);
@@ -53,9 +53,10 @@ namespace PetCare.Services
                 request.PersonProfileId = customerId;
                 request.PersonProfile = customer;
                 request.ProviderId = providerId;
+                request.ProductTypeId = productTypeId;
                 request.Product = product;
                 request.ProductId = productId;
-                request.Status = false;
+                request.Status = 1;
 
                 await _requestRepository.SaveByCustomerIdAsync(request);
                 await _unitOfWork.CompleteAsync();
@@ -69,5 +70,12 @@ namespace PetCare.Services
                 return new RequestResponse($"An error ocurred while saving the request: {ex.Message}");
             }
         }
+
+      /*  public async Task<PersonRequest> Update(int requestId, PersonRequest personRequest)
+        {
+            var RequestDB = await _requestRepository.FindById(requestId);
+            RequestDB.DateReservation = personRequest.DateReservation;
+
+        }*/
     }
 }

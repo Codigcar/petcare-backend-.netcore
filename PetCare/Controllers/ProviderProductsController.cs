@@ -49,6 +49,16 @@ namespace PetCare.Controllers
             return resources;
         }
 
+        [HttpGet("{productId}")]
+        public async Task<IActionResult> GetProductById(int productId)
+        {
+            var productDB = await _product.FindById(productId);
+
+
+            var productResource = _mapper.Map<Product, ProductResource>(productDB.Product);
+            return Ok(productResource);
+        }
+
 
     }
 }

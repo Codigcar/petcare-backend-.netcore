@@ -15,6 +15,7 @@ namespace PetCare.Domain.Repositories
         void Remove(Pet pet);
         Task SaveByCustomerIdAsync(int customerId, Pet pet);
         Task<IEnumerable<Pet>> ListByCustomerIdAsync(int customerId);
+        Task<Pet> FindPetByPersonId(int personId,int petId);
 
 
     }

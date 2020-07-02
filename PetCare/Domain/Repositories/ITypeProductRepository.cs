@@ -12,7 +12,6 @@ namespace PetCare.Domain.Repositories
         Task AddAsyn(TypeProduct typeProduct);
         Task<TypeProduct> FindByIdAsync(int id);
         Task<TypeProduct> FindByName(string name);
-
         // void Update(Customer customer);
         // void Remove(Customer customer);
     }
