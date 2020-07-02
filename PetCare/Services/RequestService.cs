@@ -1,4 +1,5 @@
-﻿using PetCare.Domain.Comunication;
+﻿using Org.BouncyCastle.Asn1.Ocsp;
+using PetCare.Domain.Comunication;
 using PetCare.Domain.Models;
 using PetCare.Domain.Repositories;
 using PetCare.Domain.Services;
@@ -71,11 +72,52 @@ namespace PetCare.Services
             }
         }
 
-      /*  public async Task<PersonRequest> Update(int requestId, PersonRequest personRequest)
+        public  async Task<RequestResponse> Update(int requestId, PersonRequest resource)
         {
-            var RequestDB = await _requestRepository.FindById(requestId);
-            RequestDB.DateReservation = personRequest.DateReservation;
+            try
+            {
+                var requestDB = await _requestRepository.FindById(requestId);
 
-        }*/
+                if (requestDB == null)
+                {
+                    return null;
+                }
+
+                requestDB.EndTime = resource.EndTime ;
+                requestDB.ProviderId = resource.ProviderId;
+                requestDB.ProductTypeId = resource.ProductTypeId;
+                requestDB.PetId = resource.PetId;
+                requestDB.PersonProfileId = resource.PersonProfileId;
+                requestDB.ProductId = resource.ProductId;
+                requestDB.VeterinaryName = resource.VeterinaryName;
+                requestDB.ProductTypeName = resource.ProductTypeName;
+                requestDB.ProductName = resource.ProductName;
+                requestDB.PetName = resource.PetName;
+                requestDB.DateReservation = resource.DateReservation;
+                requestDB.StartTime = resource.StartTime;
+                requestDB.Status = resource.Status;
+                requestDB.PersonName = resource.PersonName;
+
+
+                _requestRepository.Update(requestDB);
+                await _unitOfWork.CompleteAsync();
+
+                return new RequestResponse(requestDB);
+
+            }
+            catch (Exception ex)
+            {
+                return new RequestResponse($"An error ocurred while update the request: {ex.Message}");
+            }
+
+        }
+
+
+        /*  public async Task<PersonRequest> Update(int requestId, PersonRequest personRequest)
+          {
+              var RequestDB = await _requestRepository.FindById(requestId);
+              RequestDB.DateReservation = personRequest.DateReservation;
+
+          }*/
     }
 }
