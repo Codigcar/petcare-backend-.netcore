@@ -11,7 +11,7 @@ namespace PetCare.Domain.Services
     public interface IUserService
     {
         AuthenticateResponse Authenticate(AuthenticateRequest body/*, Task<List<Account>> list*/);
-        IEnumerable<Account> GetAll();
+
         // Task<List<Account>> ListAsync();
     }
 }

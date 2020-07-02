@@ -12,6 +12,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
+
     [Route("api/business")]
     public class BusinessAccountController : ControllerBase
     {

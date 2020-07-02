@@ -17,11 +17,10 @@ namespace PetCare.Controllers
         public UsersController(IUserService userService)
         {
             _userService = userService;
-           /* var payments = await _PaymentService.ListByServicesProviderIdAsync(providerId);*/
+            /* var payments = await _PaymentService.ListByServicesProviderIdAsync(providerId);*/
         }
 
         [AllowAnonymous]
-
         [HttpPost("authenticate")]
         public IActionResult Authenticate([FromBody] AuthenticateRequest request)
         {
@@ -33,11 +32,11 @@ namespace PetCare.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult GetAll()
         {
             var users = _userService.GetAll();
             return Ok(users);
-        }
+        }*/
     }
 }

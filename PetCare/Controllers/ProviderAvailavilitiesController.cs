@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PetCare.Domain.Models;
 using PetCare.Domain.Services;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace PetCare.Controllers
 {
+    //[Authorize]
     [Route("api/business/{bussinessId}/providers/{providerId}/typeproducts/{typeproductId}/products/{productId}/availabilities")]
     public class ProviderAvailavilitiesController : ControllerBase
     {

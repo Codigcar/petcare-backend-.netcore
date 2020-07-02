@@ -9,6 +9,8 @@ namespace PetCare.Domain.Repositories
     public interface IRequestRepository
     {
         Task SaveByCustomerIdAsync(PersonRequest request);
+        Task<PersonRequest> FindByIdAsync(int id);
+        void Update(PersonRequest request);
         Task<IEnumerable<PersonRequest>> ListByCustomerIdAsync(int customerId);
         Task<IEnumerable<PersonRequest>> ListByProductIdAsync(int serviceId);
     }

@@ -16,7 +16,12 @@ namespace PetCare.Persistence.Repositories
 
             }
 
-            public async Task<IEnumerable<PersonRequest>> ListByCustomerIdAsync(int personProfileId) =>
+        public async Task<PersonRequest> FindByIdAsync(int id)
+        {
+            return await _context.Requests.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<PersonRequest>> ListByCustomerIdAsync(int personProfileId) =>
                 await _context.Requests
                 .Where(p => p.PersonProfileId == personProfileId)
                 .Include(p => p.PersonProfile)
@@ -34,6 +39,11 @@ namespace PetCare.Persistence.Repositories
                 // request.CustomerId = customer.Id;
                 await _context.Requests.AddAsync(request);
             }
+
+        public void Update(PersonRequest request)
+        {
+            _context.Update(request);
         }
+    }
  
 }

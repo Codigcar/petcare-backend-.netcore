@@ -69,5 +69,30 @@ namespace PetCare.Services
                 return new RequestResponse($"An error ocurred while saving the request: {ex.Message}");
             }
         }
+
+        public async Task<RequestResponse> UpdateAsync(int id, PersonRequest Request)
+        {
+            var existingrequest = await _requestRepository.FindByIdAsync(id);
+
+            if (existingrequest == null)
+                return new RequestResponse(" Request not found");
+
+            existingrequest.DateReservation = Request.DateReservation;
+            existingrequest.StartTime = Request.StartTime;
+            existingrequest.EndTime = Request.EndTime;
+            existingrequest.Status = Request.Status;
+
+            try
+            {
+                _requestRepository.Update(existingrequest);
+                await _unitOfWork.CompleteAsync();
+
+                return new RequestResponse(existingrequest);
+            }
+            catch (Exception ex)
+            {
+                return new RequestResponse($"An error ocurred while updating the request: {ex.Message}");
+            }
+        }
     }
 }

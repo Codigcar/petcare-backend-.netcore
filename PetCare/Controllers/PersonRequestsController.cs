@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetCare.Domain.Models;
@@ -13,6 +14,7 @@ using PetCare.Resources.Save;
 
 namespace PetCare.Controllers
 {
+    //[Authorize]
     [Route("api/people/{personId}/pets/{petId}/providers/{providerId}/products/{productId}/requests")]
     public class PersonRequestsController : ControllerBase
     {
@@ -36,6 +38,21 @@ namespace PetCare.Controllers
             var result = await _requestService.SaveByCustomerIdAsync(personId, providerId, productId, petId, request);
             if (!result.Success)
                 return BadRequest(result.Message);
+            var requestResource = _mapper.Map<PersonRequest, RequestResource>(result.Request);
+            return Ok(requestResource);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditRequestRegister(int id, [FromBody] SaveRequestResource resource)
+        {
+            var request = _mapper.Map<SaveRequestResource, PersonRequest>(resource);
+            var result = await _requestService.UpdateAsync(id, request);
+
+            if (!result.Success)
+            {
+                return BadRequest(result.Message);
+            }
+
             var requestResource = _mapper.Map<PersonRequest, RequestResource>(result.Request);
             return Ok(requestResource);
         }

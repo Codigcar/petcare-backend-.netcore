@@ -23,12 +23,7 @@ namespace PetCare.Services
 
         private IAccountRepository _accountRepository;
         // TODO: Replace by Persistence Implementation
-        private List<Account> _users = new List<Account>
-        {
-            new Account { Id = 1
-            , User = "aries_20000_15@hotmail.com", Password = "1q2w3e4r"},
-            new Account  { Id = 2,User = "jason.bourne@treadstone.gov", Password = "easy-one"}
-        };
+        
 
         // Secret Settings
         private readonly AppSettings _appSettings;
@@ -47,20 +42,17 @@ namespace PetCare.Services
             // var user = _users.SingleOrDefault(x =>
             // x.User == body.Username && x.Password == body.Password);
 
-            var userdb = _accountRepository.GetByUserandPasswordIdAsync(body.Username,body.Password);
+            var user = _accountRepository.GetByUserandPasswordIdAsync(body.Username,body.Password);
             //Return null when user not found
-            Account user = userdb.Result;
-            if (user == null)
+
+            if (user.Result == null)
             {
                 return null;
             }
-            var token = generateJwtToken(user);
-            return new AuthenticateResponse(user, token);
+            var token = generateJwtToken(user.Result);
+            return new AuthenticateResponse(user.Result, token);
         }
-        public IEnumerable<Account> GetAll()
-        {
-            return _users;
-        }
+        
 
         private string generateJwtToken(Account user)
         {

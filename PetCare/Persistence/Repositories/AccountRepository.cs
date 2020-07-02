@@ -27,10 +27,10 @@ namespace PetCare.Persistence.Repositories
             return await _context.Accounts.ToListAsync();
         }
 
-        public async Task<Account> GetByUserandPasswordIdAsync(string username, string password) =>
-           await _context.Accounts
-           .Where(p => p.User == username)
-           .Include(p => p.User)
-           .FirstOrDefaultAsync();
+        public Task <Account> GetByUserandPasswordIdAsync(string username, string password) =>
+            _context.Accounts
+           .Where(x => x.User == username && x.Password == password)
+           .SingleOrDefaultAsync();
+        //.Include(p => p.User)
     }
 }

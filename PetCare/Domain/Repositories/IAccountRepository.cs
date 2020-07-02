@@ -11,7 +11,7 @@ namespace PetCare.Domain.Repositories
         Task AddAsyn(Account account);
         Task<IEnumerable<Account>> ListAsync();
 
-        Task<Account> GetByUserandPasswordIdAsync(string username, string password);
+        Task <Account> GetByUserandPasswordIdAsync(string username, string password);
     }
 
 }
