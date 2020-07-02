@@ -1,10 +1,12 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using PetCare.Domain.Models;
 using PetCare.Domain.Repositories;
@@ -13,6 +15,8 @@ using PetCare.Persistence.Context;
 using PetCare.Persistence.Repositories;
 using PetCare.Resources;
 using PetCare.Services;
+using PetCare.Settings;
+using System.Text;
 
 namespace PetCare
 {
@@ -28,7 +32,35 @@ namespace PetCare
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddControllers();
+
+            // AppSettings Setup
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            // JWT Authentication configuration
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            // Add Authentication Support
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
 
             /*services.AddDbContext<AppDbContext>(opt =>
             opt.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
@@ -36,9 +68,9 @@ namespace PetCare
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-     
 
-            
+
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPersonProfileRepository, PersonProfileRepository>();
             services.AddScoped<IPersonProfileService, PersonProfileService>();
             services.AddScoped<IProviderRepository, ProviderRepository>();
@@ -110,13 +142,20 @@ namespace PetCare
                 app.UseDeveloperExceptionPage();
             }
 
+           
+
+            app.UseCors(x => x
+                 .SetIsOriginAllowed(origin => true)
+                 .AllowAnyMethod()
+                 .AllowAnyHeader());
             app.UseHttpsRedirection();
 
-            app.UseCors("Todos");
+            app.UseHttpsRedirection();
 
 
             app.UseRouting();
-
+            // Add Authentication Support
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(c =>

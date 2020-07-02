@@ -9,5 +9,9 @@ namespace PetCare.Domain.Repositories
     public interface IAccountRepository
     {
         Task AddAsyn(Account account);
+        Task<IEnumerable<Account>> ListAsync();
+
+        Task<Account> GetByUserandPasswordIdAsync(string username, string password);
     }
+
 }
