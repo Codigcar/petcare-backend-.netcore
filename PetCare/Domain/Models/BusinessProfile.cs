@@ -15,6 +15,7 @@ namespace PetCare.Domain.Models
         public bool Owner { get; set; }
 
         public string Photo { get; set; }
+        //
 
     }
 }
