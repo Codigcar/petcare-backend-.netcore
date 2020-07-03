@@ -39,7 +39,7 @@ namespace PetCare.Services
             return await _requestRepository.ListByProductIdAsync(providerId);
         }
 
-        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId,int productTypeId, int productId, int petId, PersonRequest request)
+        public async Task<RequestResponse> SaveByCustomerIdAsync(int customerId, int providerId, int productTypeId, int productId, int petId, PersonRequest request)
         {
             PersonProfile customer = await _customerRepository.FindByIdAsync(customerId);
             Product product = await _productepository.FindByIdAsync(productId);
@@ -71,11 +71,10 @@ namespace PetCare.Services
             }
         }
 
-      /*  public async Task<PersonRequest> Update(int requestId, PersonRequest personRequest)
-        {
-            var RequestDB = await _requestRepository.FindById(requestId);
-            RequestDB.DateReservation = personRequest.DateReservation;
-
-        }*/
+        /*  public async Task<PersonRequest> Update(int requestId, PersonRequest personRequest)
+          {
+              var RequestDB = await _requestRepository.FindById(requestId);
+              RequestDB.DateReservation = personRequest.DateReservation;
+          }*/
     }
 }

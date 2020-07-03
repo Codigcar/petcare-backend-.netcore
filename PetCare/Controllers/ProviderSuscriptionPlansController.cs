@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Pkcs;
@@ -13,6 +14,7 @@ using PetCare.Resources;
 
 namespace PetCare.Controllers
 {
+    [Authorize]
     [Route("api/providers/{providerId}/suscriptionplans")]
     public class ProviderSuscriptionPlansController : ControllerBase
     {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PetCare.Domain.Models;
@@ -12,6 +13,7 @@ using PetCare.Resources;
 //54565
 namespace PetCare.Controllers
 {
+    [Authorize]
     [Route("api/people/{personId}/pets/{petId}/petprofiles")]
     public class PetMedicalProfilesController : ControllerBase
     {
