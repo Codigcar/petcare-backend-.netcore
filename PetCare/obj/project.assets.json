@@ -9700,11 +9700,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GUILLERMO\\Desktop\\BACKEND_JOAQUIEN\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+      "projectUniqueName": "C:\\Users\\GUILLERMO\\Desktop\\ADD_SECURITY\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
       "projectName": "PetCare",
-      "projectPath": "C:\\Users\\GUILLERMO\\Desktop\\BACKEND_JOAQUIEN\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+      "projectPath": "C:\\Users\\GUILLERMO\\Desktop\\ADD_SECURITY\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
       "packagesPath": "C:\\Users\\GUILLERMO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GUILLERMO\\Desktop\\BACKEND_JOAQUIEN\\Backend-NetCore-PetCare\\PetCare\\obj\\",
+      "outputPath": "C:\\Users\\GUILLERMO\\Desktop\\ADD_SECURITY\\Backend-NetCore-PetCare\\PetCare\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

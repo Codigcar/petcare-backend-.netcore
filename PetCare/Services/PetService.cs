@@ -26,7 +26,9 @@ namespace PetCare.Services
 
         public async Task<IEnumerable<Pet>> ListAsync()
         {
+
             return await _petRepository.ListAsync();
+
         }
 
         public async Task<PetResponse> SaveAsync(Pet pet)
