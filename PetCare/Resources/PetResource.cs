@@ -13,7 +13,6 @@ namespace PetCare.Resources
         public string Breed { get; set; }
         public string Photo { get; set; }
         public string Sex { get; set; }
-        //
 
 
     }

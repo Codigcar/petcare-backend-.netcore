@@ -31,7 +31,7 @@ namespace PetCare.Resources
         [MaxLength(50)]
         public string Description { get; set; }
 
-        // public int SuscriptionPlanId { get; set; }
+       // public int SuscriptionPlanId { get; set; }
 
         //  public Card Card { get; set; }
 
