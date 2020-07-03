@@ -68,6 +68,7 @@ namespace PetCare.Services
             existingCustomer.Age = customer.Age;
             existingCustomer.Email = customer.Email;
             existingCustomer.Document = customer.Document;
+            existingCustomer.Photo = customer.Photo;
 
 
             try

@@ -14,7 +14,8 @@ namespace PetCare.Domain.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
-        
+
+
         public Payment Payment{ get; set; }
         public List<ProviderJoinProduct> ProviderProducts { get; set; }
         public IList<BusinessProfile> BusinessProfiles { get; set; } = new List<BusinessProfile>();

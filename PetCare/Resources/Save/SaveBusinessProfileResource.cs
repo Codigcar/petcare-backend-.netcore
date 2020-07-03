@@ -37,6 +37,8 @@ namespace PetCare.Resources
         [Required]
         public int Age { get; set; }
 
+        [Required]
+        public string Photo { get; set; }
 
         public Boolean Owner { get; set; }
 
