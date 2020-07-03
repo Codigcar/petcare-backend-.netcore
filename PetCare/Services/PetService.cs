@@ -53,11 +53,13 @@ namespace PetCare.Services
             if (existingpet == null)
                 return new PetResponse("pet not found");
 
+
             existingpet.Name = pet.Name;
             existingpet.Age = pet.Age;
             existingpet.Breed = pet.Breed;
             existingpet.Photo = pet.Photo;
             existingpet.Sex = pet.Sex;
+
 
             try
             {
@@ -94,6 +96,7 @@ namespace PetCare.Services
 
         public async Task<PetResponse> SaveByCustomerIdAsync(int customerId, Pet pet)
         {
+
             try
             {
                 await _petRepository.SaveByCustomerIdAsync(customerId,pet);
@@ -105,6 +108,7 @@ namespace PetCare.Services
             {
                 return new PetResponse($"An error ocurred while saving the pet: {ex.Message}");
             }
+
 
         }
 
