@@ -13,6 +13,9 @@ namespace PetCare.Domain.Models
         public Provider Provider { get; set; }
 
         public bool Owner { get; set; }
-        
+
+        public string Photo { get; set; }
+        //
+
     }
 }

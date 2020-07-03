@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i+JppE4n9rbCCwOOjQv6Y+jg/UufA/mFpQnBHPjEQL60bdzm+sK44TxPzG/xxrddFyWVPq7q6E7d+sQeQ2UflQ==",
+  "dgSpecHash": "jnJbHFuzpN9uJkH6ObvDOa9hZZlBi3rePvJCs7gM0JAB81szRDogB3s8etfJWeRel+B4ryMLLa/AcNO8+pIvwQ==",
   "success": true,
-  "projectFilePath": "F:\\Contabilidad\\ALGORITMOS\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+  "projectFilePath": "F:\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EQUIPO\\.nuget\\packages\\automapper\\9.0.0\\automapper.9.0.0.nupkg.sha512",
     "C:\\Users\\EQUIPO\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\7.0.0\\automapper.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",

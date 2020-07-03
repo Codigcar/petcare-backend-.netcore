@@ -9700,11 +9700,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Contabilidad\\ALGORITMOS\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+      "projectUniqueName": "F:\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
       "projectName": "PetCare",
-      "projectPath": "F:\\Contabilidad\\ALGORITMOS\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
+      "projectPath": "F:\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\PetCare.csproj",
       "packagesPath": "C:\\Users\\EQUIPO\\.nuget\\packages\\",
-      "outputPath": "F:\\Contabilidad\\ALGORITMOS\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\obj\\",
+      "outputPath": "F:\\backendweb\\Nueva carpeta\\Backend-NetCore-PetCare\\PetCare\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"

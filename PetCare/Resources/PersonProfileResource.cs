@@ -15,6 +15,7 @@ namespace PetCare.Resources
         public string Password { get; set; }
         public long Phone { get; set; }
         public int Age { get; set; }
+        public string Photo { get; set; }
 
     }
 }

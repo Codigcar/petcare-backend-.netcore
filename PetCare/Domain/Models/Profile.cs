@@ -15,6 +15,7 @@ namespace PetCare.Domain.Models
         public long Phone { get; set; }
         public string Password { get; set; }
         public long Document { get; set; }
+        public string Photo { get; set; }
 
         public Account Account { get; set; }
         public int AccountId { get; set; }

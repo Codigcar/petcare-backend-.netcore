@@ -6,27 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200603053303_abejas.cs" />
-    <Compile Remove="Migrations\20200603053303_abejas.Designer.cs" />
-    <Compile Remove="Migrations\20200603062244_abejas.cs" />
-    <Compile Remove="Migrations\20200603062244_abejas.Designer.cs" />
-    <Compile Remove="Migrations\20200603064502_abejas.cs" />
-    <Compile Remove="Migrations\20200603064502_abejas.Designer.cs" />
-    <Compile Remove="Migrations\20200619125604_initial.cs" />
-    <Compile Remove="Migrations\20200619125604_initial.Designer.cs" />
-    <Compile Remove="Migrations\20200619131134_initial.cs" />
-    <Compile Remove="Migrations\20200619131134_initial.Designer.cs" />
-    <Compile Remove="Migrations\20200619135353_ultimate.cs" />
-    <Compile Remove="Migrations\20200619135353_ultimate.Designer.cs" />
-    <Compile Remove="Migrations\20200619141222_ultimate2.cs" />
-    <Compile Remove="Migrations\20200619141222_ultimate2.Designer.cs" />
-    <Compile Remove="Migrations\20200619143442_ultimate3.cs" />
-    <Compile Remove="Migrations\20200619143442_ultimate3.Designer.cs" />
-    <Compile Remove="Migrations\20200630090554_ultimate4.cs" />
-    <Compile Remove="Migrations\20200630090554_ultimate4.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />

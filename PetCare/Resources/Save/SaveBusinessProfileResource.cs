@@ -31,12 +31,14 @@ namespace PetCare.Resources
         public string Password { get; set; }
 
         [Required]
-       // [Phone]
+       //// [Phone]
         public long Phone { get; set; }
 
         [Required]
         public int Age { get; set; }
 
+        [Required]
+        public string Photo { get; set; }
 
         public Boolean Owner { get; set; }
 
